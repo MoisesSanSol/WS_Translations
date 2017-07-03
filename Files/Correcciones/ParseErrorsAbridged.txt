@@ -1,0 +1,53 @@
+*** Parsing Set File: accel_world_booster_pack.txt ***
+
+-Wrong line break at 980
+-Wrong line break at 995
+
+*** Parsing Set File: day_break_illusion_booster_pack.txt ***
+
+-Line Jump at 596
+
+
+*** Parsing Set File: idolm@ster_cinderella_girls_2nd_season_booster_pack.txt ***
+
+-Botched PR at 1614
+
+
+*** Parsing Set File: idolm@ster_cinderella_girls_trial_deck.txt ***
+
+-Missing Text at 903
+
+*** Parsing Set File: little_busters!_booster_pack.txt ***
+
+-Wrong line break at 919
+
+*** Parsing Set File: robotics-notes_booster_pack.txt ***
+
+-Line Jump at 904
+-Line Jump at 919
+-Wrong line break at 563
+
+*** Parsing Set File: schwarz_promos.txt ***
+
+-Missing translation at 4028
+-Missing translation at 4039
+
+
+*** Parsing Set File: weib_promos.txt ***
+
+-Missing translation at 2462
+-Missing translation at 3183
+-Missing translation at 3194
+-Missing translation at 3205
+-Missing translation at 3216
+-Missing translation at 3227
+-Missing Text at 6135
+-Missing translation at 6353
+-Missing translation at 10083
+-Missing translation at 10094
+-Missing translation at 10105
+
+*** Parsing Set File: milky_holmes_fan_fun_party_pack.txt ***
+
+
+-(This card is not legal for WGP tournaments): this breaks the tranlation parsing, badly.

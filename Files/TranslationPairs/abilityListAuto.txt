@@ -1,0 +1,578 @@
+\[A\] ACCELERATE \[Put the top card of your Library in your Clock\] At the start of your Climax Phase, you may pay cost. If so, this gains \+(\d+) Power for the turn\.
+[AUTO] Accelerate [Pon la carta superior de tu Deck en tu Clock] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, esta carta gana +$1 de Poder hasta el final del turno de tu oponente.
+
+\[A\] At the start of your Climax Phase, choose 1 of your Standing Characters and Rest it\.
+[AUTO] Al comienzo de tu fase de Climax, escoge 1 de tus personajes en [Stand] y pon dicho personaje en [Rest].
+
+\[A\] At the start of your Climax Phase, this gains \+X Power for the turn\. X = (\d+) times # of other "(.+?)" in your Front Row\.
+[AUTO] Al comienzo de tu fase de Climax, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes llamados '@@$2@@' que controles.
+
+\[A\] At the start of your Encore Step, if this is in the Front Row, your Opponent reveals the top card of his or her Library\. If it's a Level 3 or higher Character, your Opponent may put it in any Slot on the Stage\. \(Otherwise put it back where it was\)
+[AUTO] Al comienzo de tu fase de Encore, si esta carta está en tu Center Stage, tu oponente muestra la carta superior de su Deck. Si dicha carta es un personaje de Nivel 3 o superior, tu oponente puede ponerlo en cualquier posición de su Center Stage.
+
+\[A\] At the start of your Opponent's Attack Phase, you may move this to an empty Front Row Center Slot\.
+[AUTO] Al comienzo de la fase de ataque de tu oponente, puedes mover esta carta a la posición vacía del medio de tu Center Stage.
+
+\[A\] At the start of your Opponent's Attack Phase, you may move this to an empty Slot in the Front Row\.
+[AUTO] Al comienzo de la fase de ataque de tu oponente, puedes mover esta carta a una posición vacía de tu Center Stage.
+
+\[A\] At the start of your Opponent's Attack Phase, you may move this to an empty Slot in your Front Row that has an Opponent's Character Opposite that Slot\.
+[AUTO] Al comienzo de la fase de ataque de tu oponente, puedes mover esta carta a una posición vacía de tu Center Stage en frente de un personaje de tu oponente.
+
+\[A\] At the start of your Opponent's Draw Phase, if this is in the Front Row, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Al comienzo de la fase de robo de tu oponente, si esta carta está en tu Center Stage, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] BOND/['"](.+?)['"] \[Discard a card from your hand to the Waiting Room]
+[AUTO] Bond / '@@$1@@' [Pon 1 carta de tu mano en tu Waiting Room].
+
+\[A\] BOND/['"](.+?)['"] \[\(1\)\]
+[AUTO] Bond / '@@$1@@' [(1)].
+
+\[A\] Discard a Climax card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a Character with either ::(.+?):: or ::(.+?):: in your Waiting Room and return it to your hand\.
+[AUTO] [Pon 1 Climax de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje <<%%$1%%>> o <<%%$2%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[A\] During battles involving this, when the Damage taken by you is not Cancelled, this gains \+(\d+) Power for the turn\.
+[AUTO] Durante un combate en el que participe esta carta, cuando el daño que se te haga no sea cancelado, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] ENCORE \[Discard a BLUE card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 carta Azul de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Discard a Character card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 personaje de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Discard a GREEN card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 carta Verde de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Discard a RED card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 carta Roja de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Discard a YELLOW card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 carta Amarilla de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Discard an ::(.+?):: or a ::(.+?):: Character card from your hand to the Waiting Room\]
+[AUTO] Encore [Pon 1 personaje <<%%$1%%>> o <<%%$2%%>> de tu mano en tu Waiting Room].
+
+\[A\] ENCORE \[Put the top card of your Library in your Clock\]
+[AUTO] Encore [Pon la carta superior de tu Deck en tu Clock].
+
+\[A\] FORCE \[Discard a ::(.+?):: Character card from your hand to the Waiting Room\] At the start of your Climax Phase, you may pay cost\. If so, choose a Character Opposite this and 1 of your Opponent's other Level (\d) or lower Characters, then Stand and Swap them\.
+[AUTO] Fuerza [Pon 1 personaje <<$1>> de tu mano en tu Waiting Room] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge el personaje oponente en frente de esta carta y otro de tu personaje oponente de Nivel $2 o inferior, intercambia sus posiciones y ponlos en [Stand].
+
+\[A\] FORCE \[Discard a BLUE Character card from your hand to the Waiting Room\] At the start of your Climax Phase, you may pay cost\. If so, choose a Character Opposite this and 1 of your Opponent's other Level (\d) or lower Characters, then Stand and Swap them\.
+[AUTO] Fuerza [Pon 1 personaje Azul de tu mano en tu Waiting Room] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge el personaje oponente en frente de esta carta y otro de tu personaje oponente de Nivel $1 o inferior, intercambia sus posiciones y ponlos en [Stand].
+
+\[A\] FORCE \[Discard a RED Character card from your hand to the Waiting Room\] At the start of your Climax Phase, you may pay cost\. If so, choose a Character Opposite this and 1 of your Opponent's other Level (\d) or lower Characters, then Stand and Swap them\.
+[AUTO] Fuerza [Pon 1 personaje Rojo de tu mano en tu Waiting Room] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge el personaje oponente en frente de esta carta y otro de tu personaje oponente de Nivel $1 o inferior, intercambia sus posiciones y ponlos en [Stand].
+
+\[A\] FORCE \[\(1\) Discard a Character card from your hand to the Waiting Room\] At the start of your Climax Phase, you may pay cost\. If so, choose 2 of your Opponent's Characters, then Stand and Swap them\.
+[AUTO] Fuerza [(1) Pon 1 personaje de tu mano en tu Waiting Room] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge 2 personajes de tu oponente, intercambia sus posiciones y ponlos en [Stand].
+
+\[A\] FORCE \[\(1\) Discard a card from your hand to the Waiting Room\] At the start of your Climax Phase, you may pay cost\. If so, choose a Character Opposite this and 1 of your Opponent's other Characters, then Stand and Swap them\.
+[AUTO] Fuerza [(1) Pon 1 carta de tu mano en tu Waiting Room] Al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge el personaje oponente en frente de esta carta y otro personaje de tu oponente, intercambia sus posiciones y ponlos en [Stand].
+
+\[A\] RECOLLECTION When this attacks, if "(.+?)" is in your Memory, this gains \+(\d+) Power for the turn\.
+[AUTO] Memory: Cuando esta carta ataca, si hay una carta llamada '@@$1@@' en tu Memory, esta carta gana +$2 de Poder hasta el final de turno.
+
+\[A\] RECOLLECTION \[Put this in the Waiting Room\] When the Damage taken by you is not Cancelled, if this is in Memory and the Damage was 3 or more, you may pay cost\. If so, search your Library for up to 2 ::(.+?):: Characters, reveal them, put them in your hand, choose a card in your hand and put it in your Stock, and shuffle your Library\.
+[AUTO] Memory [Pon esta carta en tu Waiting Room] Cuando el daño que se te haga no sea cancelado, si esta carta esta en tu Memory y dicho daño es 3 o más, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 2 personajes <<%%$1%%>>, enséñaselos a tu oponente, ponlos en tu mano, escoge 1 carta en tu mano, ponla en tu Stock, y baraja tu Deck.
+
+\[A\] This ability activates up to once per turn\. During the turn this is placed from hand to the Stage, when the Damage dealt by this is Cancelled, put the top card of your Library in the Waiting Room, and deal X Damage to your Opponent\. X = 1 \+ Level of that card\. \(Climax cards are considered Level 0 for this effect\. Damage Cancel can occur\)
+[AUTO] Esta habilidad sólo se puede activar 1 vez por turno. Durante el turno en el que esta carta fue puesta en tu Stage desde tu mano, cuando el daño hecho por esta carta es cancelado, pon la carta superior de tu Deck en tu Waiting Room, y haz X daños a tu oponente, donde X es 1 más el Nivel de la carta puesta en tu Waiting Room con esta habilidad.
+
+\[A\] This ability activates up to once per turn\. When you play an Event, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Esta habilidad sólo se puede activar 1 vez por turno. Cuando juegues un Evento, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] This ability activates up to once per turn\. When you play an Event, this gains \+(\d+) Power for the turn\.
+[AUTO] Esta habilidad sólo se puede activar 1 vez por turno. Cuando juegues un Evento, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] This ability activates up to once per turn\. When you use an \[S\] ability, this gains \+(\d+) Power for the turn\.
+[AUTO] Esta habilidad sólo se puede activar 1 vez por turno. Cuando uses una habilidad [ACT], esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When a Level 2 or higher Battle Opponent of this becomes Reversed in battle, you may put the top card of your Library in your Stock\.
+[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, si dicho personaje es de Nivel 2 o superior, puedes poner la carta superior de tu Deck en tu Stock.
+
+\[A\] When the Battle Opponent of this becomes Reversed in battle, Send that Character to Memory\.
+[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, pon dicho personaje en la Memory de tu oponente.
+
+\[A\] When the Battle Opponent of this becomes Reversed in battle, choose 1 of your other Characters with either ::(.+?):: or ::(.+?)::, Rest it, and move it to an empty Slot in the Back Row\.
+[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, escoge 1 de tus otros personajes <<%%$1%%>> o <<%%$2%%>>, pon dicho personaje en [Rest] y ponlo en una posición vacía de tu Back Stage.
+
+\[A\] When the Battle Opponent of this becomes Reversed in battle, if there are 3 or fewer cards in your Stock, choose 1 of your other Characters, Rest it, and move it to an empty Slot in the Back Row\.
+[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, si el número de cartas en tu Stock es 3 o inferior, escoge 1 de tus otros personajes, pon dicho personaje en [Rest] y ponlo en una posición vacía de tu Back Stage.
+
+\[A\] When the Battle Opponent of this becomes Reversed in battle, look at the top card of your Library and put it face-down under this as Marker\.
+[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, mira la carta superior de tu Deck y ponla debajo de esta carta como Marker.
+
+\[A\] When the Damage dealt by this is Cancelled, you may put this in your Stock\.
+[AUTO] Cuando el daño hecho por esta carta es cancelado, puedes poner esta carta en tu Stock.
+
+\[A\] When this Side Attacks, this gains \+1 Soul for the turn\.
+[AUTO] Cuando esta carta declare un Side Attack, esta carta gana +1 Soul hasta el final del turno.
+
+\[A\] When this attacks, choose 1 of your ::(.+?):: Characters, and that Character gains \+1 Level and \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, escoge 1 de tus personajes <<%%$1%%>>, dicho personaje gana +1 Nivel y +$2 de Poder hasta el final del turno.
+
+\[A\] When this attacks, choose 1 of your Characters with either ::(.+?):: or ::(.+?)::, and that Character gains \+1 Level and \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, escoge 1 de tus personajes <<%%$1%%>> o <<%%$2%%>>, dicho personaje gana +1 Nivel y +$3 de Poder hasta el final del turno.
+
+\[A\] When this attacks, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When this attacks, choose 1 of your other ::(.+?):: Characters, and that Character gains \+X Power for the turn\. X = (\d+) times # of your other ::(.+?):: Characters\.
+[AUTO] Cuando esta carta ataca, escoge 1 de tus otros personajes <<%%$1%%>>, dicho personaje gana +X de Poder hasta el final del turno, donde X es 500 multiplicado por el número de otros personajes <<%%$2%%>> que controles.
+
+\[A\] When this attacks, choose 1 of your other RED Characters, and that Character gains \+X Power for the turn\. X = (\d+) times # of your other RED Characters\.
+[AUTO] Cuando esta carta ataca, escoge 1 de tus otros personajes Rojo, dicho personaje gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de otros personajes Rojos que controles.
+
+\[A\] When this attacks, if the Level of the Character Opposite this is 3 or higher, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, si el personaje oponente de esta carta es de Nivel 3 o superior, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When this attacks, if the Level of the Character Opposite this is 3 or higher, this gains \+X Power for the turn\. X = (\d+) times # of your RED Characters\.
+[AUTO] Cuando esta carta ataca, si el personaje oponente de esta carta es de Nivel 3 o superior, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes Rojos que controles.
+
+\[A\] When this attacks, if you have (\d) or more other ::(.+?):: Characters, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, si controlas otros $1 o más personajes <<%%$1%%>>, esta carta gana +$3 de Poder hasta el final del turno.
+
+\[A\] When this attacks, if you have (\d) or more other RED Characters, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, si controlas otros $1 o más personajes Rojos, esta carta gana +$2 de Poder hasta el final del turno.
+
+\[A\] When this attacks, if you have (\d) or more other YELLOW Characters, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta ataca, si controlas otros $1 o más personajes Amarillos, esta carta gana +$2 de Poder hasta el final del turno.
+
+\[A\] When this attacks, put the top (\d) cards of your Library in the Waiting Room\. If there were at least 1 Climax card among them, this (?:gains|gets) ([\+-])(\d) Soul for the turn\.
+[AUTO] Cuando esta carta ataca, pon $1 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos 1 Climax entre ellas, esta carta gana $2$3 Soul hasta el final del turno.
+
+\[A\] When this attacks, this gains \+X Power for the turn\. X = (\d+) times # of your other ::(.+?):: Characters\.
+[AUTO] Cuando esta carta ataca, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de otros personajes <<%%$2%%>> que controles.
+
+\[A\] When this attacks, this gains \+X Power for the turn\. X = (\d+) times # of your other RED Characters\.
+[AUTO] Cuando esta carta ataca, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes Rojos que controles.
+
+\[A\] When this attacks, this gains \+X Power for the turn\. X = (\d+) times Level of the Character Opposite this\.
+[AUTO] Cuando esta carta ataca, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el Nivel del personaje oponente en frente de esta carta.
+
+\[A\] When this attacks, you may put the top card of your Library in the Waiting Room\. If it's a Climax card, draw a card, and discard a card from your hand to the Waiting Room\.
+[AUTO] Cuando esta carta ataca, puedes poner la carta superior de tu Deck en tu Waiting Room. Si dicha carta es un Climax, roba 1 carta, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[A\] When this becomes Reversed in battle, if the Cost of the Battle Opponent of this is (\d) or lower, you may put the top card of your Opponent's Clock in the Waiting Room\. If so, put that Character in Clock\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Coste de su personaje oponente es $1 o inferior, puedes poner la carta superior del Clock de tu oponente en la Waiting Room de tu oponente. Si lo haces, pon dicho personaje en el Clock de tu oponente.
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is (\d) or lower, you may Reverse that Character\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es $1 o inferior, puedes poner dicho personaje en [Reverse].
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is (\d) or lower, you may put that Character in Stock\. If so, put the bottom card of your Opponent's Stock in the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es $1 o inferior, puedes poner dicho personaje en el Stock de tu oponente. Si lo haces, pon la carta inferior del Stock de tu oponente en su Waiting Room.
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is (\d) or lower, you may put the top card of your Opponent's Clock in the Waiting Room\. If so, put that Character in Clock\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es $1 o inferior, puedes poner la carta superior del Clock de tu oponente en la Waiting Room de tu oponente. Si lo haces, pon dicho personaje en el Clock de tu oponente.
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is 0 or lower, you may put that Character on the bottom of the Library\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es 0 o inferior, puedes poner dicho personaje en la parte inferior del Deck de tu oponente.
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is higher than the Level of your Opponent, you may Reverse that Character\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es superior al Nivel de tu oponente, puedes poner dicho personaje en [Reverse].
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is higher than the Level of your Opponent, you may put that Character in Stock\. If so, put the bottom card of your Opponent's Stock in the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es superior al Nivel de tu oponente, puedes poner dicho personaje en el Stock de tu oponente. Si lo haces, pon la carta inferior del Stock de tu oponente en su Waiting Room.
+
+\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is higher than the Level of your Opponent, you may put that Character on the bottom of the Library\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es superior al Nivel de tu oponente, puedes poner dicho personaje en la parte inferior del Deck de tu oponente.
+
+\[A\] When this becomes Reversed in battle, if you have 1 or fewer other YELLOW Characters, put this in your Clock\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el número de otros personajes Amarillos que controlas es 1 o inferior, pon esta carta en tu Clock.
+
+\[A\] When this becomes Reversed in battle, put the top 2 cards of your Library in the Waiting Room\. If there were at least 1 Level 2 or higher card among them, you may put this in your Stock\. \(Climax cards are considered Level 0 for this effect\)
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos una carta de Nivel 2 o superior entre ellas, pon esta carta en tu Stock.
+
+\[A\] When this becomes Reversed in battle, put the top card of your Library in your Clock and Rest this\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, pon la carta superior de tu Deck en tu Clock, y pon esta carta en [Rest].
+
+\[A\] When this becomes Reversed in battle, your Opponent may choose a Character in your Waiting Room and put it on top of your Library\.
+[AUTO] Cuando esta carta es puesta en [Reverse] en combate, tu oponente puede escoger 1 personaje en tu Waiting Room y ponerlo en la parte superior de tu Deck.
+
+\[A\] When this is placed from hand to the Climax Zone, choose up to 1 BLUE card in your Waiting Room and put it in your Stock, and all your Characters gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, escoge hasta 1 carta Azul en tu Waiting Room, ponla en tu Stock, y todos tus personajes ganan +1 Soul hasta el final de turno.
+
+\[A\] When this is placed from hand to the Climax Zone, choose up to 1 GREEN card in your Waiting Room and put it in your Stock, and all your Characters gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, escoge hasta 1 carta Verde en tu Waiting Room, ponla en tu Stock, y todos tus personajes ganan +1 Soul hasta el final de turno.
+
+\[A\] When this is placed from hand to the Climax Zone, choose up to 1 RED card in your Waiting Room and put it in your Stock, and all your Characters gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, escoge hasta 1 carta Roja en tu Waiting Room, ponla en tu Stock, y todos tus personajes ganan +1 Soul hasta el final de turno.
+
+\[A\] When this is placed from hand to the Climax Zone, choose up to 1 YELLOW card in your Waiting Room and put it in your Stock, and all your Characters gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, escoge hasta 1 carta Amarilla en tu Waiting Room, ponla en tu Stock, y todos tus personajes ganan +1 Soul hasta el final de turno.
+
+\[A\] When this is placed from hand to the Climax Zone, choose up to 2 of your Characters, and they gain \+(\d+) Power and \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, escoge hasta 2 de tus personajes, y dichos personajes ganan +2000 de Poder y +1 Soul hasta el final del turno.
+
+\[A\] When this is placed from hand to the Climax Zone, draw a card, and all your Characters gain \+1000 Power for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, roba 1 carta, y todos tus personajes ganan +1000 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains \+2000 Power and \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, roba 1 carta, escoge 1 de tus personajes, y dicho personaje gana +2000 de Poder y +1 Soul hasta el final del turno.
+
+\[A\] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains \+3 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, roba 1 carta, escoge 1 de tus personajes, y dicho personaje gana +3 Soul hasta el final del turno.
+
+\[A\] When this is placed from hand to the Climax Zone, draw a card, choose up to 2 of your Characters, and they gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, roba 1 carta, escoge hasta 2 de tus personajes, y dichos personajes ganan +1 Soul hasta el final del turno.
+
+\[A\] When this is placed from hand to the Climax Zone, put the top card of your Library in your Stock, and all your Characters gain \+1 Soul for the turn\.
+[AUTO] Cuando esta carta es puesta de tu mano en tu área de Climax, pon la carta superior de tu Deck en tu Stock, y todos tus personajes ganan +1 Soul hasta el final de turno.
+
+\[A\] When this is placed from hand to the Stage or via effect of \[A\] ability of '(.+?)' to the Stage, this gains \+X Power for the turn\. X = (\d+) times # of your ::(.+?):: Characters\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano o mediante la habilidad [AUTO] de '@@$1@@', esta carta gana +X de Poder hasta el final del turno, donde X es $2 multiplicado por el número de personajes <<%%$3%%>> que controles.
+
+\[A\] When this is placed from hand to the Stage, Rest this\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon esta carta en [Rest].
+
+\[A\] When this is placed from hand to the Stage, Reveal top card of your Library\. If it's a ::(.+?):: Character, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, muestra la carta superior de tu Deck. Si dicha carta es un personaje <<%%$1%%>>, esta carta gana +$2 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your Characters with either ::(.+?):: or ::(.+?)::, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de tus personajes <<%%$1%%>> o <<%%$2%%>>, dicho personaje gana +$3 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your Characters, and that Character gains \+(\d+) Power until the next end of your Opponent's turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno de tu oponente.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your Opponent's Characters in the Front Row, and that Character gets -(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de los personajes de tu oponente en su Center Stage, dicho personaje gana -$1 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your Standing Characters and Rest it\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de tus personajes en [Stand] y ponlo en [Rest].
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your other Characters with either ::(.+?):: or ::(.+?)::, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 de tus otros personajes <<%%$1%%>> o <<%%$2%%>>, dicho personaje gana +$3 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, choose 1 of your other RED Characters, and that Character gains \+X Power for the turn\. X = (\d+) times # of your other RED Characters\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, escoge 1 otro de tus personajes Rojos, dicho personaje gana +X de Poder, donde X es $1 multiplicado por el número de otros personajes Rojos que controles.
+
+\[A\] When this is placed from hand to the Stage, draw up to 2 cards, and discard a card from your hand to the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, roba hasta 2 cartas, escoge 1 carta de tu mano y ponla en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, draw up to 2 cards, discard 2 cards from your hand to the Waiting Room, and put up to 1 card from top of your Library in your Stock\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, roba hasta 2 cartas, escoge 2 cartas en tu mano, ponlas en tu Waiting Room, y pon hasta 1 carta de la parte superior de tu Deck en tu Stock.
+
+\[A\] When this is placed from hand to the Stage, if there are 3 or more Climax cards in your Opponent's Waiting Room, Rest this\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si el número de Climax en la Waiting Room de tu oponente es 3 o superior, pon esta carta en [Rest].
+
+\[A\] When this is placed from hand to the Stage, if there are 3 or more Climax cards in your Waiting Room, put the top card of your Library in your Clock\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si el número de Climax en tu Waiting Room es 3 o superior, pon la carta superior de tu Deck en tu Clock.
+
+\[A\] When this is placed from hand to the Stage, if there are fewer cards in your hand than your Opponent's hand, you may put the top card of your Library in your Stock\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si el número de cartas en tu mano es inferior al número de cartas en la mano de tu oponente, puedes poner la carta superior de tu Deck en tu Stock.
+
+\[A\] When this is placed from hand to the Stage, if you have (\d) or more other ::(.+?):: Characters, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si controlas otros $1 o más personajes <<@@$2@@>>, esta carta gana +$3 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, if you have 4 or more other ::(.+?):: Characters, you may choose an ::(.+?):: Character in your Waiting Room and put it in your Stock\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si controlas otros 4 o más personajes <<%%$1%%>>, puedes escoger 1 personaje <<%%$2%%>> en tu Waiting Room y ponerlo en tu Stock.
+
+\[A\] When this is placed from hand to the Stage, if you have 4 or more other Characters with either ::(.+?):: or ::(.+?)::, you may choose a Character in your Waiting Room with either ::(.+?):: or ::(.+?):: and put it in your Stock\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, si controlas otros 4 o más personajes <<%%$1%%>> o <<%%$2%%>>, puedes escoger 1 personaje <<%%$3%%>> o <<%%$4%%>> en tu Waiting Room y ponerlo en tu Stock.
+
+\[A\] When this is placed from hand to the Stage, look at the top card of your Library and put it either on top or bottom of the Library\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, mira la carta superior de tu Deck y ponla en la parte superior o inferior de tu Deck.
+
+\[A\] When this is placed from hand to the Stage, look at up to 2 cards from top of your Opponent's Library and put them back in the same order\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, mira hasta 2 cartas de la parte superior del Deck de tu oponente y ponlas en la parte superior de su Deck en el mismo orden.
+
+\[A\] When this is placed from hand to the Stage, look at up to 3 cards from top of your Library, choose up to 1 of them and put it in your hand, and put the rest in the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, mira hasta 3 cartas de la parte superior de tu Deck, escoge hasta 1 de entre ellas, ponla en tu mano, y pon el resto de cartas en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, look at up to X cards from top of your Library, choose up to 1 of them and put it in your hand, and put the rest in the Waiting Room\. X = # of your BLUE Characters\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, mira hasta X cartas de la parte superior de tu Deck, escoge hasta 1 de entre ellas, ponla en tu mano, y pon el resto de cartas en tu Waiting Room, donde X is equal al número de personajes Azules que controles.
+
+\[A\] When this is placed from hand to the Stage, put the top 2 cards of your Library in the Waiting Room, and this gains \+X Power for the turn\. X = (\d+) times # of Characters with ::(.+?):: or ::(.+?):: among those cards\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room, y esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes <<%%$1%%>> o <<%%$2%%>> puestos en tu Waiting Room mediante esta habilidad.
+
+\[A\] When this is placed from hand to the Stage, put the top 2 cards of your Library in the Waiting Room\. If there were at least 1 Climax card among them, Rest this\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos 1 Climax entre ellas, pon esta carta en [Rest].
+
+\[A\] When this is placed from hand to the Stage, put the top 2 cards of your Library in the Waiting Room\. If there were at least 1 Climax card among them, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos 1 Climax entre ellas, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, put the top 2 cards of your Library in your Waiting Room\. If there were at least 1 Climax card among them, Rest this\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos 1 Climax entre ellas, pon esta carta en [Rest].
+
+\[A\] When this is placed from hand to the Stage, put the top card of your Library in the Waiting Room, and choose up to 1 of your Opponent's Level X or lower Characters and put it in the Waiting Room\. X = the Level of that card\. \(Climax cards are considered Level 0 for this effect\)
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, pon la carta superior de tu Deck en tu Waiting Room, escoge 1 de los personajes de tu oponente de Nivel X o inferior y ponlo en la Waiting Room de tu oponente, donde X es igual al Nivel de la carta puesta en tu Waiting Room mediante esta habilidad.
+
+\[A\] When this is placed from hand to the Stage, reveal the top card of your Library\. If it's Level (\d) or lower, put it in your Stock\. \(Otherwise put it back where it was\. Climax cards are considered Level 0 for this effect\)
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, muestra la carta superior de tu Deck. Si dicha carta es de Nivel $1 o inferior, ponla en tu Stock.
+
+\[A\] When this is placed from hand to the Stage, reveal the top card of your Library\. If it's a ::(.+?):: Character, put it in your hand and discard a card from your hand to the Waiting Room\. \(Otherwise put it back where it was\)
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, muestra la carta superior de tu Deck. Si dicha carta es un personaje <<%%$1%%>>, ponla en tu mano, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, reveal the top card of your Library\. If it's a Character with either ::(.+?):: or ::(.+?)::, put it in your hand and discard a card from your hand to the Waiting Room\. \(Otherwise put it back where it was\)
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, muestra la carta superior de tu Deck. Si dicha carta es un personaje <<%%$1%%>> o <<%%$2%%>>, ponla en tu mano, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, this gains \+(\d+) Power until the next end of your Opponent's turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana +$1 de Poder hasta el final del turno de tu oponente.
+
+\[A\] When this is placed from hand to the Stage, this gains \+X Power for the turn\. X = (\d+) times # of your ::(.+?):: Characters\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes <<%%$2%%>> que controles.
+
+\[A\] When this is placed from hand to the Stage, this gains \+X Power for the turn\. X = (\d+) times # of your BLUE Characters\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes Azules que controles.
+
+\[A\] When this is placed from hand to the Stage, this gains \+X Power for the turn\. X = (\d+) times # of your Characters with either ::(.+?):: or ::(.+?)::\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana +X de Poder hasta el final del turno, donde X es $1 multiplicado por el número de personajes <<%%$2%%>> o <<%%$3%%>> que controles.
+
+\[A\] When this is placed from hand to the Stage, this gets -(\d+) Power for the turn\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, esta carta gana -$1 de Poder hasta el final del turno.
+
+\[A\] When this is placed from hand to the Stage, you may choose a "(.+?)" in your Waiting Room and put it face-up under this as Marker\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes escoger 1 carta llamada '@@$1@@' en tu Waiting Room y ponerla debajo de esta carta como Marker.
+
+\[A\] When this is placed from hand to the Stage, you may choose a Character in your Waiting Room with either ::(.+?):: or ::(.+?):: and return it to your hand\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes escoger 1 personaje <<%%$1%%>> o <<%%$2%%>> en tu Waiting Room y ponerlo en tu mano.
+
+\[A\] When this is placed from hand to the Stage, you may choose a Character with either ::(.+?):: or ::(.+?):: in your Waiting Room and return it to your hand\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes escoger 1 personaje <<%%$1%%>> o <<%%$2%%>> en tu Waiting Room y ponerlo en tu mano.
+
+\[A\] When this is placed from hand to the Stage, you may choose a ['"](.+?)['"] in your Waiting Room and put it face-down under this as Marker\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes escoger 1 carta llamada '@@$1@@' en tu Waiting Room y ponerla debajo de esta carta como Marker.
+
+\[A\] When this is placed from hand to the Stage, you may put the top 3 cards of your Library in the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes poner 3 cartas de la parte superior de tu Deck en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, you may put the top card of your Clock in the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, puedes poner la carta superior de tu Clock en tu Waiting Room.
+
+\[A\] When this is placed from hand to the Stage, your Opponent declares a number between 0, 1, or 2\. You put the top card of your Library in the Waiting Room, and if the Level of that card is the same as the number declared, you draw up to X cards\. X = 1 plus the number declared\. \(Climax cards are considered Level 0 for this effect\)
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, tu oponente escoge '0', '1' o '2'. Muestra la carta superior de tu Deck, si el Nivel de dicha carta es igual al valor escogido por tu oponente, roba hasta X cartas, donde X es 1 más el valo escogido.
+
+\[A\] When this is placed from hand to the Stage, your Opponent may choose a Cost 0 or lower Character in his or her Waiting Room and put it in any Slot on the Stage\.
+[AUTO] Cuando esta carta es puesta en tu Stage desde tu mano, tu oponente puede escoger 1 personaje de Coste 0 o inferior en su Waiting Room y ponerlo en cualquier posición de su Stage.
+
+\[A\] When this is placed from the Stage to the Waiting Room, you may reveal up to 3 cards from top of your Library\. If you reveal at least 1 card this way, choose up to 1 Character among them with either ::(.+?):: or ::(.+?)::, put it in your hand, put the rest in the Waiting Room, and discard a card from your hand to the Waiting Room\.
+[AUTO] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, muestra hasta 3 cartas de la parte superior de tu Deck. Si mostraste al menos 1 carta mediante esta habilidad, escoge hasta 1 personaje <<%%$1%%>> o <<%%$2%%>> de entre ellas, ponlo en tu mano, pon el resto de cartas en tu Waiting Room, escoge 1 carta de tu mano y ponla en tu Waiting Room.
+
+\[A\] When you Level-Up, this gains "\[A\] ENCORE \[\(1\)\]" for the turn\.
+[AUTO] Cuando subas de Nivel, esta carta gana '[AUTO] Encore [(1)].' hasta el final del turno.
+
+\[A\] When you use FORCE, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando uses una habilidad 'Fuerza', escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When you use FORCE, choose 1 of your Characters, and that Character gains \+(\d+) Power until the next end of your Opponent's turn\.
+[AUTO] Cuando uses una habilidad 'Fuerza', escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno de tu oponente.
+
+\[A\] When you use FORCE, you may draw a card\. If so, discard a card from your hand to the Waiting Room\.
+[AUTO] Cuando uses una habilidad 'Fuerza', puedes robar 1 carta. Si lo haces, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[A\] When you use the BACKUP of this, choose 1 of your RED Characters in battle, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando uses la habilidad 'Backup' de esta carta, escoge 1 de tus personajes Rojos en combate, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When you use the BACKUP of this, if there are (\d) or more cards in your Stock, choose 1 of your Characters in battle, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando uses la habilidad 'Backup' de esta carta, si el número de cartas en tu Stock es $1 o superior, escoge 1 de tus personajes en combate, dicho personaje gana +1000 de Poder hasta el final del turno.
+
+\[A\] When you use the BACKUP of this, if you have a ::(.+?):: Character, choose 1 of your Characters in battle, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando uses la habilidad 'Backup' de esta carta, si controlas un personaje <<%%$1%%>>, escoge 1 de tus personajes en combate, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] When you use the BACKUP of this, if you have an ::(.+?):: Character, choose 1 of your Characters in battle, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando uses la habilidad 'Backup' de esta carta, si controlas un personaje <<%%$1%%>>, escoge 1 de tus personajes en combate, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] When you use the BACKUP of this, look at the top card of your Library and put it either on top or bottom of the Library\.
+[AUTO] Cuando uses la habilidad 'Backup' de esta carta, mira la carta superior de tu Deck y ponla en la parte superior o inferior de tu Deck.
+
+\[A\] When your Climax is placed in the Climax Zone, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando un Climax es puesto en tu área de Climax, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When your Climax is placed in the Climax Zone, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando un Climax es puesto en tu área de Climax, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When your Climax is placed in the Climax Zone, this gains the following ability for the turn\. "\[A\] When the Battle Opponent of this becomes Reversed in battle, you may put the top card of your Library in your Stock\.".
+[AUTO] Cuando un Climax es puesto en tu área de Climax, esta carta gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes poner la carta superior de tu Deck en tu Stock.'.
+
+\[A\] When your other ::(.+?):: Character attacks, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes <<%%$1%%>> ataca, esta carta gana +$2 de Poder hasta el final del turno.
+
+\[A\] When your other Character becomes Reversed in battle, choose 1 of your ::(.+?):: Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes es puesto en [Reverse] en combate, escoge 1 de tus personajes <<%%$1%%>>, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] When your other Character becomes Reversed in battle, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes es puesto en [Reverse] en combate, escoge uno de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] When your other Character becomes Reversed in battle, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes es puesto en [Reverse] en combate, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] When your other Character in battle becomes Reversed in battle, choose 1 of your ::(.+?):: Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes es puesto en [Reverse] en combate, escoge 1 de tus personajes <<%%$1%%>>, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] When your other Character with either ::(.+?):: or ::(.+?):: attacks, this gains \+(\d+) Power for the turn\.
+[AUTO] Cuando otro de tus personajes <<%%$1%%>> o <<%%$2%%>> ataca, esta carta gana +$3 de Poder hasta el final del turno.
+
+\[A\] \[Clock\] ALARM \[Discard a card from your hand to the Waiting Room\] If this is on top of your Clock, at the start of your Climax Phase, you may pay cost\. If so, choose a ::(.+?):: Character in your Waiting Room and return it to your hand\.
+[AUTO] (Clock) Alarm [Pon 1 carta de tu mano en tu Waiting Room] Si esta carta se encuentra en la parte superior de tu Clock, al comienzo de tu fase de Climax, puedes pagar el coste. Si lo haces, escoge 1 personaje <<%%$1%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[Discard 2 cards from your hand to the Waiting Room\] When you use the BACKUP of this, you may pay cost\. If so, choose 1 of your Opponent's Characters whose Level is higher than the Level of your Opponent and put it in the Waiting Room\.
+[AUTO] [Pon 2 cartas de tu mano en tu Waiting Room] Cuando uses la habilidad 'Backup' de esta carta, puedes pagar el coste. Si lo haces, escoge uno de los personajes de tu oponente con Nivel superior al Nivel de tu oponente, y pon dicho personaje en la Waiting Room de tu oponente.
+
+\[A\] \[Discard a ::(.+?):: Character card from your hand to the Waiting Room\] At the start of your Opponent's Draw Phase, if this is in the Front Row, you may pay cost\. If so, choose 1 of your Opponent's Cost 0 or lower Characters, and that Character gains the following ability for the turn\. "\[A\] At the start of your Encore Step, put this in the Waiting Room\.".
+[AUTO] [Pon 1 personaje <<%%$1%%>> de tu mano en tu Waiting Room] Al comienzo de la fase de robo de tu oponente, si esta carta está en tu Center Stage, puedes pagar el coste. Si lo haces, escoge 1 personaje de tu oponente de Coste 0 o inferior, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Al comienzo de tu fase de Encore, pon esta carta en tu Waiting Room.'.
+
+\[A\] \[Discard a ::(.+?):: Character card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a '(.+?)' in your Waiting Room and put it in any Slot on the Stage\.
+[AUTO] [Pon 1 personaje <<%%$1%%>> de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje llamado '@@$2@@' en tu Waiting Room y ponlo en cualqueir posición de tu Stage.
+
+\[A\] \[Discard a Character card from your hand to the Waiting Room\] When this attacks, you may pay cost\. If so, this gains \+(\d+) Power and \+(\d) Soul for the turn\.
+[AUTO] [Pon 1 personaje de tu mano en tu Waiting Room] Cuando esta carta ataca, puedes pagar el coste. Si lo haces, esta carta gana +$1 de Poder y +$2 Soul hasta el final del turno.
+
+\[A\] \[Discard a Character card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If not, put this in the Waiting Room\.
+[AUTO] [Pon 1 personaje de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si no lo haces, pon esta carta en tu Waiting Room.
+
+\[A\] \[Discard a Climax card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a Character in the Waiting Room with either ::(.+?):: or ::(.+?):: and return it to your hand\.
+[AUTO] [Pon 1 Climax de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje <<%%$1%%>> o <<%%$2%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[Discard a Climax card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a Character with FORCE in your Waiting Room and return it to your hand\.
+[AUTO] [Pon 1 Climax de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge hasta 1 personaje con habiidad 'Fuerza' en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[Discard a Climax card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 Character with FORCE, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [Pon 1 Climax de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje con habiidad 'Fuerza', enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] At the start of your Opponent's Attack Phase, you may pay cost\. If so, this gains \+(\d+) Power for the turn\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Al comienzo de la fase de ataque de tu oponente, puedes pagar el coste. Si lo haces, esta carta gana +$1 de Poder hasta el final del turno.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this attacks, you may pay cost\. If so, choose 1 of your other YELLOW Characters and return it to your hand\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta ataca, puedes pagar el coste. Si lo haces, escoge 1 de tus otros personajes Amarillos y pon dicho personaje en tu mano.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is place from hand to the Stage, you may pay cost\. If so, look at up to 4 cards from top of your Library, choose up to 1 Character with either ::(.+?):: or ::(.+?)::, reveal it, put it in your hand, and put the rest in the Waiting Room\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, mira hasta 4 cartas de la parte superior de tu Deck, escoge hasta 1 personaje <<%%$1%%>> o <<%%$2%%>> de entre ellas, enséñaselo a tu oponente, ponlo en tu mano, y pon el resto de cartas en tu Waiting Room.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a "(.+?)" in your Waiting Room and return it to your hand\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 carta llamada '@@$1@@' en tu Waiting Room y ponla a tu mano.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a GREEN Character in your Clock and return it to your hand, and put the top card of your Library in your Clock\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje Verde en tu Clock, ponlo en tu mano, y pon la carta superior de tu Deck en tu Clock.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose an "(.+?)" in your Waiting Room and return it to your hand\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 carta llamada '@@$1@@' en tu Waiting Room y ponla a tu mano.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, choose a "(.+?)" in your Waiting Room and return it to your hand\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, puedes pagar el coste. Si lo haces, escoge 1 carta llamada '@@$1@@' en tu Waiting Room y ponla a tu mano.
+
+\[A\] \[Discard a card from your hand to the Waiting Room\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, look at up to 4 cards from top of your Library and search for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and put the rest in the Waiting Room\.
+[AUTO] [Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, puedes pagar el coste. Si lo haces, mira hasta 4 cartas de la parte superior de tu Deck, escoge hasta 1 personaje <<%%$1%%>> de entre ellas, enséñaselo a tu oponente, ponlo en tu mano, y pon el resto de cartas en tu Waiting Room.<
+
+\[A\] \[Put 1 of your Characters with "(.+?)" in name from the Stage in the Waiting Room\] When this attacks, you may pay cost\. If so, reveal the top card of your Library\. If it's a Character with either ::(.+?):: or ::(.+?)::, put it in your hand\. \(Otherwise put it back where it was\)
+[AUTO] [Pon 1 personaje con '##$1##' en su nombre de tu Stage en tu Waiting Room] Cuando esta carta ataca, puedes pagar el coste. Si lo haces, muestra la carta superior de tu Deck. Si dicha carta es un personaje <<%%$2%%>> o <<%%$3%%>>, ponla en tu mano.
+
+\[A\] \[Put a Marker from under this in the Waiting Room\] When your other Character is placed from the Stage to the Waiting Room, you may pay cost\. If so, put that Character Rested in the Slot it was in\.
+[AUTO] [Pon 1 Marker de debajo de esta carta en tu Waiting Room] Cuando otro de tus personajes es puesto en tu Waiting Room desde tu Stage, puedes pagar el coste. Si lo haces, pon dicho personaje en la posición de tu Stage que ocupaba en [Rest].
+
+\[A\] \[Put a card from your hand in Clock\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [Pon 1 carta de tu mano en tu Clock] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[Put the top card of your Library in your Clock\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a "(.+?)" in your Waiting Room and return it to your hand\.
+[AUTO] [Pon la carta superior de tu Deck en tu Clock] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 carta llamada '@@$1@@' en tu Waiting Room y ponla en tu mano.
+
+\[A\] \[Put the top card of your Library in your Clock\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [Pon la carta superior de tu Deck en tu Clock] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[Put this in the Waiting Room\] When this is Front Attacked, you may pay cost\. If so, choose up to 1 '(.+)' in your hand and put it in the Slot this was in as Defending Character, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] [Pon esta carta en tu Waiting Room] Cuando se declare un Front Attack a esta carta, puedes pagar el coste. Si lo haces, escoge hasta 1 carta llamada '@@$1@@' en tu mano, ponla en la posición de tu Stage que ocupaba esta carta como personaje defensor, y dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] \[Put this in the Waiting Room\] When your other ::(.+?):: Character is Front Attacked, you may pay cost\. If so, choose 1 of your Characters in battle, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] [Pon esta carta en tu Waiting Room] Cuando se declare un Front Attack a otro de tus personajes <<%%$1%%>>, puedes pagar el coste. Si lo haces, escoge uno de tus personajes en combate, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[A\] \[Rest this\] When you play an Event, if this is Standing, you may pay cost\. If so, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+[AUTO] [Pon esta carta en [Rest]] Cuando juegues un Evento, si esta carta está en [Stand], puedes pagar el coste. Si lo haces, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[A\] \[Return this to your hand\] When your Climax is placed in the Climax Zone, you may pay cost\. If so, draw a card, and discard a card from your hand to the Waiting Room\.
+[AUTO] [Pon esta carta en tu mano] Cuando un Climax es puesto en tu área de Climax, puedes pagar el coste. Si lo haces, roba 1 carta, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[A\] \[\(1\) Discard 2 Character cards from your hand to the Waiting Room\] When this attacks, you may pay cost\. If so, look at up to 3 cards from top of your Opponent's Library, choose up to 3 of them and put them in the Waiting Room, return the rest to the Library and shuffle that Library\.
+[AUTO] [(1) Pon 2 personajes de tu mano en tu Waiting Room] Cuando esta carta ataca, puedes pagar el coste. Si lo haces, mira hasta 3 cartas de la parte superior del Deck de tu oponente, escoge hasta 3 de ellas, ponlas en la Waiting Room de tu oponente, pon el resto en su Deck, y baraja su Deck.
+
+\[A\] \[\(1\) Discard 2 cards from your hand to the Waiting Room\] This ability activates up to once per turn\. When your Character in the Front Row Center Slot attacks, you may pay cost\. If so, reveal the top card of your Library\. If it's a Character with either ::(.+?):: or ::(.+?)::, Stand this\. \(Put the revealed card back where it was\)
+[AUTO] [(1) Pon 2 cartas de tu mano en tu Waiting Room] Esta habilidad sólo se puede activar una vez por turno. Cuando el personaje en la posición del medio de tu Center Stage ataca, puedes pagar el coste. Si lo haces, muestra la carta superior de tu Deck. Si dicha carta es un personaje <<%%$1%%>> o <<%%$2%%>>, pon esta carta en [Stand].
+
+\[A\] \[\(1\) Discard 2 cards from your hand to the Waiting Room\] When this is Front Attacked, you may pay cost\. If so, choose a Character Opposite this, and that Character gains \+6 Soul for the turn\.
+[AUTO] [(1) Pon 2 cartas de tu mano en tu Waiting Room] Cuando se declara un Front Attack a esta carta, puedes pagar el coste. Si lo haces, el personaje oponente de esta carta gana +6 Soul hasta el final del turno.
+
+\[A\] \[\(1\) Discard 2 cards from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a Character in your Waiting Room whose Level is equal to or lower than your Level and put it in any Slot on the Stage\.
+[AUTO] [(1) Pon 2 cartas de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje en tu Waiting Room de Nivel igual o inferior a tu Nivel y ponlo en cualquier posición de tu Stage.
+
+\[A\] \[\(1\) Discard 2 cards from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose up to 3 Level 0 or lower Characters in your Waiting Room and put them in separate Slots on the Stage\.
+[AUTO] [(1) Pon 2 cartas de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge hasta 3 personajes de Nivel 0 o inferior en tu Waiting Room y ponlos en posiciones separadas de tu Stage.
+
+\[A\] \[\(1\) Discard 2 cards from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 2 Characters with either ::(.+?):: or ::(.+?)::, reveal them, put them in your hand, and shuffle your Library\.
+[AUTO] [(1) Pon 2 cartas de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 2 personajes <<%%$1%%>> o <<%%$2%%>>, enséñaselos a tu oponente, ponlos en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a RED Character in your Waiting Room and return it to your hand\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge hasta 1 personaje Rojo en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a card in your Clock and return it to your hand, and put the top card of your Library in your Clock\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 carta en tu Clock, ponla en tu mano, y pon la carta superior de tu Deck en tu Clock.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, look at up to 3 cards from top of your Library, choose up to 1 of them and put it in your hand, and put the rest in the Waiting Room\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, mira hasta 3 cartas de la parte superior de tu Deck, escoge hasta 1 de entre ellas, ponla en tu mano, y pon el resto de cartas en tu Waiting Room.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 Character with either ::(.+?):: or ::(.+?)::, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje <<%%$1%%>> o <<%%$2%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 RED Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje Rojo, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\) Discard a card from your hand to the Waiting Room\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 YELLOW Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(1) Pon 1 carta de tu mano en tu Waiting Room] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje Amarillo, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\) Put the top card of your Library in your Clock\] When the Battle Opponent of this becomes Reversed in battle, you may pay cost\. If so, choose a Character in your Waiting Room and return it to your hand\.
+[AUTO] [(1) Pon la carta superior de tu Deck en tu Clock] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes pagar el coste. Si lo haces, escoge 1 personaje en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(1\) Put the top card of your Library in your Clock\] When this is placed from hand to the Stage, you may pay cost\. If so, search your Library for up to 1 Level 1 or lower Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(1) Pon la carta superior de tu Deck en tu Clock] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje de Nivel 1 o inferior, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\) Put the top card of your Library in your Clock\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, choose a Level 1 or lower Character in your Waiting Room and return it to your hand\.
+[AUTO] [(1) Pon la carta superior de tu Deck en tu Clock] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje de Nivel 1 o inferior en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(1\) Rest this\] When you use FORCE, if this is Standing, you may pay cost\. If so, deal 1 Damage to your Opponent\. \(Damage Cancel can occur\)
+[AUTO] [(1) Pon esta carta en [Rest]] Cuando uses una habilidad 'Fuerza', si esta carta está en [Stand], puedes pagar el coste. Si lo haces, haz 1 daño a tu oponente.
+
+\[A\] \[\(1\)\] At the start of your Encore Step, if you have no other Rested Characters in your Front Row, you may pay cost\. If so, Rest this\.
+[AUTO] [(1)] Al comienzo de tu fase de Encore, si no controlas ningún personaje en [Rest] en tu Center Stage, puedes pagar el coste. Si lo haces, pon esta carta en [Rest].
+
+\[A\] \[\(1\)\] When a Level 2 or higher Battle Opponent of this becomes Reversed in battle, you may pay cost\. If so, choose a Character in your Waiting Room and return it to your hand\.
+[AUTO] [(1)] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, si dicho personaje es de Nivel 2 o superior, puedes pagar el coste. Si lo haces, escoge 1 personaje en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(1\)\] When a Level 2 or higher Battle Opponent of this becomes Reversed in battle, you may pay cost\. If so, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(1)] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, si dicho personaje es de Nivel 2 o superior, puedes pagar el coste. Si lo haces, usca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(1\)\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a "(.+?)" in your Waiting Room and return it to your hand\.
+[AUTO] [(1)] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 carta llamada '@@$1@@' en tu Waiting Room y ponla en tu mano.
+
+\[A\] \[\(1\)\] When this is placed from hand to the Stage, you may pay cost\. If so, your Opponent chooses 2 Climax cards in his or her Waiting Room, then return all cards in his or her Waiting Room other than those cards to the Library and shuffles the Library\.
+[AUTO] [(1)] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, tu oponente escoge 2 Climax en su Waiting Room, pone todas la cartas de su Waiting Room en su Deck excepto por las cartas escogidas, y baraja su Deck.
+
+\[A\] \[\(1\)\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, search your Library for up to 1 '(.+?)' and put it Rested in any Slot on the Stage, and shuffle your Library\.
+[AUTO] [(1)] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje llamado '@@$1@@', ponlo en cualquier posición de tu Stage en [Rest], y baraja tu Deck.
+
+\[A\] \[\(2\) Choose 1 of your Characters on Stage and put it in the Waiting Room\] When you use the BACKUP of this, you may pay cost\. If so, choose 1 of your Opponent's Characters whose Level is higher than the Level of your Opponent and put it in the Waiting Room\.
+[AUTO] [(2) Pon 1 personaje de tu Stage en tu Waiting Room] Cuando uses la habilidad 'Backup' de esta carta, puedes pagar el coste. Si lo haces, escoge 1 de los personajes de tu oponente con Nivel superior al Nivel de tu oponente, y pon dicho personaje en la Waiting Room de tu oponente.
+
+\[A\] \[\(2\) Discard a card from your hand to the Waiting Room\] During battles involving this, when the Damage taken by you is not Cancelled, you may pay cost\. If so, deal the same amount of Damage to your Opponent\. \(Damage Cancel can occur\)
+[AUTO] [(2) Pon 1 carta de tu mano en tu Waiting Room] Durante un combate en el que participe esta carta, cuando el daño que se te haga no sea cancelado, puedes pagar el coste. Si lo haces, haz la misma cantidad de daño a tu oponente.
+
+\[A\] \[\(2\) Discard a card from your hand to the Waiting Room\] When this is Front Attacked, you may pay cost\. If so, deal 1 Damage to your Opponent\. \(Damage Cancel can occur\)
+[AUTO] [(2) Pon 1 carta de tu mano en tu Waiting Room] Cuando se declare un Front Attack a esta carta, puedes pagar el coste. Si lo haces, haz 1 daño a tu oponente.
+
+\[A\] \[\(2\)\] When the Battle Opponent of this becomes Reversed in battle, you may pay cost\. If so, deal 1 Damage to your Opponent\. \(Damage Cancel can occur\)
+[AUTO] [(2)] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes pagar el coste. Si lo haces, haz 1 daño a tu oponente.
+
+\[A\] \[\(2\)\] When this is placed from hand to the Stage, you may pay cost\. If so, choose a Character in your Waiting Room with "(.+?)" in name and return it to your hand\.
+[AUTO] [(2)] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, escoge 1 personaje con '##$1##' en su nombre en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(2\)\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, choose a Character in your Waiting Room with either ::(.+?):: or ::(.+?):: and return it to your hand\.
+[AUTO] [(2)] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, puedes pagar el coste. Si lo haces, escoge 1 personaje <<%%$1%%>> o <<%%$2%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[A\] \[\(2\)\] When this is placed from the Stage to the Waiting Room, you may pay cost\. If so, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[AUTO] [(2)] Cuando esta carta es puesta en tu Stage desde tu mano, puedes pagar el coste. Si lo haces, busca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[A\] \[\(4\)\] At the start of your Encore Step, you may pay cost\. If so, choose up to 4 of your other Characters and put them in the Waiting Room, then deal X Damage to your Opponent\. X = # of Characters put in the Waiting Room with this effect\. \(Damage Cancel can occur\)
+[AUTO] [(4)] Al comienzo de tu fase de Encore, puedes pagar el coste. Si lo haces, escoge hasta 4 de tus otros personajes, ponlos en tu Waiting Room, y haz X daños a tu oponente, donde X es el número de personajes puestos en tu Waiting Room mediante esta efecto.

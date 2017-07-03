@@ -1,0 +1,92 @@
+-- None --
+-- Sin habilidades --
+
+BRAINSTORM Flip over the top 3 cards of your Library and put them in the Waiting Room\. If at least 1 Climax card was revealed this way, draw a card\. Otherwise, draw 2 cards\.
+Brainstorm: Muestra 3 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Si hay un Climax entre ellas, roba 1 carta. En caso contrario, roba 2 cartas.
+
+Choose 1 of the Characters in battle, and that Character gets -1 Soul for the turn\.
+Escoge 1 personaje en combate, dicho personaje gana -1 Soul hasta el final del turno.
+
+Choose 1 of your ::(.+?):: Characters, and that Character gains \+50 Soul and the following 3 abilities for the turn\. "\[C\] This cannot Side Attack\." "\[C\] Character Opposite this does not Reverse\." "\[A\] This ability activates up to once per turn\. When the Damage dealt by this is Cancelled, draw up to 3 cards, and discard 2 cards from your hand to the Waiting Room\.".
+Escoge 1 de tus personajes <<%%$1%%>>, dicho personaje gana +50 Soul y las siguientes 3 habilidades hasta el final del turno: '[CONT] Esta carta no puede declarar un Side Attack.', '[CONT] El personaje oponente en frente de esta carta no puede ser puesto en [Reverse].' y '[AUTO] Esta habilidad sólo se puede activar 1 vez por turno. Cuando el daño hecho por esta carta es cancelado, roba hasta 3 cartas, escoge 2 cartas en tu mano y ponlas en tu Waiting Room.'.
+
+Choose 1 of your Characters with "(.+?)" in name, and that Character gains ::(.+?):: and \+(\d+) Power for the turn\.
+(Counter) Escoge 1 de tus personajes con '##$1##' en su nombre, dicho personaje gana <<%%$2%%>> y $3 de Poder hasta el final del turno.
+
+Choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\. Put the top card of your Library in the Waiting Room\. If it's Level 1 or higher, choose 1 of your Opponent's Characters and put it on the bottom of the Library\. \(Climax cards are considered Level 0 for this effect\)
+Escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno. Pon la carta superior de tu Deck en tu Waiting Room. Si dicha carta es de Nivel 1 o superior, escoge 1 personaje de tu oponente y ponlo en su Waiting Room.
+
+Choose 2 of your Standing Characters and Rest them\. If you Rest 2 Characters this way, choose up to 2 Cost 0 or lower Characters with "(.+?)" in name in your Waiting Room and put them in separate Slots on the Stage, and all your Characters gain \+(\d+) Power for the turn\.
+Escoge 2 de tus personajes en [Stand] y ponlos en [Rest]. Si pusiste 2 personajes en [Rest], escoge hasta 2 personajes de Coste 0 o inferior con '##$1##' en su nombre en tu Waiting Room, ponlos en posiciones separadas de tu Stage, y todos tus personajes ganan +$2 de Poder hasta el final del turno.
+
+Choose up to 2 ::(.+?):: Characters in (?:the|your) Waiting Room and return them to your hand, choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+Escoge hasta 2 personajes <<%%$1%%>> en tu Wainting Room, ponlos en tu mano, escoge 1 de tus personajes, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+If there are 4 or more Climax cards in your Waiting Room, all your "(.+?)" and '(.+?)' gain \+(\d+) Power and the following ability for the turn\. "\[A\] When this attacks, put the top 2 cards of your Library in the Waiting Room\. If there is a YELLOW card and a GREEN card among them, you may deal 1 Damage to your Opponent\." \(Damage Cancel can occur\)
+Si el número de Climax en tu Waiting Room es 4 o superior, todos tus personajes llamados '@@$1@@' o '@@$2@@' ganan +$3 de Poder y la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta ataca, pon 2 cartas de la parte superior de tu Deck en tu Waiting Room. Si hay al menos 1 carta Amarilla y 1 carta Verde entre ellas, puedes hacer 1 daño a tu oponente.'.
+
+If there are 4 or more Climax cards in your Waiting Room, you may discard a RED Character card from your hand to the Waiting Room\. If so, put all Characters in the Waiting Room\.
+Si el número de Climax en tu Waiting Room es 4 o superior, puedes poner 1 personaje Rojo de tu mano en tu Waiting Room. Si lo haces, pon todos los personajes en sus respectivas Waiting Rooms.
+
+If you are Level 2 or lower and your Opponent is Level 1 or lower, you may discard 3 cards from your hand to the Waiting Room\. If so, put this in your Level Zone, and you gain an additional turn\.
+Si tu Nivel es 2 o inferior y el Nivel de tu oponente es 1 o inferior, puedes poner 3 cartas de tu mano en tu Waiting Room. Si lo haces, pon esta carta en tu área de Nivel, y obtienes un turno adicional.
+
+If you are Level 2 or lower and your Opponent is Level 1 or lower, you may discard a ::(.+?):: Character card from your hand to the Waiting Room\. If so, put this in your Level Zone, and perform the following action 6 times\. "Deal 1 Damage to your Opponent\." \(Damage Cancel can occur\)
+Si tu Nivel es 2 o inferior y el Nivel de tu oponente es 1 o inferior, puedes poner 1 personaje <<%%$1%%>> de tu mano en tu Waiting Room. Si lo haces, pon esta carta en tu área de Nivel, y realiza la siguiente acción 6 veces: "Haz 1 daño a tu oponente.".
+
+If you have 2 or fewer GREEN Characters, you cannot play this from hand\. You may choose a GREEN Character in your Waiting Room and put it in your Stock\. Choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\. Put this in your Stock\.
+Si el número de personajes Verdes que controlas es 2 o inferior, no puedes jugar esta carta desde tu mano. Escoge 1 carta Verde en tu Waiting Room y ponla en tu Stock Escoge 1 de tus personajes, dicho personaje gana +2000 de Poder hasta el final del turno. Pon esta carta en tu Stock.
+
+If you have no ::(.+?):: Characters, you cannot play this from hand\. Choose a card in your Clock and return it to your hand\. Send this to Memory\.
+Si no controlas un personaje <<>>, no puedes jugar esta carta de tu mano. Escoge 1 carta en tu Clock y ponla en tu mano. Pon esta carta en tu Memory.
+
+If you have no Characters with "(.+?)" in name, you cannot play this from your hand\. All your Characters gain \+(\d+) Power for the turn\.
+Si no controlas un personaje con '##$1##' en su nombre, no puedes jugar esta carta desde tu mano. Todos tus personajes ganan +$2 de Poder hasta el final del turno.
+
+If you have no Characters with either "(.+?)" or "(.+?)" in name, you cannot play this from your hand\. You may choose 1 of your Opponent's Level 1 or lower Characters and put it in the Waiting Room\. If so, your Opponent chooses up to 1 Level 0 or lower Character in his or her Waiting Room and put it in the Slot that Character was in\. Put this in your Stock\.
+Si no controlas un personaje con '##$1##' o '##$2##' en su nombre, no puedes jugar esta carta desde tu mano. Puedes escoger 1 personaje de tu oponente de Nivel 1 o inferior y ponerlo en la Waiting Room de tu oponente. Si lo haces, tu oponente escoge hasta 1 personaje de Nivel 0 o inferior en su Waiting Room y lo pone en la posición de su Stage que ocupaba el personaje anterior. Pon esta carta en tu Stock.
+
+If you have no YELLOW Characters, you cannot play this from hand\. Search your Library for up to 1 '(.+?)' and up to 1 '(.+?)', put them in separate Slots on the Stage, and shuffle your Library\. Send this to Memory\.
+Si no controlas un personaje Amarillo, no puedes jugar esta carta de tu mano. Busca en tu Deck hasta 1 personajes llamado '@@$1@@' y hasta 1 personaje llamado '@@$2@@', ponlos en diferentes posiciones de tu Stage, y baraja tu Deck. Pon esta carta en tu Memory.
+
+Look at the top card of your Library and put it either on top of the Library or in the Waiting Room, choose up to 1 Character in your Waiting Room with "(.+?)" in name and up to 1 Character in your Waiting Room with either "(.+?)" or "(.+?)" in name and return them to your hand\.
+Mira la carta superior de tu Deck y ponla en la parte superior de tu Deck o en tu Waiting Room. Escoge hasta 1 personaje con '##$1##' en su nombre y hasta 1 personaje con '##$2##' o '##$3##' en su nombre en tu Waiting Room y ponlos en tu mano.
+
+Return all your Opponent's Level 3 or lower Characters to the Library, and your Opponent shuffles that Library\. Put this in your Clock\.
+Pon todos los personajes de tu oponente de Nivel 3 o inferior en el Deck de tu oponente y tu oponente baraja su Deck. Pon esta carta en tu Clock.
+
+Search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\. Choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+Busca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck. Escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+Search your Library for up to 2 Characters with either ::(.+?):: or ::(.+?)::, reveal them, put them in your hand, and shuffle your Library\.
+Busca en tu Deck hasta 2 personajes <<%%$1%%>> o <<%%$2%%>>, enséñaselos a tu oponente, ponlos en tu mano, y baraja tu Deck.
+
+Send this to Memory\.
+Pon esta carta en tu Memory.
+
+\[Counter\] Choose 1 of your Characters, and that Character gains \+X Power for the turn\. X = (\d+) times # of your ::(.+?):: Characters\.
+(Counter) Escoge 1 de tus personajes, dicho personaje gana +X de Poder hasta el final del turno, donde X es 500 multiplicado por el número de personajes <<%%$1%%>> que controles.
+
+\[Counter\] Choose 1 of your Characters, and that Character gains the following ability for the turn\. "\[A\] When this is placed from the Stage to the Waiting Room, you may put this Rested in the Slot this was in\." Choose 1 of the Characters in battle, and that Character gets -1 Soul for the turn\.
+(Counter) Escoge 1 de tus personajes, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, pueder poner esta carta en la posición de tu Stage que ocupaba en [Rest].'. Escoge 1 personajes en combate, dicho personaje gana -1 Soul hasta el final del turno.
+
+\[Counter\] Choose 1 of your Characters, and that Character gains the following ability for the turn\. "\[A\] When this is placed from the Stage to the Waiting Room, you may put this Rested in the Slot this was in\." Choose 1 of your Opponent's Characters in battle\. That Character does not Stand during your Opponent's next Stand Phase\.
+(Counter) Escoge 1 de tus personajes, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, pueder poner esta carta en la posición de tu Stage que ocupaba en [Rest].'. Escoge 1 de los personajes de tu oponente en combate, dicho personaje no se pone en [Stand] durante la próxima fase de Stand de tu oponente.
+
+\[Counter\] Choose 1 of your Characters, and that Character gains the following ability for the turn\. "\[A\] When this is placed from the Stage to the Waiting Room, you may put this Rested in the Slot this was in\.".
+(Counter) Escoge 1 de tus personajes, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, pueder poner esta carta en la posici�n de tu Stage que ocupaba en [Rest].'.
+
+\[Counter\] Choose 1 of your GREEN Characters, and that Character gains \+(\d+) Power for the turn\.
+(Counter) Escoge 1 de tus personajes Verdes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[Counter\] If you have 2 or fewer ::(.+?):: Characters, you cannot play this from hand\. You may draw 2 cards\. If so, discard 2 cards from your hand to the Waiting Room\. Choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+(Counter) Si el número de personajes <<%%%2%%>> que controlas es 2 o inferior, no puedes jugar esta carta desde tu mano. Puedes robar 2 cartas. Si lo haces, escoge 2 cartas en tu mano y ponlas en tu Waiting Room. Escoge 1 de tus personajes, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[Counter\] If you have 2 or fewer BLUE Characters, you cannot play this from hand\. You may draw 2 cards\. If so, discard 2 cards from your hand to the Waiting Room\. Choose 1 of your Characters, and that Character gains \+(\d+) Power for the turn\.
+(Counter) Si el número de personajes Azules que controlas es 2 o inferior, no puedes jugar esta carta desde tu mano. Puedes robar 2 cartas. Si lo haces, escoge 2 cartas en tu mano y ponlas en tu Waiting Room. Escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[Counter\] If you have no ::(.+?):: Characters, you cannot play this from your hand\. Choose up to 2 of your Characters with either ::(.+?):: or ::(.+?)::, and they gain the following ability for the turn\. "\[A\] When this is placed from the Stage to the Waiting Room, you may put this Rested in the Slot this was in\.".
+(Counter) Si no controlas un personaje <<%%$1%%>>, no puedes jugar esta carta desde tu mano. Escoge hasta 2 de tus personajes <<%%$2%%>> o <<%%$3%%>>, dichos personajes ganan la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta es puesta en tu Waiting Room desde tu Stage, pueder poner esta carta en la posición de tu Stage que ocupaba en [Rest].'.
+
+\[Counter\] Reveal the top card of your Library\. If it's a YELLOW Character, put it in your hand and discard a card from your hand to the Waiting Room\. \(Otherwise put it back where it was\) Choose 1 of your Characters, and that Character gains the following ability for the turn\. "\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is higher than the Level of your Opponent, you may put that Character in Stock\. If so, put the bottom card of your Opponent's Stock in the Waiting Room\.".
+(Counter) Muestra la carta superior de tu Deck. Si dicha carta es un personaje Amarillo, ponla en tu mano, escoge 1 carta en tu mano y ponla en tu Waiting Room. Escoge 1 de tus personajes, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es superior al Nivel de tu oponente, puedes poner dicho personaje en el Stock de tu oponente. Si lo haces, pon la carta inferior del Stock de tu oponente en su Waiting Room.'.

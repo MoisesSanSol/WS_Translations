@@ -2,5 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_51"/>
+	<classpathentry kind="lib" path="Lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="Lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="Lib/commons-net-3.6.jar"/>
+	<classpathentry kind="lib" path="Lib/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="Lib/poi-3.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,440 @@
+*** Parsing Set File: robotics-notes_booster_pack.txt ***
+ERROR in idLine:Frau in Yukata
+ERROR in colorLine:??????
+ERROR in levelLine:Card No.: RN/W16-056SP  Rarity: SP
+ERROR in traitLine:Color: Red   Side: Weiss  Character
+ERROR in triggerLine:Level: 1   Cost: 1   Power: 6000   Soul: 1
+ERROR in idLine:Junna, Family Side
+ERROR in colorLine:?????? ??
+ERROR in levelLine:Card No.: RN/W16-057  Rarity: R
+ERROR in traitLine:Color: Red   Side: Weiss  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 8000   Soul: 1
+
+-Line Jump at 904
+-Line Jump at 919
+
+
+*** Parsing Set File: schwarz_promos.txt ***
+ERROR in idLine:Color: Yellow   Side: Schwarz  Character
+ERROR in colorLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in levelLine:Trait 1: ??? (Kizuna)      Trait 2: ?? (Void)
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Trait 1: ??? (Kizuna)      Trait 2: ? (Mystery)
+ERROR in colorLine:Triggers: None
+ERROR in levelLine:Flavor: 
+ERROR in traitLine:TEXT: 
+ERROR in triggerLine:
+
+-Missing translation at 4028
+-Missing translation at 4039
+
+
+*** Parsing Set File: day_break_illusion_booster_pack.txt ***
+ERROR in idLine:Luna, Flushed Cheeks
+ERROR in colorLine:???? ??
+ERROR in levelLine:Card No.: GT/W29-035  Rarity: U
+ERROR in traitLine:Color: Green   Side: Weiss  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 2500   Soul: 1
+
+-Line Jump at 596
+
+
+*** Parsing Set File: idolm@ster_cinderella_girls_2nd_season_booster_pack.txt ***
+ERROR in idLine:Color: Blue   Side: Weiss  Character
+ERROR in colorLine:Level: 0   Cost: 0   Power: 2000   Soul: 1
+ERROR in levelLine:Trait 1: ?? (Music)      Trait 2: ???? (Occult)
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Level: 1   Cost: 0   Power: 4000   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Music)      Trait 2: ? (Star)
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: -- None --
+ERROR in triggerLine:TEXT: 
+
+-Botched PR at 1614
+
+
+*** Parsing Set File: idolm@ster_cinderella_girls_trial_deck.txt ***
+ERROR in idLine:Level: 0   Cost: 0   Power: 3000   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Music)      Trait 2: ? (Darkness)
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: 
+ERROR in triggerLine:TEXT: 
+
+-Missing Text at 903
+
+
+*** Parsing Set File: weib_promos.txt ***
+ERROR in idLine:Color: Blue   Side: Weiss  Character
+ERROR in colorLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in levelLine:Trait 1: ??? (Kazanashima)      Trait 2: ?? (Science)
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Level: 0   Cost: 0   Power: 2500   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Hat)      Trait 2: None
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: This is "Medes". My on-- I mean, one of my many friends
+ERROR in triggerLine:TEXT: 
+ERROR in idLine:Color: Yellow   Side: Weiss  Character
+ERROR in colorLine:Level: 0   Cost: 0   Power: 2500   Soul: 1
+ERROR in levelLine:Trait 1: ???? ()      Trait 2: ? ()
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Trait 1: ??? (Ama Usa An)      Trait 2: ??? (Wagashi)
+ERROR in colorLine:Triggers: None
+ERROR in levelLine:Flavor: 
+ERROR in traitLine:TEXT: 
+ERROR in triggerLine:
+ERROR in idLine:Trait 1: ??????? (Rabbit House)      Trait 2: ?? (Bread)
+ERROR in colorLine:Triggers: None
+ERROR in levelLine:Flavor: 
+ERROR in traitLine:TEXT: 
+ERROR in triggerLine:
+ERROR in idLine:Level: 1   Cost: 0   Power: 4500   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Magic)      Trait 2: ? (Book)
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: You really want to know the things troubling me?
+ERROR in triggerLine:TEXT: 
+ERROR in idLine:Card No.: LS/W05-124  Rarity: 
+ERROR in idLine:Color: Yellow   Side: Weiss  Character
+ERROR in colorLine:Level: 1   Cost: 0   Power: 4500   Soul: 1
+ERROR in levelLine:Trait 1: ?? (Music)      Trait 2: None
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Level: 0   Cost: 0   Power: 2500   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Music)      Trait 2: None
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: -- None --
+ERROR in triggerLine:TEXT: 
+ERROR in idLine:Color: Red   Side: Weiss  Character
+ERROR in colorLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in levelLine:Trait 1: ??? (Alien)      Trait 2: ?? (Plant)
+ERROR in traitLine:Triggers: None
+ERROR in triggerLine:Flavor: 
+ERROR in idLine:Trait 1: ?? (Transformation)      Trait 2: ???? (Taiyaki)
+ERROR in colorLine:Triggers: None
+ERROR in levelLine:Flavor: 
+ERROR in traitLine:TEXT: 
+ERROR in triggerLine:
+ERROR in idLine:Level: 0   Cost: 0   Power: 2000   Soul: 1
+ERROR in colorLine:Trait 1: ?? (Transformation)      Trait 2: ???? (Taiyaki)
+ERROR in levelLine:Triggers: None
+ERROR in traitLine:Flavor: Rito Yuuki... you just had to do unnecessary things
+ERROR in triggerLine:TEXT: 
+
+-Missing translation at 2462
+-Missing translation at 3183
+-Missing translation at 3194
+-Missing translation at 3205
+-Missing translation at 3216
+-Missing translation at 3227
+-Missing Text at 6135
+-Missing translation at 6353
+-Missing translation at 10083
+-Missing translation at 10094
+-Missing translation at 10105
+
+*** Parsing Set File: milky_holmes_fan_fun_party_pack.txt ***
+ERROR in idLine:Nero, Big Eater
+ERROR in colorLine:“?”????? ??
+ERROR in levelLine:Card No.: MK/SJ01-001JSP  Rarity: SP
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Rat, Noisy Phantom Thief
+ERROR in colorLine:“?”????? ???
+ERROR in levelLine:Card No.: MK/SJ01-002J  Rarity: R
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Stone River, A Little Bit Pervert
+ERROR in colorLine:“?”?????? ???????
+ERROR in levelLine:Card No.: MK/SJ01-003J  Rarity: R
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 2000   Soul: 1
+ERROR in idLine:Twenty, Disguise Maniac
+ERROR in colorLine:“?”?????? ??????
+ERROR in levelLine:Card No.: MK/SJ01-004J  Rarity: R
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 3000   Soul: 1
+ERROR in idLine:Nero, Free Love!
+ERROR in colorLine:“?”??????? ??
+ERROR in levelLine:Card No.: MK/SJ01-005J  Rarity: R
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 10000   Soul: 1
+ERROR in idLine:Sheryl, Ahahahaha
+ERROR in colorLine:“?”???? ???
+ERROR in levelLine:Card No.: MK/SJ01-006J  Rarity: R
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 10000   Soul: 15
+ERROR in idLine:Nero, Tension MAX
+ERROR in colorLine:“?”??????? ??
+ERROR in levelLine:Card No.: MK/SJ01-007J  Rarity: U
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Sheryl, Can't Step Calling Your Name
+ERROR in colorLine:“?”???????? ???
+ERROR in levelLine:Card No.: MK/SJ01-008J  Rarity: U
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Nero, Excellent (?) Detective
+ERROR in colorLine:“?”?????????? ??
+ERROR in levelLine:Card No.: MK/SJ01-009J  Rarity: U
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Jeanette, For Her Beloved
+ERROR in colorLine:“?”?????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-010J  Rarity: U
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Drowsy Nero
+ERROR in colorLine:“?”????????
+ERROR in levelLine:Card No.: MK/SJ01-011J  Rarity: C
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 3000   Soul: 1
+ERROR in idLine:Promised Weekend, Sheryl Coming?
+ERROR in colorLine:“?”?????????????????????
+ERROR in levelLine:Card No.: MK/SJ01-012J  Rarity: RR
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Event
+ERROR in triggerLine:Level: 13   Cost: 13   Power: 0   Soul: 0
+ERROR in idLine:Super Excited!
+ERROR in colorLine:????
+ERROR in levelLine:Card No.: MK/SJ01-013J  Rarity: C
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Snack Time
+ERROR in colorLine:??????
+ERROR in levelLine:Card No.: MK/SJ01-014J  Rarity: C
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Kazumi, New Year's Wish
+ERROR in colorLine:“?”?????????
+ERROR in levelLine:Card No.: MK/SJ01-015J  Rarity: RR
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Elly, Present from the Sage
+ERROR in colorLine:“?”??????? ???
+ERROR in levelLine:Card No.: MK/SJ01-016J  Rarity: RR
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 10000   Soul: 2
+ERROR in idLine:Elly, Present from the Sage
+ERROR in colorLine:“?”??????? ???
+ERROR in levelLine:Card No.: MK/SJ01-016JSP  Rarity: SP
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 10000   Soul: 2
+ERROR in idLine:Cordelia, Debuting Her Beautiful Voice
+ERROR in colorLine:“?”????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-017J  Rarity: R
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 8000   Soul: 1
+ERROR in idLine:Elly, Single Sock
+ERROR in colorLine:“?”????? ???
+ERROR in levelLine:Card No.: MK/SJ01-018J  Rarity: U
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Ken, For His Beloved
+ERROR in colorLine:“?”??????? ??
+ERROR in levelLine:Card No.: MK/SJ01-019J  Rarity: U
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Saki, N System Is Great
+ERROR in colorLine:“?”???????? ?
+ERROR in levelLine:Card No.: MK/SJ01-020J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in idLine:Alice, Narrating
+ERROR in colorLine:“?”???? ???
+ERROR in levelLine:Card No.: MK/SJ01-021J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in idLine:Tsugiko, Risky Comment
+ERROR in colorLine:“?”?????? ??
+ERROR in levelLine:Card No.: MK/SJ01-022J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 2000   Soul: 1
+ERROR in idLine:Elly, My Essay Set
+ERROR in colorLine:“?”????? ???
+ERROR in levelLine:Card No.: MK/SJ01-023J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 3000   Soul: 1
+ERROR in idLine:Hirano, Serious Policewoman
+ERROR in colorLine:“?”?????? ??
+ERROR in levelLine:Card No.: MK/SJ01-024J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 6000   Soul: 1
+ERROR in idLine:Green Keg
+ERROR in colorLine:“?”????
+ERROR in levelLine:Card No.: MK/SJ01-025J  Rarity: R
+ERROR in traitLine:Color: Green   Side: Schwarz  Event
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:AED!!!
+ERROR in colorLine:AED???
+ERROR in levelLine:Card No.: MK/SJ01-026J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Ken And Jeanette!
+ERROR in colorLine:?????????
+ERROR in levelLine:Card No.: MK/SJ01-027J  Rarity: C
+ERROR in traitLine:Color: Green   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Sheryl, Multiple Talents
+ERROR in colorLine: “?”????? ???
+ERROR in levelLine:Card No.: MK/SJ01-028J  Rarity: RR
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 10000   Soul: 2
+ERROR in idLine:Sheryl, Multiple Talents
+ERROR in colorLine:“?”????? ???
+ERROR in levelLine:Card No.: MK/SJ01-028JSP  Rarity: SP
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 10000   Soul: 2
+ERROR in idLine:Kokoro, Big Police of Yokohama
+ERROR in colorLine:“?”??????? ??
+ERROR in levelLine:Card No.: MK/SJ01-029J  Rarity: RR
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 4   Cost: 3   Power: 15000   Soul: 2
+ERROR in idLine:Kokoro, Big Police of Yokohama
+ERROR in colorLine:“?”??????? ??
+ERROR in levelLine:Card No.: MK/SJ01-029JSP  Rarity: SP
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 4   Cost: 3   Power: 15000   Soul: 2
+ERROR in idLine:Kokoro, HEY!
+ERROR in colorLine:“?”?? ??
+ERROR in levelLine:Card No.: MK/SJ01-030J  Rarity: R
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Kokoro, IQ of This Time
+ERROR in colorLine:“?”????IQ ??
+ERROR in levelLine:Card No.: MK/SJ01-031J  Rarity: R
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 2016   Soul: 1
+ERROR in idLine:Sheryl in A Good Mood
+ERROR in colorLine:“?“????? ???
+ERROR in levelLine:Card No.: MK/SJ01-032J  Rarity: U
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Irene's Father, Beat Up
+ERROR in colorLine:“?”??????? ???????
+ERROR in levelLine:Card No.: MK/SJ01-033J  Rarity: U
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Irene, Calm Elementary School Student
+ERROR in colorLine:“?”??????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-034J  Rarity: C
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in idLine:Chief Fleeing
+ERROR in colorLine:“?”????????
+ERROR in levelLine:Card No.: MK/SJ01-035J  Rarity: C
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Kokoro in High Spirits
+ERROR in colorLine:“?”??????
+ERROR in levelLine:Card No.: MK/SJ01-036J  Rarity: C
+ERROR in traitLine:Color: Red   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 8000   Soul: 1
+ERROR in idLine:Let's Karuta!
+ERROR in colorLine:“?”??????
+ERROR in levelLine:Card No.: MK/SJ01-037J  Rarity: U
+ERROR in traitLine:Color: Red   Side: Schwarz  Event
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Punishment of the Giant!!
+ERROR in colorLine:????!!
+ERROR in levelLine:Card No.: MK/SJ01-038J  Rarity: C
+ERROR in traitLine:Color: Red   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:Cli!
+ERROR in colorLine:????
+ERROR in levelLine:Card No.: MK/SJ01-039J  Rarity: C
+ERROR in traitLine:Color: Red   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:(This card is not legal for WGP tournaments)
+ERROR in colorLine:
+ERROR in levelLine:================================================================================
+ERROR in traitLine:
+ERROR in triggerLine:Max!
+ERROR in idLine:(This card is not legal for WGP tournaments)
+ERROR in colorLine:
+ERROR in levelLine:================================================================================
+ERROR in traitLine:
+ERROR in triggerLine:Arsene, Rival
+ERROR in idLine:Arsene, Rival
+ERROR in colorLine:“?”????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-041JSP  Rarity: SP
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 8000   Soul: 1
+ERROR in idLine:Cordelia in the Garden
+ERROR in colorLine:“?”????????
+ERROR in levelLine:Card No.: MK/SJ01-042J  Rarity: RR
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 1225   Soul: 2
+ERROR in idLine:Cordelia in the Garden
+ERROR in colorLine:“?”????????
+ERROR in levelLine:Card No.: MK/SJ01-042JSP  Rarity: SP
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 1225   Soul: 2
+ERROR in idLine:Arsene, Asthetics of Thievery
+ERROR in colorLine:“?”????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-043J  Rarity: R
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Elly, Ephemeral Beauty
+ERROR in colorLine:“?”?????? ???
+ERROR in levelLine:Card No.: MK/SJ01-044J  Rarity: R
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 2000   Soul: 1
+ERROR in idLine:Henriette, Sexy Santa
+ERROR in colorLine:“?”?????? ??????
+ERROR in levelLine:Card No.: MK/SJ01-045J  Rarity: R
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 4   Power: 1000   Soul: 2
+ERROR in idLine:Cordelia, Searching for Gyoza
+ERROR in colorLine:“?”??????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-046J  Rarity: U
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in idLine:Troubled Elly
+ERROR in colorLine:“?”??????
+ERROR in levelLine:Card No.: MK/SJ01-047J  Rarity: U
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 500   Soul: 1
+ERROR in idLine:Cordelia, Rock Star
+ERROR in colorLine:“?”????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-048J  Rarity: U
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 1000   Soul: 1
+ERROR in idLine:Arsene, Miscalculation of the Goddess
+ERROR in colorLine:“?”????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-049J  Rarity: U
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 5000   Soul: 1
+ERROR in idLine:Henriette, Surprise Party
+ERROR in colorLine:“?”????????? ??????
+ERROR in levelLine:Card No.: MK/SJ01-050J  Rarity: C
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 3000   Soul: 1
+ERROR in idLine:Cordelia, Shocking Scene
+ERROR in colorLine:“?”?????? ?????
+ERROR in levelLine:Card No.: MK/SJ01-051J  Rarity: C
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 1   Cost: 0   Power: 5000   Soul: 1
+ERROR in idLine:Henriette, Hmm???
+ERROR in colorLine:“?”??? ??????
+ERROR in levelLine:Card No.: MK/SJ01-052J  Rarity: C
+ERROR in traitLine:Color: Blue   Side: Schwarz  Character
+ERROR in triggerLine:Level: 2   Cost: 1   Power: 5000   Soul: 1
+ERROR in idLine:Unforeseen Circumstances
+ERROR in colorLine:“?”?????
+ERROR in levelLine:Card No.: MK/SJ01-053J  Rarity: U
+ERROR in traitLine:Color: Blue   Side: Schwarz  Event
+ERROR in triggerLine:Level: 2   Cost: 2   Power: 0   Soul: 0
+ERROR in idLine:No.1 Renowned Detective of Yokohama
+ERROR in colorLine:??????????
+ERROR in levelLine:Card No.: MK/SJ01-054J  Rarity: C
+ERROR in traitLine:Color: Blue   Side: Schwarz  Climax
+ERROR in triggerLine:Level: 0   Cost: 0   Power: 0   Soul: 0
+ERROR in idLine:"Future After the Rain" Nero
+ERROR in colorLine:“????????”??
+ERROR in levelLine:Card No.: MK/SJ01-055  Rarity: MR
+ERROR in traitLine:Color: Yellow   Side: Schwarz  Character
+ERROR in triggerLine:Level: 3   Cost: 2   Power: 9500   Soul: 2
+
+-(This card is not legal for WGP tournaments): this breaks the tranlation parsing, badly.

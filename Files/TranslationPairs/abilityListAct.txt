@@ -1,0 +1,158 @@
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in (?:the|your) Waiting Room\. For each Climax card revealed this way, choose (?:up to 1|a) Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in (?:the|your) Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje <<%%$1%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in (?:the|your) Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 Character with either ::(.+?):: or ::(.+?)::, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje <<%%$1%%>> o <<%%$2%%>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. Deal X Damage to your Opponent\. X = # of Climax cards revealed this way\. \(Damage Cancel can occur\)
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Haz X daños a tu oponente, donde X es el número de Climax mostrados con este efecto.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose up to 1 Character in your Waiting Room with either ::(.+?)::, ::(.+?)::, or ::(.+?):: and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje <<%%$1%%>>, <<%%$2%%>> o <<%%$3%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, draw up to 1 card\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, roba hasta 1 carta.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, perform the following action: "Choose a card in your Clock and return it to your hand, and put the top card of your Library in your Clock\."\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, realiza la siguiente acción: 'Escoge 1 carta en tu Clock, ponla en tu mano, y pon la carta superior de tu Deck en tu Clock.'.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, perform the following action: "Draw up to 2 cards, and discard a card from your hand to the Waiting Room\."\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, realiza la siguiente acción: 'Roba hasta 2 cartas, escoge 1 carta de tu mano y ponla en tu Waiting Room.'.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for a Character with either "(.+?)", "(.+?)", or "(.+?)" in name, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje con '##$1##', '##$2##' o '##$3##' en su nombre, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 "(.+?)" and put it in any Slot on the Stage\. Afterwards, shuffle your Library, and those Characters gain \+(\d+) Power until the next end of your Opponent's turn\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje llamado '@@$1@@', ponlo en cualquier posición de tu Stage, baraja tu Deck, y dicho personaje gana +$2 de Poder hasta el final del turno de tu oponente.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 BLUE Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje Azul, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 Character with either "(.+?)" or "(.+?)" in name, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje con '##$1##' o '##$2##' en su nombre, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 YELLOW Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje Amarillo, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. If at least 1 '(.+?)' is among them, search your Library for up to 1 BLUE Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Si una carta llamada '@@$1@@' entre ellas, busca en tu Deck hasta 1 personaje Azul, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. If there is at least 1 "(.+?)" among them, choose a ::(.+?):: Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Si una carta llamada '@@$1@@' entre ellas, escoge hasta 1 personaje <<%%$2%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. If there is at least 1 "(.+?)" among them, search your Library for up to 1 Cost 0 or lower ::(.+?):: Character, put it in any Slot on the Stage, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Si una carta llamada '@@$1@@' entre ellas, busca en tu Deck hasta 1 personaje <<%%$2%%>> de coste 0 o inferior, ponlo en cualquier posición de tu Stage, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in your Waiting Room\. For each Climax card revealed this way, choose up to 1 Character in your Waiting Room that is either RED or ::(.+?):: and return it to your hand\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje Rojo o <<%%$1%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. Deal X Damage to your Opponent\. X = number of Climax cards revealed this way\. \(Damage Cancel can occur\)
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Haz X daños a tu oponente, donde X es el número de Climax mostrados con este efecto.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, all your Characters gain \+(\d+) Power for the turn\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, todos tus personajes ganan +$1 de Poder hasta el final del turno.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, all your Characters gain \+1 Soul for the turn\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, todos tus personajes ganan +1 Soul hasta el final del turno.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose (?:a|up to 1) ::(.+?):: Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje <<%%$1%%>> en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose (?:a|up to 1) Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose 1 of your ::(.+?):: Characters, and that Character gains \+(\d+) Power and \+1 Soul for the turn\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge 1 de tus personajes <<%%$1%%>>, dicho personaje gana +$2 de Poder y +1 Soul hasta el final de turno.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose 1 of your Characters, and that Character gains the following ability for the turn\. "\[A\] When the Battle Opponent of this becomes reversed, search your Library for up to 2 ::(.+?):: Characters, reveal them, put it in your hand, discard a card from your hand to the Waiting Room, and shuffle your Library\."\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge 1 de tus personajes, dicho personaje gana la siguiente habilidad hasta el final del turno: '[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, busca en tu Deck hasta 2 personajes <<%%$1%%>>, enséñaselos a tu oponente, ponlos en tu mano, escoge 1 carta en tu mano, ponla en tu Waiting Room, y baraja tu Deck.'.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose 1 of your Opponent's Characters\. Those Characters do not Stand during your Opponent's next Stand Phase\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, 
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose up to 1 RED Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje Rojo en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose up to 1 YELLOW Character in your Waiting Room and return it to your hand\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge hasta 1 personaje Amarillo en tu Waiting Room y ponlo en tu mano.
+
+\[S\] BRAINSTORM \[\(1\) Rest this\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, draw up to 1 card\.
+[ACT] Brainstorm [(1) Pon esta carta en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, roba hasta 1 carta.
+
+\[S\] \[(\(1\) )?Rest this\] Choose 1 of your Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [$1Pon esta carta en [Rest]] Escoge 1 de tus personajes, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[S\] \[Counter\] BACKUP (\d+?), Level (\d) \[(\(\d\) )?Discard this card from your hand to the Waiting Room\]
+[ACT] (Counter) Backup $1, Nivel $2 [$3Pon esta carta de tu mano en tu Waiting Room].
+
+\[S\] \[Rest 1 of your Characters\] This gains \+(\d+?) Power for the turn\.
+[ACT] [Pon 1 de tus personajes en [Rest]] Esta carta gana +$1 de Poder hasta el final del turno.
+
+\[S\] \[Rest 2 of your ::(.+):: Characters\] Choose 1 of your Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [Pon 2 de tus personajes <<$1>> en [Rest]] Escoge 1 de tus personajes, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[S\] \[Rest 2 of your ::(.+?):: Characters\] Choose a card in your Opponent's Waiting Room and put it on top of the Library\.
+[ACT] [Pon 2 de tus personajes <<$1>> en [Rest]] Escoge 1 carta en la Waiting Room de tu oponente y pon dicha carta en la parte superior del Deck de tu oponente.
+
+\[S\] \[Rest 2 of your Characters\] Choose 1 of your ::(.+?):: Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [Pon 2 de tus personajes en [Rest]] Escoge 1 de tus personajes <<$1>>, dicho personaje gana +$2 de Poder hasta el final del turno.
+
+\[S\] \[Rest 2 of your Characters\] This gains \+(\d+?) Power until next end of your Opponent's turn\.
+[ACT] [Pon 2 de tus personajes en [Rest]] Esta carta gana +$1 de Poder hasta el final del turno de tu oponente.
+
+\[S\] \[Rest this\] Choose 1 of your Characters with "(.+?)" in the name\. That Character gains \+(\d+?) Power for the turn\.
+[ACT] [Pon esta carta en [Rest]] Escoge 1 de tus personajes con '$1', dicho personaje gana +$2 de Poder hasta el final del turno.->
+
+\[S\] \[Rest this\] Choose 1 of your Characters with Marker, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [Pon esta carta en [Rest]] Escoge 1 de tus personajes con Markers, dicho personaje gana +$1 de Poder hasta el final del turno.
+
+\[S\] \[\((\d)\) Rest this\] Search your Library for a Character with "(.+)" in name, reveal it, and put it in your hand\. Shuffle your Library\.
+[ACT] [($1) Pon esta carta en [Rest]] Busca en tu Deck hasta 1 personaje con '$2' en su nombre, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] \[\((\d)\)\] Choose 1 of your ::(.+):: Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [($1)] Escoge 1 de tus personajes <<$2>>, dicho personaje gana +$3 de Poder hasta el final del turno.
+
+\[S\] \[\((\d)\)\] Choose 1 of your Opponent's Level 0 or lower Character and return it to hand\.
+[ACT] [($1)] Escoge 1 personaje de tu oponente de Nivel 0 o inferior y ponlo en la mano de tu oponente.
+
+\[S\] \[\((\d)\)\] This gains \+(\d+?) Power and the following ability for the turn\. "\[A\] When the Battle Opponent of this becomes Reversed, you may put that Character on top of the Library\."
+[ACT] [($1)] Esta carta gana +$2 de Poder y la siguiente habilidad hasta el final del turno: '[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes poner dicho personaje en la parte superior del Deck de tu oponente.'
+
+\[S\] \[\((\d)\)\] This gains \+(\d+?) Power for the turn\.
+[ACT] [($1)] Esta carta gana +$2 de Poder hasta el final del turno.
+
+\[S\] \[\((\d)\)\] This gains \+(\d+?) Power until the next end of your Opponent's turn\.
+[ACT] [($1)] Esta carta gana +$2 de Poder hasta el final del turno de tu oponente.
+
+\[S\] \[\(1\) Rest this\] Choose 1 of your ::(.+):: Characters, and that Character gains \+(\d+?) Power until the next end of your Opponent's turn\.
+[ACT] [(1) Pon esta carta en [Rest]] Escoge 1 de tus personajes <<$1>>, dicho personaje gana +$2 Soul hasta el final del turno de tu oponente.
+
+\[S\] \[\(1\)\] Draw a card, and discard a card from your hand to the Waiting Room\.
+[ACT] [(1)] Roba 1 carta, escoge 1 carta en tu mano y ponla en tu Waiting Room.
+
+\[S\] \[\(2\) Rest this\] Search your Library for up to 1 ::(.+):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] [(2) Pon esta carta en [Rest]] Busca en tu Deck hasta 1 personaje <<$1>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] BRAINSTORM \[\(1\) Rest 2 of your Characters\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, search your Library for up to 1 ::(.+?):: Character, reveal it, put it in your hand, and shuffle your Library\.
+[ACT] Brainstorm [(1) Pon 2 de tus personajes en [Rest]] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, busca en tu Deck hasta 1 personaje <<$1>>, enséñaselo a tu oponente, ponlo en tu mano, y baraja tu Deck.
+
+\[S\] \[Rest 2 of your other Characters, put this face-down under a "(.+?)" that doesn't already have a Marker\] Put all cards of your Opponent's Library in the Waiting Room, return all cards in your Waiting Room to the Library, and shuffle your Library\.
+[ACT] [Pon 2 de tus otros personajes en [Rest], pon esta carta como Marker debajo de 1 carta llamada '' que no tenga Markers] Pon todas las cartas del Deck de tu oponente en su Waiting Room, pon todas las cartas de tu Waiting Room en tu Deck, y baraja tu Deck.
+
+\[S\] \[Rest this\] If there is no Marker under this, choose a Character in your Waiting Room with either "(.+?)" and/or "(.+?)" in name and put it face-down under this as Marker\.
+[ACT] [Pon esta carta en [Rest]] Si no hay nigún Marker debajo de esta carta, escoge 1 personaje con '$1' o '$2'  en su nombre en tu Waiting Room y y ponlo debajo de esta carta como Marker.
+
+\[S\] BRAINSTORM \[\(1\)\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, choose 1 of your Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] Brainstorm [(1)] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, escoge 1 de tus personajes, dicho personaje gana +$1 de Poder hasta el final de turno.
+
+\[S\] BRAINSTORM \[\(1\)\] Flip over the top 4 cards of your Library and put them in the Waiting Room\. For each Climax card revealed this way, perform the following action: "Choose a ::(.+?):: Character in your Waiting Room and return it to your hand, and discard a card from your hand to the Waiting Room\." 
+[ACT] Brainstorm [(1)] Muestra 4 cartas de la parte superior de tu Deck y ponlas en tu Waiting Room. Por cada Climax mostrado, realiza la siguiente acción: 'Escoge 1 personaje <<$1>> en tu Waiting Room, ponlo en tu mano, escoge 1 carta en tu mano y ponla en tu Waiting Room'.
+
+\[S\] \[\(1\) Rest 1 of your Characters\] Choose 1 of your Opponent's Characters\. That Character gets -(\d+?) Power for the turn\.
+[ACT] [(1) Pon 1 de tus personajes en [Rest]] Escoge 1 de los personajes de tu oponente, dicho personaje gana -$1 de Poder hasta el final del turno.
+
+\[S\] \[Rest this\] Choose 1 of your ::(.+?):: Characters, and that Character gains \+(\d+?) Power for the turn\.
+[ACT] [Pon esta carta en [Rest]] Escoge 1 de tus personajes <<$1>>, dicho personaje gana +$2 de Poder hasta el final del turno.

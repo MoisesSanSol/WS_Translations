@@ -1,0 +1,91 @@
+[C] For each of your other ::Music:: Characters, this gains +1000 Power.
+[S] For each of your other ::Music:: Characters, this gains +1000 Power.
+
+[S] [Counter] BACKUP 3000, Level 2 [(1) Discard this card from your hand to the Waiting Room]
+[S] [Counter] BACKUP 3000, Level 2 [(1) Discard a Character card from your hand to the Waiting Room]
+
+[A] When this is placed from hand to the Stage, you may put the top card of your Clock in the Waiting Room.
+[A] When this is placed from hand to the Stage, you may put the top card of your Clock in the Waiting Room."
+
+[A] When this is placed from hand to the Stage, draw up to 2 cards, and discard a card from your hand to the Waiting Room.
+[A] When this is placed from hand to the Stage, draw up to 2 cards and discard a card from your hand to the Waiting Room.
+
+[C] If you have no other Characters with either ::Adventurer:: or ::Magic::, this does not Stand during your Stand Phase.
+[C] If you have no other Character with either ::Adventurer:: or ::Magic::, this does not Stand during your Stand Phase.
+
+[A] When this is placed from hand to the Climax Zone, put the top card of your Library in your Stock, and all your Character gains +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put the top card of your Library in the Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put a card from top of your Library to the Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put the top card in your Library in the Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put the top card in your Library in your Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put the top card of your Library in your Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, put the top card of your Library in your Stock, and all your Characters get +1 Soul for the turn.
+
+[A] When this is placed from hand to the Climax Zone, choose up to 1 BLUE card in your Waiting Room and put it in your Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, choose up to 1 BLUE card in your Waiting Room and put in your Stock, and all your Characters gain +1 Soul for the turn.
+
+[A] When this is placed from hand to the Climax Zone, choose up to 1 GREEN card in your Waiting Room and put it in your Stock, and all your Characters gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, choose up to 1 GREEN card in your Waiting Room and put it in your Stock, and all your Character gains +1 Soul for the turn.
+
+[A] When this is placed from hand to the Climax Zone, draw a card, and all your Characters gain +1000 Power for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, and all your Characters gain +1000 Power.
+
+[A] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains +2000 Power and +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, and Choose 1 of your characters. That Character gains +2000 Power and +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, and choose 1 of your Characters, and that Character gains +2000 Power and +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, and choose 1 of your Characters, and that Character gains +2000 Power and +1 Soul.
+[A] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains +2000 Power and +1 Soul.
+[A] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gais +2000 Power and +1 Soul for the turn.
+
+[A] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains +3 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, and choose 1 of your Characters, and that Character gains +3 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, choose 1 of your Characters, and that Character gains +3 Soul for the turn.  
+
+[A] When this is placed from hand to the Climax Zone, draw a card, choose up to 2 of your Characters, and they gain +1 Soul for the turn.
+[A] When this is placed from hand to the Climax Zone, draw a card, choose up to 2 of your Characters, and those Characters gain +1 Soul for the turn.
+
+[C] For each Marker under this, this gains +1 Level and +2000 Power.
+[C] For each Marker under this, this gains +1 Level and +2000 Power per.
+
+[C] For each Marker under this, this gains -2000 Power.
+[C] For each Marker under this, this gets -2000 Power.
+
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times # of your Characters with ASSIST.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times # of Characters with ASSIST you have.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times # of your Characters with ASSIST.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times # of your Characters with ASSIST
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times # of your Characters withASSIST.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the # of Characters with ASSIST you have.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times # of Characters with ASSIST you have.
+[C] ASSIST All your Characters in front of this gains +X Power. X = 500 times # of your Characters with ASSIST.
+[C] ASSIST All your Characters in front this gain +X Power. X = 500 times # of your Characters with ASSIST.
+
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the Cost of that Character.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the cost of that Character.
+[C] ASSIST All your Characters in front of this gains +X Power. X = 500 times the cost of that character.
+
+[C] ASSIST All your Characters in front of this gain +X Power. X = 1000 times the Level of that Character.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 1000 times Level of that Character.
+
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the Level of that Character.
+[C] ASSIST All your Characters in front of this gain +x Power. X = 500 times Level of that Character.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times Level of that Character.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times Level of that Characters.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times Level of the Character.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the Level of that Characters.
+[C] ASSIST All your Characters in front of this gain +X Power. X = 500 times the Level of the Character.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times Level of that Character.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times Level of that Charcater.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times Level of the Character.
+[C] ASSIST All your Characters in front of this gain +X Power, where X = 500 times the Level of that Character.
+[C] ASSIST All your Characters in front of this gains +X Power. X = 500 times Level of that Character.
+[C] ASSIST All your Characters in front of this gains +X Power. X = 500 times the Level of that character.
+[C] ASSIST Characters in front of this gain +X Power, where X = 500 times Level of that Character.
+
+[C] ASSIST All your Characters in front of this gain +500 Power.
+[C] ASSIST All your Characters in front of this get +500 Power.
+[C] ASSIST All your Characters in front of tis gain +500 Power.
+[C] ASSIST Characters in front of this gain +500 Power.
+
+[C] ASSIST If there's a YELLOW card and a BLUE card in your Level Zone, this gains +4500 Power.
+[C] EXPERIENCE If there's a YELLOW card and a BLUE card in your Level Zone, this gains +4500 Power.

@@ -1,0 +1,452 @@
+\[C\] ASSIST All your ::(.+?):: Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes <<%%$1%%>> en frente de esta carta ganan +$2 de Poder.
+
+\[C\] ASSIST All your ::(.+?):: Characters in front of this gain \+X Power\. X = (\d+) times Level of that Character\.
+[CONT] Assist: tus personajes <<%%$1%%>> en frente de esta carta ganan +X de Poder, donde X es $2 multiplicado por el Nivel de dicho personaje.
+
+\[C\] ASSIST All your BLUE Characters in front of this gain \+(\d+) Power and the following ability\. "\[C\] During battles involving this, your Opponent cannot play BACKUP from hand\.".
+[CONT] Assist: tus personajes Azules en frente de esta carta ganan +$1 de Poder y la siguiente habilidad: '[CONT] Durante un combate en el que participe esta carta, tu oponente no puede usar habilidades 'Backup' de su mano.'.
+
+\[C\] ASSIST All your BLUE Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes Azules en frente de esta carta ganan +$1 de Poder.
+
+\[C\] ASSIST All your Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +$1 de Poder.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times # of <<(.+?)>> Characters in your Level Zone\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el número de personajes <<%%$2%%>> en tu zona de Nivel.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times # of Characters in your Level Zone with either <<(.+?)>> or <<(.+?)>>\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el número de personajes <<%%$2%%>> o <<%%$3%%>> en tu zona de Nivel.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times # of Markers under this\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el número Markers debajo de esta carta.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times # of your Characters with ASSIST\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el número de personajes con 'Assist' que controles.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times the Cost of that Character\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el Coste de ese personaje.
+
+\[C\] ASSIST All your Characters in front of this gain \+X Power\. X = (\d+) times the Level of that Character\.
+[CONT] Assist: tus personajes en frente de esta carta ganan +X de Poder, donde X es $1 multiplicado por el Nivel de ese personaje.
+
+\[C\] ASSIST All your GREEN Characters in front of this gain \+(\d+) Power and the following ability\. "\[A\] When the Trigger Check of this reveals a Climax card, this gains \+(\d+) Power and \+1 Soul for the turn\.".
+[CONT] Assist: tus personajes Verdes en frente de esta carta ganan +$1 de Poder y la siguiente habilidad: '[AUTO] Cuando esta carta revela un Climax durante su Trigger Check, esta carta gana +$2 de Poder y +1 soul hasta el final del turno.'.
+
+\[C\] ASSIST All your GREEN Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes Verdes en frente de esta carta ganan +$1 de Poder.
+
+\[C\] ASSIST All your Level (\d) or higher Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes de Nivel $1 o superior en frente de esta carta ganan +$2 de Poder.
+
+\[C\] ASSIST All your Level (\d) or lower Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes de Nivel $1 o inferior en frente de esta carta ganan +$2 de Poder.
+
+\[C\] ASSIST All your RED Characters in front of this gain \+(\d+) Power and the following ability\. "\[A\] During your turn, when the Battle Opponent of this becomes Reversed in battle, look at the top card of your Library and put it either on top of the Library or in the Waiting Room\.".
+[CONT] Assist: tus personajes Rojos en frente de esta carta ganan +$1 de Poder y la siguiente habilidad: '[AUTO] Durante tu turno, cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, mira la carta superior de tu Deck y ponla en la parte superior de tu Deck o en tu Waiting Room.'.
+
+\[C\] ASSIST All your RED Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes Rojos en frente de esta carta ganan +$1 de Poder.
+
+\[C\] ASSIST All your YELLOW Characters in front of this gain \+(\d+) Power\.
+[CONT] Assist: tus personajes Amarillos en frente de esta carta ganan +$1 de Poder.
+
+\[C\] All your Characters gain \+(\d+) Power and \+(\d+) Soul\.
+[CONT] Todos tus personajes ganan +$1 de Poder y +$2 Soul.
+
+\[C\] All your Characters gain \+(\d+) Soul\.
+[CONT] Todos tus otros personajes ganan +$1 Soul.
+
+\[C\] All your other "(.+?)" gains \+(\d+) Power\.
+[CONT] Todos tus otros personajes llamados '@@$1@@' ganan +$2 de Poder.
+
+\[C\] All your other '(.+?)' gain the following ability\. "\[A\] At the start of your Encore Step, you may put the top card of your Opponent's Library in the Waiting Room\. If so, choose a card in your Opponent's Waiting Room and put it on top of the Library\.".
+[CONT] Todos tus otros personajes llamados '@@$1@@' ganan la siguiente habilidad: '[AUTO] Al comienzo de tu fase de Encore, puedes poner la carta superior del Deck de tu oponente en su Waiting Room. Si lo haces, escoge 1 carta en la Waiting Room de tu oponente y ponla en la parte superior de su Deck.'.
+
+\[C\] All your other ::(.+?):: Characters gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes <<%%$1%%>> ganan +$2 de Poder.
+
+\[C\] All your other BLUE Characters gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes Azules ganan +$1 de Poder.
+
+\[C\] All your other Characters gain the following ability\. "\[C\] This cannot Side Attack\.".
+[CONT] Todos tus otros personajes ganan la siguiente habilidad: '[CONT] Esta carta no puede declarar un Side Attack.'.
+
+\[C\] All your other Characters with "(.+?)" or "(.+?)" in the name gains \+(\d+) Power\.
+[CONT] Todos tus otros personajes con '##$1##' o '##$2##' en su nombre ganan +$3 de Poder.
+
+\[C\] All your other Characters with either "(.+?)" or "(.+?)" in name gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes con '##$1##' o '##$2##' en su nombre ganan +$3 de Poder.
+
+\[C\] All your other Characters with either ::(.+?):: or ::(.+?):: gain \+(\d+) Power and "\[A\] ENCORE \[Discard a Character card from your hand to the Waiting Room\]"\.
+[CONT] Todos tus otros personajes <<%%$1%%>> o <<%%$2%%>> ganan +$3 de Poder y '[AUTO] Encore [Pon 1 personaje de tu mano en tu Waiting Room].'.
+
+\[C\] All your other Characters with either ::(.+?):: or ::(.+?):: gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes <<%%$1%%>> o <<%%$2%%>> ganan +$3 de Poder.
+
+\[C\] All your other GREEN Characters gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes Verdes ganan +$1 de Poder.
+
+\[C\] All your other RED Characters gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes Rojos ganan +$1 de Poder.
+
+\[C\] All your other YELLOW Characters gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes Amarillos ganan +$1 de Poder.
+
+\[C\] All your other ['"](.+?)['"] gain \+(\d+) Power\.
+[CONT] Todos tus otros personajes llamados '@@$1@@' ganan +$2 de Poder.
+
+\[C\] Character Opposite this (:?gains|gets) ([\+-])(\d) Soul\.
+[CONT] El personaje oponente en frente de esta carta gana $1$2 Soul.
+
+\[C\] Character Opposite this gains "\[A\] ENCORE \[Put the top card of your Library in your Clock\]"\.
+[CONT] El personaje oponente en frente de esta carta gana '[AUTO] Encore [Pon la carta superior de tu Deck en tu Clock].'.
+
+\[C\] During battles involving this, You do not take damage from effects of your Opponent's Characters' \[A\] abilities\.
+[CONT] Durante un combate en el que participe esta carta, no recibes daño de habilidades [AUTO] de personajes de tu oponente.
+
+\[C\] During battles involving this, your Opponent cannot play BACKUP from hand\.
+[CONT] Durante un combate en el que participe esta carta, tu oponente no puede usar habilidades 'Backup' de su mano.
+
+\[C\] During your Opponent's turn, all your other "(.+?)" gain \+(\d+) Power\.
+[CONT] Durante el turno de tu oponente, todos tus otros personajes llamados '@@$1@@' ganan +$2 de Poder.
+
+\[C\] During your Opponent's turn, if you have 3 or more other BLUE Characters, this gains the following ability\. "\[A\] When the Battle Opponent of this becomes Reversed in battle, you may deal 1 Damage to your Opponent\." \(Damage Cancel can occur\)
+[CONT] Durante el turno de tu oponente, si controlas otros 3 o más personajes Rojos, esta carta gana la siguiente habilidad: '[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes hacer 1 daño a tu oponente.'.
+
+\[C\] During your Opponent's turn, this gains \+X Power\. X = (\d+) times Level of the Character Opposite this\.
+[CONT] Durante el turno de tu oponente, esta carta gana +X de Poder, donde X es $1 multiplicado por en Nivel del personaje oponente en frente de esta carta.
+
+\[C\] During your Opponent's turn, your other Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Durante el turno de tu oponente, tu otro personaje en la posición del medio de tu Center Stage gana +$1 de Poder.
+
+\[C\] During your turn, all your other ::(.+?):: Characters gain \+(\d+) Power\.
+[CONT] Durante tu turno, todos tus otros personajes <<%%$1%%>> ganan +$2 de Poder.
+
+\[C\] During your turn, all your other ::(.+?):: Characters gain \+1 Level and \+(\d+) Power\.
+[CONT] Durante tu turno, todos tus otros personajes <<%%$1%%>> ganan +1 Nivel y +$2 de Poder.
+
+\[C\] During your turn, all your other Characters gain \+(\d+) Power\.
+[CONT] Durante tu turno, todos tus otros personajes ganan +$1 de Poder.
+
+\[C\] During your turn, all your other ['"](.+?)['"] gain \+(\d+) Power\.
+[CONT] Durante tu turno, todos tus otros personajes llamados '@@$1@@' ganan +$2 de Poder.
+
+\[C\] During your turn, if all your Characters have either "(.+?)" or "(.+?)" in name, this gains \+(\d+) Power\.
+[CONT] Durante tu turno, si todos tus personajes tienen '##$1##' o '##$2##' en su nombre, esta carta gana +$3 de Poder.
+
+\[C\] During your turn, this gains \+(\d+) Power\.
+[CONT] Durante tu turno, esta carta gana +$1 de Poder.
+
+\[C\] During your turn, your other Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Durante tu turno, tu otro personaje en la posición del medio de tu Center Stage gana +500 de Poder.
+
+\[C\] EXPERIENCE If "(.+?)" and "(.+?)" are in your Level Zone, this gets -1 Level while in your hand\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' y una carta llamada '@@$2@@' en tu área de Nivel, esta carta gana -1 Nivel en tu mano.
+
+\[C\] EXPERIENCE If "(.+?)" is in your Level Zone, this gains \+(\d+) Power and "\[S\] \[\(1\)\] This gains \+(\d+) Power for the turn"\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana +$2 de Poder y la siguiente habilidad: '[ACT] [(1)] Esta carta gana +$3 de Poder hasta el final del turno.'.
+
+\[C\] EXPERIENCE If "(.+?)" is in your Level Zone, this gains \+(\d+) Power and \+1 Soul\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana +$2 de Poder y +1 Soul.
+
+\[C\] EXPERIENCE If "(.+?)" is in your Level Zone, this gains \+(\d+) Power\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana +$2 de Poder.
+
+\[C\] EXPERIENCE If "(.+?)" is in your Level Zone, this gains \+1 Level and \+(\d+) Power\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana +1 Nivel y +$2 de Poder.
+
+\[C\] EXPERIENCE If "(.+?)" is in your Level Zone, this gains \+1 Soul\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana +1 Soul.
+
+\[C\] EXPERIENCE If ["'](.+?)["'] is in your Level Zone, this gets -1 Level while in your hand\.
+[CONT] Experience: si hay una carta llamada '@@$1@@' en tu área de Nivel, esta carta gana -1 Nivel en tu mano.
+
+\[C\] EXPERIENCE If the sum of Levels of cards in your Level Zone is (\d) or higher, this gains \+1 Level, \+(\d+) Power, and the following ability\. "\[C\] This cannot be chosen as target of Opponent's effects\.".
+[CONT] Experience: si la suma total de Niveles de cartas en tu área de Nivel es $1 o superior, esta carta gana +1 Nivel, +$2 de Poder y la siguiente habilidad: '[CONT] Esta carta no puede ser escogida por efectos de tu oponente.'.
+
+\[C\] EXPERIENCE If the sum of Levels of cards in your Level Zone is (\d) or higher, this gains the following ability\. "\[A\] When this attacks, choose 1 Character Opposite this, and for the turn, that Character gets -(\d+) Power and this gains \+(\d+) Power\.".
+[CONT] Experience: si la suma total de Niveles de cartas en tu área de Nivel es $1 o superior, esta carta gana la siguiente habilidad: '[AUTO] Cuando esta carta ataca, escoge el personaje oponente en frente de esta carta, dicho personaje gana -$2 de Poder hasta el final del turno y esta carta gana +$3 de Poder hasta el final del turno.'.
+
+\[C\] For each Marker under this, this gains ([-\+])(\d+) Power\.
+[CONT] Esta carta gana $1$2 de Poder por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains ([\+-])(\d+) Power and <<(.+?)>>\.
+[CONT] Esta carta gana +$1 de Poder y <<%%$1%%>> por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains ([\+-])(\d+) Power\.
+[CONT] Esta carta gana $1$2 de Poder por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains (\+)(\d) Level and \+(\d+) Power\.
+[CONT] Esta carta gana +$1 Nivel y +$2 de Poder por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains \+(\d+) Power and \+(\d) Soul\.
+[CONT] Esta carta gana +$1 de Poder y +$2 Soul por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains \+(\d+) Power and \+1 Soul\.
+[CONT] Esta carta gana +$1 de Poder y +1 Soul por cada Marker debajo de esta carta.
+
+\[C\] For each Marker under this, this gains \+1 Level and \+(\d+) Power\.
+[CONT] Esta carta gana +1 Nivel y +$2 de Poder por cada Marker debajo de esta carta.
+
+\[C\] For each ["'](.+?)["'] in your Front Row, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$2 de Poder por cada personaje llamado '@@$1@@' en tu Center Stage.
+
+\[C\] For each of your other ::(.+?):: Characters in the Back Row, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$2 de Poder por cada otro personaje <<%%$1%%>> en tu Back Stage.
+
+\[C\] For each of your other ::(.+?):: Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$2 de Poder por cada otro personaje <<%%$1%%>> que controles.
+
+\[C\] For each of your other BLUE Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$1 de Poder por cada otro personaje Azul que controles.
+
+\[C\] For each of your other Characters with either "(.+?)" or "(.+?)" in name, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$3 de Poder por cada otro personaje con '##$1##' o '##$2##' en su nombre que controles.
+
+\[C\] For each of your other Characters with either ::(.+?):: or ::(.+?)::, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$3 de Poder por cada otro personaje <<%%$1%%>> o <<%%$2%%>> que controles.
+
+\[C\] For each of your other GREEN Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$1 de Poder por cada otro personaje Verde que controles.
+
+\[C\] For each of your other Level 0 or lower Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$1 de Poder por cada otro personaje de Nivel 0 o inferior que controles.
+
+\[C\] For each of your other RED Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$1 de Poder por cada otro personaje Rojo que controles.
+
+\[C\] For each of your other YELLOW Characters, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$1 de Poder por cada otro personaje Amarillo que controles.
+
+\[C\] For each of your other ["'](.+?)["'] in the Front Row, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$2 de Poder por cada otro personaje llamado '@@$1@@' en tu Center Stage.
+
+\[C\] For each other "(.+?)" you have, this gains \+(\d+) Power\.
+[CONT] Esta carta gana +$2 de Poder por cada otro personaje llamado '@@$1@@' que controles.
+
+\[C\] If ['"](.+?)['"] is in your Clock, this gets -1 Level while in your hand\.
+[CONT] Si hay una carta llamada '@@$1@@' en tu Clock, esta carta gana -1 Nivel en tu mano.
+
+\[C\] If all your Characters are ::(.+?)::, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes son <<%%$1%%>>, esta carta gana +$2 de Poder.
+
+\[C\] If all your Characters are BLUE, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes son Azules, esta carta gana +$1 de Poder.
+
+\[C\] If all your Characters are GREEN, this gains \+(\d+) Power and \+1 Soul\.
+[CONT] Si todos tus personajes son Verdes, esta carta gana +$1 de Poder y +1 Soul.
+
+\[C\] If all your Characters are GREEN, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes son Verdes, esta carta gana +$1 de Poder.
+
+\[C\] If all your Characters are RED, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes son Rojos, esta carta gana +$1 de Poder.
+
+\[C\] If all your Characters are YELLOW, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes son Amarillos, esta carta gana +$1 de Poder.
+
+\[C\] If all your Characters have either "(.+?)" or "(.+?)" in name, this gains "\[A\] ENCORE \[Discard a Character card from your hand to the Waiting Room\]"\.
+[CONT] Si todos tus personajes tienen '##$1##' o '##$2##' en su nombre, esta carta gana '[AUTO] Encore [Pon 1 personaje de tu mano en tu Waiting Room].'.
+
+\[C\] If all your Characters have either "(.+?)" or "(.+?)" in name, this gains \+(\d+) Power\.
+[CONT] Si todos tus personajes tienen '##$1##' o '##$2##' en su nombre, esta carta gana +$3 de Poder.
+
+\[C\] If the Character Opposite this is Level (\d) or higher, this gains \+(\d+) Power\.
+[CONT] Si el personaje oponente de esta carta es de Nivel $1 o superior, esta carta gana +$2 de Poder.
+
+\[C\] If the Cost of the Character Opposite this is 0 or lower, this does not Reverse\.
+[CONT] Si el personaje oponente de esta carta es de Coste 0 o inferior, esta carta no puede ser puesta en [Reverse].
+
+\[C\] If the Level of the Character Opposite this is higher than the Level of this, this cannot Front Attack\.
+[CONT] Si el Nivel del personaje oponente en frente de esta carta es superior al Nivel de esta carta, esta carta no puede declarar un Front Attack.
+
+\[C\] If there (?:is|are) (\d) or fewer Climax cards? in the Waiting Room, you cannot play this from your hand\.
+[CONT] Si el número de Climax en tu Waiting Room es $1 o inferior, no puedes jugar esta carta de tu mano.
+
+\[C\] If there are (\d) or fewer Climax cards in your Waiting Room, this gets -1 Level while in your hand\.
+[CONT] Si el número de Climax en tu Waiting Room es $1 o inferior, esta carta gana -1 Nivel en tu mano. 
+
+\[C\] If there are (\d) or fewer cards in your Stock, this gains the following ability\. "\[A\] When the Battle Opponent of this becomes Reversed in battle, you may put the top card of your Library in your Stock\.".
+[CONT] Si el número de cartas en tu Stock es $1 o inferior, esta carta gana la siguiente habilidad: '[AUTO] Cuando el personaje oponente de esta carta es puesto en [Reverse] en combate, puedes poner la carta superior de tu Deck en tu Stock.'.
+
+\[C\] If there are (\d) or more cards in your hand, this gains \+(\d+) Power\.
+[CONT] Si el número de cartas en tu mano es $1 o superior, esta carta gana +$2 de Poder.
+
+\[C\] If there are (\d+) or fewer cards in your Stock, this gains \+(\d+) Level and \+(\d+) Power\.
+[CONT] Si el número de cartas en tu Stock es $1 o inferior, esta carta gana +$2 Nivel y +$3 de Poder.
+
+\[C\] If there are (\d+) or fewer cards in your Stock, this gains \+(\d+) Power\.
+[CONT] Si el número de cartas en tu Stock es $1 o inferior, esta carta gana +$2 de Poder.
+
+\[C\] If there are 5 or more cards in your Stock, this gains \+(\d+) Power and "\[A\] ENCORE \[Discard a BLUE card from your hand to the Waiting Room\]"\.
+[CONT] Si el número de cartas en tu Stock es 5 o superior, esta carta gana +1000 de Poder y ''.
+
+\[C\] If there are fewer cards in your hand than your Opponent's hand, this gains \+(\d) Level and \+(\d+) Power\.
+[CONT] Si el número de cartas en tu mano es inferior al número de cartas en la mano de tu oponente, esta carta gana +$1 Nivel y +$2 de Poder.
+
+\[C\] If there are no other Characters in your Front Row, this gains \+(\d+) Power\.
+[CONT] Si no controlas otro personaje en tu Center Stage, esta carta gana +$1 de Poder.
+
+\[C\] If there is 1 or fewer Character in your Back Row, this cannot Attack\.
+[CONT] Si el número de personajes en tu Back Stage es 1 o inferior, esta carta no puede atacar.
+
+\[C\] If there is 1 or fewer Character in your Back Row, this cannot attack\.
+[CONT] Si el número de personajes en tu Back Stage es 1 o inferior, esta carta no puede atacar.
+
+\[C\] If there is 1 or fewer Climax card in your Waiting Room, you cannot play this from your hand\.
+[CONT] Si el número de Climax en tu Waiting Room es 1 o inferior, no puedes jugar esta carta de tu mano.
+
+\[C\] If there is a Marker under this, this gains \+(\d+) Power and Character Opposite this gets -1 Soul\.
+[CONT] Si esta carta tiene un Marker debajo de ella, esta carta gana +$1 de Poder y el personaje oponente en frente de esta carta gana -1 Soul.
+
+\[C\] If there is a Marker under this, this gains \+(\d+) Power\.
+[CONT] Si esta carta tiene un Marker debajo de ella, esta carta gana +$1 de Poder.
+
+\[C\] If this is on the Stage, this gets -(\d) Level and gains ::(.+?)::\.
+[CONT] Esta carta gana -$1 Nivel y <<%%$2%%>> en tu Stage.
+
+\[C\] If you have '(.+?)' and '(.+?)', this gets -1 Level while in your hand\.
+[CONT] Si controlas un personaje llamado '@@$1@@' y un personaje llamado '@@$2@@', esta carta gana -1 Nivel en tu mano. 
+
+\[C\] If you have (\d) or fewer Characters, you cannot play this from your hand\.
+[CONT] Si controlas $1 o menos personajes, no puedes jugar esta carta de tu mano.
+
+\[C\] If you have (\d) or fewer other ::(.+?):: Characters, you cannot play this from your hand\.
+[CONT] Si el número de otros personajes <<%%$2%%>> que controlas es $1 o inferior, no puedes jugar esta carta desde tu mano.
+
+\[C\] If you have (\d) or fewer other Characters, this gains \+(\d+) Power\.
+[CONT] Si el número de otros personajes que controlas es $1 o inferior, esta carta gana +$2 de Poder.
+
+\[C\] If you have (\d) or more ::(.+?):: Characters, this gets -1 Level while in your hand\.
+[CONT] Si controlas $1 o más personajes <<%%$2%%>>, esta carta gana -1 Nivel en tu mano.
+
+\[C\] If you have (\d) or more other ::(.+?):: Characters, this gains "\[A\] ENCORE \[Discard a Character card from your hand to the Waiting Room"\.
+[CONT] Si controlas otros $1 o más personajes <<%%$2%%>>, esta carta gana '[AUTO] Encore [Pon 1 personaje de tu mano en tu Waiting Room].'.
+
+\[C\] If you have (\d) or more other ::(.+?):: Characters, this gains \+(\d+) Power and the following ability\. "\[C\] This cannot be chosen as target of Opponent’s effects\.".
+[CONT] Si controlas otros $1 personajes <<%%$2%%>>, esta carta gana +$3 de Poder y la siguiente habilidad: '[CONT] Esta carta no puede ser escogida por efectos de tu oponente.'.
+
+\[C\] If you have (\d) or more other ::(.+?):: Characters, this gains \+(\d+) Power\.
+[CONT] Si controlas otros $1 o más personajes <<%%$2%%>>, esta carta gana +$3 de Poder.
+
+\[C\] If you have (\d) or more other Characters with either "(.+?)" or "(.+?)" in name, this gains \+(\d) Level and \+(\d+) Power\.
+[CONT] Si controlas otros $1 o más personajes con '##$2##' o '##$3##' en su nombre, esta carta gana +$4 Nivel y +$5 de Poder.
+
+\[C\] If you have (\d) or more other Characters with either "(.+?)" or "(.+?)" in name, this gains \+(\d+) Power\.
+[CONT] Si controlas otros $1 o más personajes con '##$2##' o '##$3##' en su nombre, esta carta gana +$4 de Poder.
+
+\[C\] If you have (\d) or more other Characters with either ::(.+?):: or ::(.+?)::, this gains \+(\d+) Power\.
+[CONT] Si controlas otros $1 o más personajes <<%%$2%%>> o <<%%$3%%>>, esta carta gana +$4 de Poder.
+
+\[C\] If you have (\d+) or more other BLUE Characters, this gains \+(\d+) Power\.
+[CONT] Si controlas $1 o más personajes Azules, esta carta gana +$2 de Poder.
+
+\[C\] If you have (\d+) or more other GREEN Characters, this gains \+(\d+) Power\.
+[CONT] Si controlas $1 o más personajes Verdes, esta carta gana +$2 de Poder.
+
+\[C\] If you have (\d+) or more other RED Characters, this gains \+(\d+) Power and you do not take damage from effects of your Opponent's Characters' \[A\] abilities during battles involving this\.
+[CONT] Si controlas otros $1 o más personajes Rojos, esta carta gana +$2 de Poder y durante un combate en el que participe esta carta, no recibes daño de habilidades [AUTO] de personajes de tu oponente.
+
+\[C\] If you have (\d+) or more other RED Characters, this gains \+(\d+) Power\.
+[CONT] Si controlas $1 o más personajes Rojos, esta carta gana +$2 de Poder.
+
+\[C\] If you have (\d+) or more other RED Characters, this gains the following ability\. "\[A\] When this becomes Reversed in battle, if the Level of the Battle Opponent of this is 1 or lower, you may Reverse that Character\.".
+[CONT] Si controlas otros $1 o más personajes Rojos, esta carta gana la siguiente habilidad: '[AUTO] Cuando esta carta es puesta en [Reverse] en combate, si el Nivel de su personaje oponente es 1 o inferior, puedes poner dicho personaje en [Reverse].'.
+
+\[C\] If you have (\d+) or more other YELLOW Characters, this gains \+(\d+) Power\.
+[CONT] Si controlas $1 o más personajes Amarillos, esta carta gana +$2 de Poder.
+
+\[C\] If you have 4 or more RED Characters, this gets -1 Level while in your hand\.
+[CONT] Si controlas 4 o más personajes Rojos, esta carta gana -1 Nivel en tu mano.
+
+\[C\] If you have another "(.+?)", this gains "\[S\] \[Rest this\] Choose 1 of your Characters, and that Character gains \+1 Level and \+(\d+) Power for the turn\.".
+[CONT] Si controlas otro personaje llamado '@@$1@@', esta carta gana la siguiente habilidad: '[ACT] [Pon esta carta en [Rest]] Escoge 1 de tus personajes, dicho personaje gana +1 Nivel y +$2 de Poder hasta el final del turno.'.
+
+\[C\] If you have another "(.+?)", this gains \+(\d+) Power\.
+[CONT] Si controlas otro personaje llamado '@@$1@@', esta carta gana +1500 de Poder.
+
+\[C\] If you have another '(.+?)', this gains \+(\d+) Power and \+1 Soul\.
+[CONT] Si controlas otro personaje llamado '@@$1@@', esta carta gana +$2 de Poder y +1 Soul.
+
+\[C\] If you have another '(.+?)', this gains \+(\d+) Power\.
+[CONT] Si controlas otro personaje llamado '@@$1@@', esta carta gana +$2 de Poder.
+
+\[C\] If you have another Character with "(.+?)" in name, this gains \+(\d+) Power\.
+[CONT] Si controlas otro personaje con '##$1##' en su nombre, esta carta gana +$2 de Poder.
+
+\[C\] If you have another Character with "(.+?)" in name, this is also considered to have "(.+?)" as the name\.
+[CONT] Si controlas otro personaje con '##$1##' en su nombre, esta carta gana '##$2##' en su nombre.
+
+\[C\] If you have another Level (\d) or higher Character, this gains \+(\d+) Power\.
+[CONT] Si controlas otro personaje de Nivel $1 o superior, esta carta gana +$2 de Poder.
+
+\[C\] If you have no other <<(.+?)>> Characters, this does not Stand during your Stand Phase\.
+[CONT] Si no controlas otro personaje <<%%$1%%>>, esta carta no se pone en [Stand] durante tu fase de Stand.
+
+\[C\] If you have no other Character with either "(.+?)", or "(.+?)" in name, this does not Stand during your Stand Phase\.
+[CONT] Si no controlas otro personaje con '##$1##' o '##$2##' en su nombre, esta carta no se pone en [Stand] durante tu fase de Stand.
+
+\[C\] If you have no other Characters with "(.+?)" in the name, this gains "\[C\] This cannot Front Attack"\.
+[CONT] Si no controlas otro personaje con '@@$1@@' en su nombre, esta carta gana la siguiente habilidad: '[CONT] Esta carta no puede declarar un Front Attack.'.
+
+\[C\] If you have no other Characters with '(.+?)' in name, this does not Stand during your Stand Phase\.
+[CONT] Si no controlas otro personaje con '##$1##' en su nombre, esta carta no se pone en [Stand] durante tu fase de Stand.
+
+\[C\] If you have no other Characters with either "(.+?)", "(.+?)", or "(.+?)" in name, this does not Stand during your Stand Phase\.
+[CONT] Si no controlas otro personaje con '##$1##', '##$2##' o '##$3##' en su nombre, esta carta no se pone en [Stand] durante tu fase de Stand.
+
+\[C\] If you have no other Characters with either ::(.+?):: or ::(.+?)::, this does not Stand during your Stand Phase\.
+[CONT] Si no controlas otro personaje <<%%$1%%>> o <<%%$2%%>>, esta carta no se pone en [Stand] durante tu fase de Stand.
+
+\[C\] If you have no other Characters, this gains \+(\d+) Power\.
+[CONT] Si no controlas otro personaje, esta carta gana +$1 de Poder.
+
+\[C\] If you have other '(.+?)', '(.+?)', and '(.+?)', this gains \+(\d) Soul\.
+[CONT] Si controlas otro personaje llamado '@@$1@@', otro personaje llamado '@@$2@@' y otro personaje llamado '@@$3@@', esta carta gana +$4 Soul.
+
+\[C\] If your Opponent has a Level (\d) or higher Character, this gets -(\d) Level while in your hand\.
+[CONT] Si tu oponente controla un personaje de Nivel $1 o superior, esta carta gana -$2 Nivel en tu mano.
+
+\[C\] RECOLLECTION If "(.+?)" is in your Memory, this gains \+(\d+) Power\.
+[CONT] Memory: Si hay una carta llamada '@@$1@@' en tu Memory, esta carta gana +$2 de Poder.
+
+\[C\] This cannot Side Attack\.
+[CONT] Esta carta no puede declarar un Side Attack.
+
+\[C\] This gains \+(\d+) Power during your Opponent's turn\.
+[CONT] Durante el turno de tu oponente, esta carta gana +$1 de Poder.
+
+\[C\] This gains \+(\d+) Power during your turn\.
+[CONT] Durante tu turno, esta carta gana +$1 de Poder.
+
+\[C\] This gains \+X Power\. X = (\d+) times Level of the Character Opposite this\.
+[CONT] Esta carta gana +X de Poder, donde X es $1 multiplicado por el Nivel del personaje oponente en frente de esta carta.
+
+\[C\] This gets ([\+-])(\d+) Level while on the Stage\.
+[CONT] Esta carta gana $1$2 Nivel en tu Stage.
+
+\[C\] You may have as many copies of cards with the same name as this in your deck\.
+[CONT] Puedes incluir cualquier número de cartas con el mismo nombre que esta carta en tu Deck.
+
+\[C\] You may have up to (\d+) copies of cards with the same name as this in your deck\.
+[CONT] Puedes incluir hasta $1 cartas con el mismo nombre que esta carta en tu Deck.
+
+\[C\] Your other BLUE Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Tu otro personaje Azul en la posición del medio de tu Center Stage gana +$1 de Poder.
+
+\[C\] Your other Character in the Front Row Center Slot gain \+(\d+) Power\.
+[CONT] Tu otro personaje en la posición del medio de tu Center Stage gana +$1 de Poder.
+
+\[C\] Your other Character in the Front Row Center Slot gains "\[A\] ENCORE \[Discard a Character card from your hand to the Waiting Room\]"\.
+[CONT] Tu otro personaje en la posición del medio de tu Center Stage gana '[AUTO] Encore [Pon 1 personaje de tu mano en tu Waiting Room].'.
+
+\[C\] Your other GREEN Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Tu otro personaje Verde en la posición del medio de tu Center Stage gana +$1 de Poder.
+
+\[C\] Your other RED Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Tu otro personaje Rojo en la posición del medio de tu Center Stage gana +$1 de Poder.
+
+\[C\] Your other YELLOW Character in the Front Row Center Slot gains \+(\d+) Power\.
+[CONT] Tu otro personaje Amarillo en la posición del medio de tu Center Stage gana +$1 de Poder.
