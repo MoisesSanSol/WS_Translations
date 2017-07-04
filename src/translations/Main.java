@@ -1,21 +1,15 @@
 package translations;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 public class Main {
 
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
 		
-		Dispatcher.rawAbilityMasterList();
+		FileUpdater.updateHotcCleanFiles_StringBasedReplacement();
+		
+		//Dispatcher.rawAbilityMasterList();
+		//Dispatcher.rawRemainingAbilityMasterList();
+		//Dispatcher.getTranlationProgress("is_the_order_a_rabbit_trial_deck");
 		
 		System.out.println("*** Finished ***");
 	}

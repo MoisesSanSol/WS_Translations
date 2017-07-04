@@ -7,7 +7,7 @@ public class Conf {
 	public static String defaultFolder = "C:\\Users\\Moises BSS\\Desktop\\PruebasTemporales\\";
 	public static String resultsFolder = "C:\\Users\\Moises BSS\\Desktop\\PruebasTemporales\\";
 
-	public static String correctionFilesFolder = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\Correcciones\\";
+	public static String correctionFilesFolder = "D:\\WorkShop\\Translations\\Correcciones\\";
 	public static String hotcCleanFilesFolder = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\HotcCleanFiles\\";
 	public static String hotcRawFilesFolder = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\HotcRawFiles\\";
 	
