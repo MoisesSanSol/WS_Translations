@@ -328,9 +328,9 @@ public class OutputFormatter {
 		
 		writer.close();
 	}
-	
-	public static void generateRawAbilityListFile(ArrayList<Card> cards, File file) throws Exception{
-		System.out.println("*** Generate Ability List Txt for " + file.getName() + " ***");
+
+	public static void generateAbilityListFile_WithGroupedIds(ArrayList<Card> cards, File file) throws Exception{
+		System.out.println("*** Generate Ability List (with grouped Ids) Txt for " + file.getName() + " ***");
 		
 		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
 
@@ -345,6 +345,48 @@ public class OutputFormatter {
 		writer.close();
 		FileUpdater.orderLinesInFile(file);
 	}
+	
+	public static void generateAbilityListFile_WithIds(ArrayList<Card> cards, File file) throws Exception{
+		System.out.println("*** Generate Ability List (with Ids) Txt for " + file.getName() + " ***");
+		
+		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+
+		for(Card card : cards){
+			for(String ability : card.habs){
+				writer.write("\"" + ability + "\"");
+				writer.write("\t");
+				writer.write(card.id + ";");
+				writer.write("\r\n");
+			}
+		}
+		writer.close();
+		FileUpdater.orderLinesInFile(file);
+	}
+	
+	public static void generateAbilityListFile_NoIds(ArrayList<Card> cards, File file) throws Exception{
+		System.out.println("*** Generate Ability List (No Ids) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilities = new ArrayList<String>(); 
+		
+		for(Card card : cards){
+			for(String ability : card.habs){
+				if(!abilities.contains(ability)){
+					abilities.add(ability);
+				}
+			}
+		}
+		
+		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+
+		for(String ability : abilities){
+			writer.write("\"" + ability + "\"");
+			writer.write("\r\n");
+		}
+		
+		writer.close();
+		FileUpdater.orderLinesInFile(file);
+	}
+	
 	
 	public static void generateRawRemainingAbilityListFile(ArrayList<Card> cards, File file) throws Exception{
 		System.out.println("*** Generate Ability List Txt for " + file.getName() + " ***");
@@ -648,5 +690,29 @@ public class OutputFormatter {
 		}
 		
 		writer.close();
+	}
+	
+	public static void generateUselessPairsFile() throws Exception{
+		
+		ArrayList<Card> allCards = TextFileParser.getAllCards();
+		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(allCards); 
+		ArrayList<String> abilities = Utilities.getAbilitiesFromcards(uniqueCards);
+		
+		Translator translator = new Translator();
+		
+		for(LineTranslation translation : translator.lineTranslations){
+			boolean inUse = false;
+			for(String ability : abilities){
+				
+				Matcher m = translation.pattern.matcher(ability);
+				if(m.find()){
+					inUse = true;
+					break;
+				}
+			}
+			if(!inUse){
+				System.out.println("Not in use: " + translation.pattern.toString());
+			}
+		}
 	}
 }

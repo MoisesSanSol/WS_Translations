@@ -25,20 +25,6 @@ public class Dispatcher {
 		}*/
 	}
 	
-	public static void excelForCollaborator(String set) throws Exception{
-		
-		ArrayList<Card> allCards = TextFileParser.parseCards(set);
-		ArrayList<Card> cards = Utilities.getNonParallelCards(allCards);
-		ExcelHelper.createCollaboratorExcel(cards, set);
-	}
-	
-	public static void excelForCollaboratorEB(String set) throws Exception{
-		
-		ArrayList<Card> allCards = TextFileParser.parseCards(set);
-		ArrayList<Card> cards = Utilities.getNonParallelCards(allCards);
-		ExcelHelper.createCollaboratorExcel_EB(cards, set);
-	}
-	
 	public static void abilityMasterList() throws Exception{
 		
 		ArrayList<File> allFiles = Utilities.getFilesInFolder(Conf.hotcCleanFilesFolder);
@@ -61,8 +47,31 @@ public class Dispatcher {
 		ArrayList<Card> allCards = TextFileParser.getAllCards();
 		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(allCards); 
 		
-		OutputFormatter.generateRawAbilityListFile(uniqueCards, file);
+		OutputFormatter.generateAbilityListFile_WithIds(uniqueCards, file);
 	}
+	
+	public static void abilities_MasterList() throws Exception{
+		
+		String fullPathWrite = Conf.resultsFolder + "AbilitiesMasterList_NoIds.txt";
+		File file = new File(fullPathWrite);
+		
+		ArrayList<Card> allCards = TextFileParser.getAllCards();
+		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(allCards); 
+		
+		OutputFormatter.generateAbilityListFile_NoIds(uniqueCards, file);
+	}
+	
+	/*public static void justAbilities_SetList(String setName) throws Exception{
+		
+		String fullPathWrite = Conf.resultsFolder + "JustAbilities_" + setName + ".txt";
+		File file = new File(fullPathWrite);
+		
+		ArrayList<Card> setCatds = TextFileParser.parseCards(setName);
+		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(setCatds); 
+		
+		OutputFormatter.generateJustAbilitiesListFile(uniqueCards, file);
+	}*/
+	
 	
 	public static void rawRemainingAbilityMasterList() throws Exception{
 		
@@ -98,7 +107,7 @@ public class Dispatcher {
 		ArrayList<Card> allCards = TextFileParser.getAllCards();
 		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(allCards);
 		
-		OutputFormatter.generateRawAbilityListFile(uniqueCards, file);
+		//OutputFormatter.generateRawAbilityListFile(uniqueCards, file);
 		OutputFormatter.generateRawRemainingAbilityListFile(uniqueCards, file1);
 		OutputFormatter.generateRawTranslatedAbilityListFile(uniqueCards, file2);
 	}
@@ -162,6 +171,25 @@ public class Dispatcher {
 		}
 		
 		OutputFormatter.generateIdNamePairsFile(allCards);
+	}
+	
+	public static void downloadAllSetImagesFromYuyutei(String set) throws Exception{
+		
+		System.out.println("*** Download All Set Images for " + set + " From Yuyutei ***");
+		
+		DownloadHelper.downloadAllSetImages_yuyutei(set);
+	}
+	
+	public static void testing() throws Exception{
+		//File file = new File(Conf.resultsFolder + "imagen.jpg");
+		//DownloadHelper.downloadFile("http://yuyu-tei.jp/card_image/ws/front/gochiusa/10082.jpg", file);
+		DownloadHelper.downloadAllSetImages_yuyutei("gochiusaext");
+	}
+	
+	public static void updateFiles_OrderPairs_TranslationPairsFiles() throws Exception{
+		
+		FileUpdater.updateTranslationPairFiles_Order();
+		
 	}
 	
 }

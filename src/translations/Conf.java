@@ -15,6 +15,8 @@ public class Conf {
 	public static String databaseFilesFolder = "D:\\WorkShop\\Translations\\Database";
 	
 	public static String remoteFilesURL = "http://cotd.esy.es/translations/referencias/";
+	public static String yuyuteiBaseUrl = "http://yuyu-tei.jp";
+	public static String yuyuteiSetBaseUrl = "http://yuyu-tei.jp/game_ws/sell/sell_price.php?ver=";
 	
 	public static String[] translationPairsFiles = {"abilityListCont","abilityListAct","abilityListAuto","abilityListAutoCC","abilityListOthers"};
 
