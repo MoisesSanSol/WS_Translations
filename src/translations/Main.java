@@ -12,7 +12,7 @@ public class Main {
 		
 		//Dispatcher.rawAbilityMasterList();
 		//Dispatcher.rawRemainingAbilityMasterList();
-		//Dispatcher.getTranlationProgress("is_the_order_a_rabbit_booster_pack");
+		//Dispatcher.getTranlationProgress("nichijou_-_my_ordinary_life_extra_pack");
 		//Dispatcher.getTranlationProgress("psycho-pass_extra_pack");
 		//OutputFormatter.generateUselessPairsFile();
 		
@@ -22,6 +22,12 @@ public class Main {
 		//Dispatcher.testing();
 		
 		//Dispatcher.rawRemainingAbilityMasterList();
+		
+		//Dispatcher.generateIdNamePairsFile();
+		
+		//HotcRawFilesHelper.test();
+		
+		//Dispatcher.generateAllHotcCleanFiles();
 		
 		System.out.println("*** Finished ***");
 	}

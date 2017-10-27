@@ -2,14 +2,25 @@ package translations;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Properties;
+import java.util.Set;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 
 
-public class GetHotcFiles {
+public class HotcRawFilesHelper {
 	
 	// General configuration
 	/*private static int politeness = 10000;
@@ -121,4 +132,89 @@ public class GetHotcFiles {
 		output.write(handlerForBinary.getContent());
 		output.close();
 	}*/
+	
+	
+	public static ArrayList<String> getAvailableSetRefs() throws Exception{
+		
+		System.out.println("** Get Available Set Refs");
+		
+		ArrayList<String> availableSetRefs = new ArrayList<String>(); 
+		
+		Document mainPage = Jsoup.connect(Conf.hotcTranslationMainUrl).maxBodySize(0).get();	
+		Elements anchors = mainPage.select("a[href*=cardset]");
+		
+		for (Element anchor : anchors){
+			String setRef = anchor.attr("href").replace("/code/cardlist.html?pagetype=ws&cardset=", "");
+			availableSetRefs.add(setRef);
+			
+			System.out.println("* Set Ref: " + setRef);
+		}
+		
+		return availableSetRefs;
+	}
+	
+	public static String getRawFileName(String setTranslationRefUrl) throws Exception{
+		
+		System.out.println("** Get Raw File Name");
+		
+		String rawFileName = ""; 
+		
+		String setTranslationUrl = Conf.hotcTranslationSetBaseUrl + setTranslationRefUrl;
+		System.out.println("* Set Translation Url: " + setTranslationUrl);
+		
+		Document mainPage = Jsoup.connect(setTranslationUrl).maxBodySize(0).get();	
+		Element anchor = mainPage.select("a[href*=translation]").first();
+		String rawFilePageUrl = anchor.attr("href");
+		
+		rawFileName = rawFilePageUrl.replaceFirst("/translations/(.+?)\\.html", "$1");
+		
+		System.out.println("* File Name: " + rawFileName);
+		
+		return rawFileName;
+	}
+	
+	public static void test() throws Exception{
+		
+		System.out.println("** HotcRawFilesHelper Test");
+		
+		/*Properties reference = new Properties();
+		OutputStream output = new FileOutputStream(Conf.hotcRawFilesReferenceFile);
+		
+		ArrayList<String> setRefs = HotcRawFilesHelper.getAvailableSetRefs();
+
+		for (String setRef : setRefs){
+			
+			Thread.sleep(5000);
+			
+			String rawFileName = HotcRawFilesHelper.getRawFileName(setRef);
+
+			reference.setProperty(setRef, rawFileName);
+		}
+
+		reference.store(output, "Full direct dump.");
+		output.close();*/
+		
+		Properties reference = new Properties();
+		InputStream input = new FileInputStream(Conf.hotcRawFilesReferenceFile);
+
+		reference.load(input);
+		input.close();
+
+		Set<?> keys = reference.keySet();
+		String[] keyArray = keys.toArray(new String[keys.size()]);
+		
+        for(String key : keyArray){
+        	
+			Thread.sleep(5000);
+        	
+			String rawFileName = reference.getProperty(key);
+			
+			File rawFile = new File(Conf.hotcRawFilesFolder + rawFileName + ".txt");
+			String rawFileUrl = Conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
+			
+			DownloadHelper.downloadFile(rawFileUrl, rawFile);
+			
+		}
+	}
+
 }
