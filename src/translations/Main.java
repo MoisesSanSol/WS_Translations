@@ -29,6 +29,8 @@ public class Main {
 		
 		//Dispatcher.generateAllHotcCleanFiles();
 		
+		HotcRawFilesHelper.downloadNewHotcRawFiles();
+		
 		System.out.println("*** Finished ***");
 	}
 }

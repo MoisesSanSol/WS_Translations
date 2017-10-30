@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Properties;
@@ -153,7 +154,7 @@ public class HotcRawFilesHelper {
 		return availableSetRefs;
 	}
 	
-	public static String getRawFileName(String setTranslationRefUrl) throws Exception{
+	public static String getHotcRawFileName(String setTranslationRefUrl) throws Exception{
 		
 		System.out.println("** Get Raw File Name");
 		
@@ -217,4 +218,32 @@ public class HotcRawFilesHelper {
 		}
 	}
 
+	public static void downloadNewHotcRawFiles() throws Exception{
+		System.out.println("** Download New Hotc Raw Files");
+		
+		ArrayList<String> setRefs = HotcRawFilesHelper.getAvailableSetRefs();
+
+		Properties reference = new Properties();
+		InputStream input = new FileInputStream(Conf.hotcRawFilesReferenceFile);
+
+		reference.load(input);
+		input.close();
+
+		Set<?> keySet = reference.keySet();
+		String[] keyArray = keySet.toArray(new String[keySet.size()]);
+		ArrayList<String> keyList = new ArrayList<String>(Arrays.asList(keyArray));
+
+		
+        for(String setRef : setRefs){
+        	
+        	if(keyList.contains(setRef)){
+        		System.out.println("* Already downloaded: " + setRef + ", " + reference.getProperty(setRef));
+        	}
+        	else{
+        		System.out.println("* New file to downloaded: " + setRef);
+        	}
+		}
+		
+	}
+	
 }
