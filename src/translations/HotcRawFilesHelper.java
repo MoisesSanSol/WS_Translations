@@ -237,13 +237,28 @@ public class HotcRawFilesHelper {
         for(String setRef : setRefs){
         	
         	if(keyList.contains(setRef)){
-        		System.out.println("* Already downloaded: " + setRef + ", " + reference.getProperty(setRef));
+        		//System.out.println("* Already downloaded: " + setRef + ", " + reference.getProperty(setRef));
         	}
         	else{
-        		System.out.println("* New file to downloaded: " + setRef);
+        		
+        		Thread.sleep(5000);
+        		
+        		System.out.println("* New file to download: " + setRef);
+        		String setUrl = Conf.hotcTranslationSetBaseUrl + setRef;
+        		String rawFileName = HotcRawFilesHelper.getHotcRawFileName(setUrl);
+        		
+        		File rawFile = new File(Conf.hotcRawFilesFolder + rawFileName + ".txt");
+    			String rawFileUrl = Conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
+    			
+    			DownloadHelper.downloadFile(rawFileUrl, rawFile);
+    			reference.setProperty(setRef, rawFileName);
         	}
 		}
 		
+        OutputStream output = new FileOutputStream(Conf.hotcRawFilesReferenceFile);
+		reference.store(output, "Updating with new series.");
+		output.close();
+        
 	}
 	
 }
