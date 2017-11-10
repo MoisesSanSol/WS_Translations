@@ -27,7 +27,6 @@ public class Conf {
 	public static String removeLinesCorrectionFile = "RemoveLineCorrections";
 	
 	// HotC Raw Files Conf
-
 	public static String hotcBaseUrl = "http://www.heartofthecards.com/";
 	public static String hotcTranslationMainUrl = Conf.hotcBaseUrl + "code/cardlist.html?pagetype=ws";
 	public static String hotcTranslationSetBaseUrl = Conf.hotcBaseUrl + "code/cardlist.html?pagetype=ws&cardset=";
@@ -36,4 +35,6 @@ public class Conf {
 	public static String hotcRawFilesFolder = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\HotcRawFiles\\";
 	public static String hotcRawFilesReferenceFile = Conf.hotcRawFilesFolder + "reference.properties";
 	
+	// Little Akiba
+	public static String littleAkibaSetBaseUrl = "http://littleakiba.com/tcg/weiss-schwarz/browse.php?series_id=";
 }

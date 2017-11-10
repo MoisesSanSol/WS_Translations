@@ -3,6 +3,7 @@ package translations;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Dispatcher {
 
@@ -158,6 +159,25 @@ public class Dispatcher {
 		}
 	}
 	
+	public static void generateNewHotcCleanFiles() throws Exception{
+		
+		System.out.println("** Generating New Hotc Clean Files");
+		
+		File directorioRaw = new File(Conf.hotcRawFilesFolder);
+		File[] rawFiles = directorioRaw.listFiles();
+		
+		File directorioClean = new File(Conf.hotcCleanFilesFolder);
+		String[] cleanFilesArray = directorioClean.list();
+		ArrayList<String> cleanFiles = new ArrayList<>(Arrays.asList(cleanFilesArray));
+		
+		for(File file : rawFiles){
+			if(!cleanFiles.contains(file.getName())){
+				TextFileParser.generateCleanHotcFile(file.getName().replace(".txt", ""));
+				System.out.println("** Generating New Hotc Clean Files: " + file.getName());
+			}
+		}
+	}
+	
 	public static void generateIdNamePairsFile() throws Exception{
 		
 		System.out.println("*** Generate Id Name Pairs File ***");
@@ -177,13 +197,13 @@ public class Dispatcher {
 		
 		System.out.println("*** Download All Set Images for " + set + " From Yuyutei ***");
 		
-		DownloadHelper.downloadAllSetImages_yuyutei(set);
+		DownloadHelper.downloadAllSetImages_Yuyutei(set);
 	}
 	
 	public static void testing() throws Exception{
 		//File file = new File(Conf.resultsFolder + "imagen.jpg");
 		//DownloadHelper.downloadFile("http://yuyu-tei.jp/card_image/ws/front/gochiusa/10082.jpg", file);
-		DownloadHelper.downloadAllSetImages_yuyutei("gochiusaext");
+		DownloadHelper.downloadAllSetImages_Yuyutei("gochiusaext");
 	}
 	
 	public static void updateFiles_OrderPairs_TranslationPairsFiles() throws Exception{

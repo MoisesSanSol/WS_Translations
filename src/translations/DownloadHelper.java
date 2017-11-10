@@ -11,12 +11,47 @@ import org.jsoup.Jsoup;
 
 public class DownloadHelper {
 
-	public static void getAllSetRawHotcFileNames(){
+	public static void main(String[] args) throws Exception{
+		// For testing purposes only
+	}
+	
+	public static void downloadAllSetImages_LittleAkiba(String laSetId) throws Exception{
 		
+		System.out.println("** Download All SetImages Little Akiba");
+		System.out.println("** Set Id: " + laSetId);
+		
+		String setUrl = Conf.littleAkibaSetBaseUrl + laSetId;
+		
+		File imageDir = new File(Conf.resultsFolder + laSetId);
+		if(!imageDir.exists()){imageDir.mkdirs();}
+		
+		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
+		
+		Elements cards = doc.select("div.card_list").first().select("a");
+		
+
+		for(Element card : cards){
+			
+			System.out.println("** Set Id: " + card.attr("href"));
+			
+			Document cardDoc = Jsoup.connect(card.attr("href")).maxBodySize(0).validateTLSCertificates(false).get();
+			
+			Element imageLarge = cardDoc.select("a.fullview").first();
+			String imageLargeUrl = imageLarge.attr("href");
+			
+			String cardFullId = cardDoc.select("div.details").first().select("small").first().text();
+
+			String cardId = cardFullId.split(" ")[0].split("/")[1].toLowerCase().replace("-", "_");
+
+			File imageFile = new File(Conf.resultsFolder + laSetId + "//" + cardId + ".jpg");
+			
+			Thread.sleep(5000);
+			DownloadHelper.downloadFile(imageLargeUrl, imageFile);
+		}		
 	}
 	
 	
-	public static void downloadAllSetImages_yuyutei(String set) throws Exception{
+	public static void downloadAllSetImages_Yuyutei(String set) throws Exception{
 		
 		String setUrl = Conf.yuyuteiSetBaseUrl + set;
 		
