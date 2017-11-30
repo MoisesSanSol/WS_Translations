@@ -20,30 +20,57 @@ import org.jsoup.select.Elements;
 
 import configuration.LocalConf;
 import translations.TextFileParser;
+import utilities.Utilities;
 
 public class WsTcgResults {
 
-	static String urlBase = "http://ws-tcg.com/deckrecipe/detail/";
-	static String urlPage = "recipe_wgp2017_nagoya_01";
 	
+	private static String urlBase = "http://ws-tcg.com/deckrecipe/";
+	//static String urlPage = "detail/recipe_wgp2017_nagoya_01";
+	
+	private HashMap<String,String> idNamePairs;
+	
+	public WsTcgResults() throws Exception{
+		
+		LocalConf conf = LocalConf.getInstance();
+		Utilities.checkFolderExistence(conf.wsTcgResultsFolder);
+		File pairsFile = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\IdNamePairs.txt"); 
+		this.idNamePairs = TextFileParser.getHashMapFromFile(pairsFile);
+		
+	}
 	
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println("*** Starting ***");
 
-		//WsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, true);
-		WsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, false);
+		WsTcgResults wsTcgResults = new WsTcgResults();
+		
+		//wsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, true);
+		//wsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, false);
+		
+		wsTcgResults.generateAllResultPagesFor("recipe_wgp2017");
 		
 		System.out.println("*** Finished ***");
 	}
 	
-	public static void generateUpdatedResultsPage(String url, boolean mobile) throws Exception{
+	public void generateAllResultPagesFor(String what) throws Exception{
+		
+		System.out.println("** generateAllResultPagesFor");
+		
+		Document doc = Jsoup.connect(WsTcgResults.urlBase).maxBodySize(0).get();	
+		Elements links = doc.select("a[href*=" + what + "]");
+		
+		for(Element link : links){
+			String url = link.attr("abs:href");
+			System.out.println("* url: " + url);
+			this.generateUpdatedResultsPage(url, true);
+			this.generateUpdatedResultsPage(url, false);
+		}
+	}
+	
+	public void generateUpdatedResultsPage(String url, boolean mobile) throws Exception{
 		
 		LocalConf conf = LocalConf.getInstance();
-		
-		File pairsFile = new File(conf.generalResultsFolder.getAbsolutePath() + "\\IdNamePairs.txt"); 
-		
-		HashMap<String,String> pairs = TextFileParser.getHashMapFromFile(pairsFile);
 		
 		Document doc;
 		if(mobile){
@@ -71,8 +98,8 @@ public class WsTcgResults {
 		for(Element carta : cartas){
 			
 			String id = carta.text();
-			if(pairs.containsKey(id)){
-				String nombreEn = pairs.get(id);
+			if(this.idNamePairs.containsKey(id)){
+				String nombreEn = this.idNamePairs.get(id);
 				Element row = carta.parent();
 				Element nombre = row.select("td.cardname").first().select("a").first();
 				nombre.attr("href", "http://www.heartofthecards.com/code/cardlist.html?card=WS_" + id);
@@ -100,7 +127,7 @@ public class WsTcgResults {
 		String everything = doc.outerHtml();
 
 		Properties prop = new Properties();
-		InputStream input = new FileInputStream(conf.generalResultsFolder.getAbsolutePath() + "\\TranlationPairs.properties");
+		InputStream input = new FileInputStream(conf.wsTcgResultsFolder.getAbsolutePath() + "\\TranlationPairs.properties");
 		prop.load(new InputStreamReader(input, Charset.forName("UTF-8")));
 		input.close();
 
@@ -114,11 +141,12 @@ public class WsTcgResults {
 		}
 		
 		File output;
+		String fileName = url.replaceAll(".+/", "");
 		if(mobile){
-			output = new File(conf.generalResultsFolder.getAbsolutePath() + "\\m." + WsTcgResults.urlPage + ".html");
+			output = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\m." + fileName + ".html");
 		}
 		else{
-			output = new File(conf.generalResultsFolder.getAbsolutePath() + "\\" + WsTcgResults.urlPage + ".html");			
+			output = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\" + fileName + ".html");			
 		}
 		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), "UTF-8"));
 		writer.write(everything);

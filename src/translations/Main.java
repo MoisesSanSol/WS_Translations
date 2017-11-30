@@ -10,7 +10,7 @@ public class Main {
 		
 		//Dispatcher.abilities_MasterList();
 		
-		//Dispatcher.rawAbilityMasterList();
+		Dispatcher.rawAbilityMasterList();
 		//Dispatcher.rawRemainingAbilityMasterList();
 		//Dispatcher.getTranlationProgress("nichijou_-_my_ordinary_life_extra_pack");
 		//Dispatcher.getTranlationProgress("sword_art_online_ordinal_scale_booster_pack");
@@ -23,7 +23,7 @@ public class Main {
 		
 		//Dispatcher.rawRemainingAbilityMasterList();
 		
-		Dispatcher.generateIdNamePairsFile();
+		//Dispatcher.generateIdNamePairsFile();
 		
 		//HotcRawFilesHelper.test();
 		

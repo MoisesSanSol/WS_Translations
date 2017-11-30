@@ -18,6 +18,7 @@ public class LocalConf {
 	
 	// Folders
 	public File generalResultsFolder;
+	public File wsTcgResultsFolder;
 	
 	// Singleton instance
 	private static LocalConf instance;
@@ -51,6 +52,8 @@ public class LocalConf {
 			String generalResultsFolderPath = folderConf.getProperty("generalResultsFolder");
 			this.generalResultsFolder = new File(generalResultsFolderPath);
 			Utilities.checkFolderExistence(this.generalResultsFolder);
+			String wsTcgResultsFolderPath = folderConf.getProperty("wsTcgResultsFolder");
+			this.wsTcgResultsFolder = new File(wsTcgResultsFolderPath);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
