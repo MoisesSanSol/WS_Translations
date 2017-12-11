@@ -20,6 +20,13 @@ public class LocalConf {
 	public File generalResultsFolder;
 	public File wsTcgResultsFolder;
 	
+	public File hotcFilesFolder;
+	public File hotcCleanFilesFolder;
+	public File hotcRawFilesFolder;
+	
+	// Files
+	public File hotcRawFilesReferenceFile;
+	
 	// Singleton instance
 	private static LocalConf instance;
 
@@ -54,6 +61,12 @@ public class LocalConf {
 			Utilities.checkFolderExistence(this.generalResultsFolder);
 			String wsTcgResultsFolderPath = folderConf.getProperty("wsTcgResultsFolder");
 			this.wsTcgResultsFolder = new File(wsTcgResultsFolderPath);
+			String hotcFilesFolderPath = folderConf.getProperty("hotcFilesFolder");
+			this.hotcFilesFolder = new File(hotcFilesFolderPath);
+			String hotcCleanFilesFolderPath = folderConf.getProperty("hotcCleanFilesFolder");
+			this.hotcCleanFilesFolder = new File(hotcCleanFilesFolderPath);
+			String hotcRawFilesFolderPath = folderConf.getProperty("hotcRawFilesFolder");
+			this.hotcRawFilesFolder = new File(hotcRawFilesFolderPath);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -66,5 +79,25 @@ public class LocalConf {
 				}
 			}
 		}
+	}
+	
+	public String getGeneralResultsFolderPath(){
+		return this.generalResultsFolder.getPath() + "\\";
+	}
+	
+	public String getWsTcgResultsFolderPath(){
+		return this.wsTcgResultsFolder.getPath() + "\\";
+	}
+
+	public String gethotcFilesFolderPath(){
+		return this.hotcFilesFolder.getPath() + "\\";
+	}
+	
+	public String gethotcCleanFilesFolderPath(){
+		return this.hotcCleanFilesFolder.getPath() + "\\";
+	}
+	
+	public String gethotcRawFilesFolderPath(){
+		return this.hotcRawFilesFolder.getPath() + "\\";
 	}
 }

@@ -1,4 +1,4 @@
-package translations;
+package hotcfiles;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,12 +17,93 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import configuration.LocalConf;
+import download.DownloadHelper;
 import translations.Conf;
 import translations.TextFileParser;
 import translations.Utilities;
 
-public class FileUpdater {
+public class HotcCleanFilesHelper {
 
+	LocalConf conf;
+	
+	public static void main(String[] args) throws Exception{
+		System.out.println("*** Starting ***");
+		
+		// For testing and individual execution purposes.
+		HotcCleanFilesHelper hotcCleanFilesHelper = new HotcCleanFilesHelper();
+		
+		//hotcCleanFilesHelper.generateCleanHotcFile("");
+		hotcCleanFilesHelper.generateCleanPromoHotcFiles();
+		
+		System.out.println("*** Finished ***");
+	}
+	
+	public HotcCleanFilesHelper() throws Exception{
+		this.conf = LocalConf.getInstance();
+	}
+	
+	public void generateCleanPromoHotcFiles() throws Exception{
+		System.out.println("** Generate Clean Promo Hotc Files");
+		
+		// Hardcoded promo file names (seem to be static)
+		String[] promoRawFileNames = {"weib_promos","schwarz_promos"};
+		
+        for(String promoRawFileName : promoRawFileNames){
+        		
+    		this.generateCleanHotcFile(promoRawFileName);
+		}
+	}
+	
+	public void generateCleanHotcFile(String rawFileName) throws Exception{
+		
+		System.out.println("** Unwraping Original File : " + rawFileName);
+		
+		String fullPathRawFile = this.conf.gethotcRawFilesFolderPath() + rawFileName + ".txt";
+		File rawFile = new File(fullPathRawFile);
+		
+		String fullPathResultFile = this.conf.gethotcCleanFilesFolderPath() + rawFileName + ".txt";
+		File resultFile = new File(fullPathResultFile);
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(rawFile), "UTF-8"));
+		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultFile), "UTF-8"));
+		
+		while(reader.ready()){
+			
+			String line = reader.readLine();
+			
+			if(line.startsWith("TEXT: ")){
+				writer.write("TEXT: \r\n");
+				String newLine = line.replace("TEXT: ", "");
+				boolean loopBreak = false;
+				while (!loopBreak){
+					line = reader.readLine();
+					if(line.equals("")){
+						loopBreak = true;
+						writer.write(newLine + "\r\n\r\n");
+					}
+					else if(line.startsWith("[S]") || line.startsWith("[A]") || line.startsWith("[C]")){
+						writer.write(newLine + "\r\n");
+						newLine = line;
+					}
+					else{
+						newLine = newLine + " " + line;
+					}
+				}
+				
+			}
+			else{
+				writer.write(line + "\r\n");
+			}
+	
+		}
+		
+		reader.close();
+		writer.close();
+
+		TextFileParser.cleanDoubleLineBreaks(resultFile);
+	}
+	
 	public static void updateHotcCleanFiles_LineBasedReplacement() throws Exception{
 		
 		System.out.println("*** Update HotC Clean Files based on Line Replacement ***");
@@ -221,7 +302,7 @@ public class FileUpdater {
 			}	
 			writer.close();
 			
-			FileUpdater.removeLastLineFromFile(new File(fullPathWrite));
+			HotcCleanFilesHelper.removeLastLineFromFile(new File(fullPathWrite));
 		}
 	}
 	

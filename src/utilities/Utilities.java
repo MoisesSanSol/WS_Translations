@@ -11,4 +11,7 @@ public class Utilities {
 		}
 	}
 	
+	public static String escapeHtml(String line) throws Exception{
+		return line.replace("&", "&amp;").replace(">", "&gt;").replace("<", "&lt;");
+	}
 }

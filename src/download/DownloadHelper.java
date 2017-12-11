@@ -1,4 +1,4 @@
-package translations;
+package download;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,10 +9,26 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.Jsoup;
 
+import configuration.LocalConf;
+import translations.Conf;
+
 public class DownloadHelper {
 
+	LocalConf conf;
+	
 	public static void main(String[] args) throws Exception{
-		// For testing purposes only
+		System.out.println("*** Starting ***");
+		
+		// For testing and individual execution purposes.
+		DownloadHelper downloadHelper = new DownloadHelper();
+		
+		downloadHelper.downloadImages_Yuyutei_FillSetGaps("hinaext1.0");
+		
+		System.out.println("*** Finished ***");
+	}
+	
+	public DownloadHelper() throws Exception{
+		this.conf = LocalConf.getInstance();
 	}
 	
 	public static void downloadAllSetImages_LittleAkiba(String laSetId) throws Exception{
@@ -100,7 +116,7 @@ public class DownloadHelper {
 	
 	public static void downloadFile(String url, File file) throws Exception{
 		
-		System.out.println("*** Download File " + file.getName() + " from " + url + " ***");
+		System.out.println("** Download File " + file.getName() + " from " + url);
 		
 		// Open a URL Stream
 		Response resultImageResponse = Jsoup.connect(url).ignoreContentType(true).execute();
@@ -111,7 +127,55 @@ public class DownloadHelper {
 		out.write(imageContent);
 		out.close();
 		
-		System.out.println("*** Download File - Done ***");
+		System.out.println("* Download File - Done");
 	}
 	
+	
+	public void downloadImages_Yuyutei_FillSetGaps(String set) throws Exception{
+		
+		System.out.println("** Download Yuyutei Images: Fill Set Gaps");
+		System.out.println("* Set: " + set);
+		
+		String setUrl = Conf.yuyuteiSetBaseUrl + set;
+		
+		String imageDirPath = this.conf.getGeneralResultsFolderPath() + set + "\\";
+		File imageDir = new File(imageDirPath);
+		if(!imageDir.exists()){throw new Exception("Folder for filling gaps does not exist.");}
+		
+		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
+		
+		Elements cards = doc.select("[class^=card_unit]");
+
+		for(Element card : cards){
+			
+			String rarity = card.className().replace("card_unit rarity_", "");
+			
+			Element name = card.select(".id").first();
+			String cardId = name.text().replace("/", "_");
+
+			if(rarity.startsWith("S-")){
+				cardId = cardId + "-S";
+			}
+			
+			Element img = card.select("img").first();
+			String imgSrc = img.attr("src");
+			
+			System.out.println(rarity);
+			System.out.println(cardId);
+			System.out.println(imgSrc);
+			
+			String imgThumbUrl = Conf.yuyuteiBaseUrl + imgSrc;
+			String imgUrl = imgThumbUrl.replace("90_126", "front");
+			
+			File currentImageFile = new File(imageDirPath + cardId + ".png");
+			if(currentImageFile.exists()){
+				System.out.println("Image already exists.");
+			}
+			else{
+				File imageFile = new File(imageDirPath + cardId + ".jpg");
+				Thread.sleep(5000);
+				DownloadHelper.downloadFile(imgUrl, imageFile);				
+			}
+		}
+	}
 }

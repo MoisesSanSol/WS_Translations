@@ -1,9 +1,13 @@
 package translations;
 
+import hotcfiles.HotcCleanFilesHelper;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import download.DownloadHelper;
 
 public class Dispatcher {
 
@@ -83,7 +87,7 @@ public class Dispatcher {
 		ArrayList<Card> uniqueCards = Utilities.getNonParallelCards(allCards); 
 		
 		OutputFormatter.generateRawRemainingAbilityListFile(uniqueCards, file);
-		FileUpdater.updateRawAbilityFile_UniqueLines(file);
+		HotcCleanFilesHelper.updateRawAbilityFile_UniqueLines(file);
 	}
 	
 	public static void rawTranslatedAbilityMasterList() throws Exception{
@@ -121,10 +125,10 @@ public class Dispatcher {
 		TextFileParser.generateStartLineUpdatedFiles(partialCorrectionsFile);
 		File replaceCorrectionsFile = new File(Conf.correctionFilesFolder + "ReplaceCorrections.txt");*/
 		//FileUpdater.updateHotcCleanFiles_PrefixBasedReplacement();
-		FileUpdater.updateHotcCleanFiles_RemoveLines();
-		FileUpdater.updateHotcCleanFiles_StringBasedReplacement();
-		FileUpdater.updateHotcCleanFiles_RegExpBasedReplacement();
-		FileUpdater.updateHotcCleanFiles_LineBasedReplacement();
+		HotcCleanFilesHelper.updateHotcCleanFiles_RemoveLines();
+		HotcCleanFilesHelper.updateHotcCleanFiles_StringBasedReplacement();
+		HotcCleanFilesHelper.updateHotcCleanFiles_RegExpBasedReplacement();
+		HotcCleanFilesHelper.updateHotcCleanFiles_LineBasedReplacement();
 	}
 	
 	
@@ -208,7 +212,7 @@ public class Dispatcher {
 	
 	public static void updateFiles_OrderPairs_TranslationPairsFiles() throws Exception{
 		
-		FileUpdater.updateTranslationPairFiles_Order();
+		HotcCleanFilesHelper.updateTranslationPairFiles_Order();
 		
 	}
 	

@@ -33,7 +33,7 @@ public class Conf {
 	public static String hotcTranslationFileBaseUrl = Conf.hotcBaseUrl + "translations/";
 	
 	public static String hotcRawFilesFolder = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\HotcRawFiles\\";
-	public static String hotcRawFilesReferenceFile = Conf.hotcRawFilesFolder + "reference.properties";
+	public static String hotcRawFilesReferenceFile = "D:\\WorkShop\\Translations\\TranslationPlainFiles\\reference.properties";
 	
 	// Little Akiba
 	public static String littleAkibaSetBaseUrl = "http://littleakiba.com/tcg/weiss-schwarz/browse.php?series_id=";

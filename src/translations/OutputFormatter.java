@@ -1,5 +1,7 @@
 package translations;
 
+import hotcfiles.HotcCleanFilesHelper;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -343,7 +345,7 @@ public class OutputFormatter {
 			}
 		}
 		writer.close();
-		FileUpdater.orderLinesInFile(file);
+		HotcCleanFilesHelper.orderLinesInFile(file);
 	}
 	
 	public static void generateAbilityListFile_WithIds(ArrayList<Card> cards, File file) throws Exception{
@@ -360,7 +362,7 @@ public class OutputFormatter {
 			}
 		}
 		writer.close();
-		FileUpdater.orderLinesInFile(file);
+		HotcCleanFilesHelper.orderLinesInFile(file);
 	}
 	
 	public static void generateAbilityListFile_NoIds(ArrayList<Card> cards, File file) throws Exception{
@@ -384,7 +386,7 @@ public class OutputFormatter {
 		}
 		
 		writer.close();
-		FileUpdater.orderLinesInFile(file);
+		HotcCleanFilesHelper.orderLinesInFile(file);
 	}
 	
 	
@@ -407,7 +409,7 @@ public class OutputFormatter {
 			}
 		}
 		writer.close();
-		FileUpdater.orderLinesInFile(file);
+		HotcCleanFilesHelper.orderLinesInFile(file);
 	}
 	
 	public static void generateRawTranslatedAbilityListFile(ArrayList<Card> cards, File file) throws Exception{
@@ -429,7 +431,7 @@ public class OutputFormatter {
 			}
 		}
 		writer.close();
-		FileUpdater.orderLinesInFile(file);
+		HotcCleanFilesHelper.orderLinesInFile(file);
 	}
 	
 	public static void generateLinesFile(ArrayList<String> lines, String fileName) throws Exception{
