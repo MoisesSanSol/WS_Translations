@@ -59,7 +59,7 @@ public class StaticWebHelper {
 			templateContent.set(templateContent.indexOf("[Nombre Jp]"), card.jpName);
 			templateContent.set(templateContent.indexOf("[Card Id Line]"), card.id + " " + card.rarity);
 
-			String arteAlternativo = "<a href='./" + filenameFriendlyId + "-S.html'>Arte Alternativo</a>"; 
+			String arteAlternativo = "<a href='./" + filenameFriendlyId + "-S.html'>Arte Alternativo Foil</a>"; 
 			templateContent.set(templateContent.indexOf("[Arte Alternativo]"), arteAlternativo);
 			
 			String caracteristicas = "";
@@ -88,13 +88,14 @@ public class StaticWebHelper {
 		}
 		
 		this.addReferencias(setName, cards);
+		this.duplicateExtraBoosterAlternateCards(setName, cards);
 	}
 	
 	private String ProcessAbility(String habilidad, String name) throws Exception{
 		
 		habilidad = Utilities.escapeHtml(habilidad);
 		
-		habilidad = habilidad.replaceAll("##", "##").replaceAll("%%", "%%");
+		habilidad = habilidad.replaceAll("##", "").replaceAll("%%", "");
 		
 		while(habilidad.contains("@@")){
 			String cardName = habilidad.split("@@")[1];
@@ -110,7 +111,9 @@ public class StaticWebHelper {
 			else{
 				referencia = new ArrayList<String>();
 			}
-			referencia.add(name);
+			if(!referencia.contains(name)){
+				referencia.add(name);
+			}
 			this.referencias.put(cardName, referencia);
 		}
 		
@@ -135,6 +138,9 @@ public class StaticWebHelper {
 				for(String nombre : this.referencias.get(card.name)){
 					String nombreFriendlyId = this.pairs.get(nombre).replace("/", "_");
 					referenciada = referenciada + "* Esta carta es referenciada en las habilidades de '<a href='./" + nombreFriendlyId + ".html'>" + nombre + "</a></a>'";
+					if(!(this.referencias.get(card.name).indexOf(nombre) == this.referencias.get(card.name).size() - 1)){
+						referenciada = referenciada + "\r\n<br>\r\n";
+					}
 				}
 				referenciada = referenciada + "\r\n</td>\r\n</tr>";
 				
@@ -144,6 +150,23 @@ public class StaticWebHelper {
 				cardPageContent.set(cardPageContent.indexOf("[Referenciada]"), "");
 			}
 			Files.write(new File(cardsPath + filenameFriendlyId + ".html").toPath(), cardPageContent, StandardCharsets.UTF_8);
+		}
+	}
+	
+	private void duplicateExtraBoosterAlternateCards(String setName, ArrayList<Card> cards) throws Exception{
+		
+		for(Card card : cards){
+
+			String filenameFriendlyId = card.id.replace("/", "_");
+			
+			String cardsPath = this.conf.getGeneralResultsFolderPath() + "hinaext1.0\\cards\\";
+			
+			List<String> cardPageContent = new ArrayList<>(Files.readAllLines(new File(cardsPath + filenameFriendlyId + ".html").toPath(), StandardCharsets.UTF_8));
+			
+			cardPageContent.set(cardPageContent.indexOf("<img src='../images/" + filenameFriendlyId + ".png'></img>"), "<img src='../images/" + filenameFriendlyId + "-S.png'></img>");
+			cardPageContent.set(cardPageContent.indexOf("<a href='./" + filenameFriendlyId + "-S.html'>Arte Alternativo Foil</a>"), "<a href='./" + filenameFriendlyId + ".html'>Arte Alternativo Normal</a>");
+
+			Files.write(new File(cardsPath + filenameFriendlyId + "-S.html").toPath(), cardPageContent, StandardCharsets.UTF_8);
 		}
 	}
 }

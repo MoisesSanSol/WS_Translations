@@ -138,7 +138,7 @@ public class DownloadHelper {
 		
 		String setUrl = Conf.yuyuteiSetBaseUrl + set;
 		
-		String imageDirPath = this.conf.getGeneralResultsFolderPath() + set + "\\";
+		String imageDirPath = this.conf.getGeneralResultsFolderPath() + set + "\\images\\";
 		File imageDir = new File(imageDirPath);
 		if(!imageDir.exists()){throw new Exception("Folder for filling gaps does not exist.");}
 		
