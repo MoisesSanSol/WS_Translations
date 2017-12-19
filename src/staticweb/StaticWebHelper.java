@@ -26,7 +26,9 @@ public class StaticWebHelper {
 		
 		// For testing and individual execution purposes.
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
-		staticWebHelper.generateStaticSetWeb("hina_logic_vol._1_extra_pack");
+		//staticWebHelper.generateStaticSetWeb("hina_logic_vol._1_extra_pack");
+		//staticWebHelper.createEmptyIndex();
+		staticWebHelper.generateStaticSetPrPages("weib_promos");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -36,7 +38,7 @@ public class StaticWebHelper {
 		this.referencias = new HashMap<String,ArrayList<String>>();
 	}
 	
-	public void generateStaticSetWeb(String setName) throws Exception{
+	private void generateStaticSetWeb(String setName) throws Exception{
 		
 		ArrayList<Card> allCards = TextFileParser.parseCards(setName);
 		ArrayList<Card> rawCards = CardListUtilities.filterOutParallelCards(allCards);
@@ -64,19 +66,32 @@ public class StaticWebHelper {
 			
 			String caracteristicas = "";
 			
-			caracteristicas = caracteristicas + "Personaje " + card.color;
-			caracteristicas = caracteristicas + ", Nivel: " + card.level;
-			caracteristicas = caracteristicas + ", Poder: " + card.power;
-			caracteristicas = caracteristicas + ", Soul: " + card.soul;
-			caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
-			caracteristicas = caracteristicas + ", Traits: <<" + card.trait1;
-			caracteristicas = caracteristicas + ">> y <<" + card.trait2;
-			caracteristicas = caracteristicas + ">>.";
+			if(card.type.equals("Personaje")){
+				caracteristicas = caracteristicas + "Personaje " + card.color;
+				caracteristicas = caracteristicas + ", Nivel: " + card.level;
+				caracteristicas = caracteristicas + ", Poder: " + card.power;
+				caracteristicas = caracteristicas + ", Soul: " + card.soul;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ", Traits: <<" + card.trait1;
+				caracteristicas = caracteristicas + ">> y <<" + card.trait2;
+				caracteristicas = caracteristicas + ">>.";
+			}
+			else if(card.type.equals("Climax")){
+				caracteristicas = caracteristicas + "Climax " + card.color;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ".";
+			}
+			else if(card.type.equals("Evento")){
+				caracteristicas = caracteristicas + "Evento " + card.color;
+				caracteristicas = caracteristicas + ", Nivel: " + card.level;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ".";
+			}
 			templateContent.set(templateContent.indexOf("[Caracteristicas]"), Utilities.escapeHtml(caracteristicas));
 
 			String habilidades = "";
 			for(int i = 0; i < card.habs.size(); i++){
-				habilidades = habilidades + this.ProcessAbility(card.habs.get(i), card.name);
+				habilidades = habilidades + this.processAbility(card.habs.get(i), card.name);
 				if(i < card.habs.size()-1){
 					habilidades = habilidades + "\r\n<br>\r\n";
 				}
@@ -91,7 +106,7 @@ public class StaticWebHelper {
 		this.duplicateExtraBoosterAlternateCards(setName, cards);
 	}
 	
-	private String ProcessAbility(String habilidad, String name) throws Exception{
+	private String processAbility(String habilidad, String name) throws Exception{
 		
 		habilidad = Utilities.escapeHtml(habilidad);
 		
@@ -168,5 +183,125 @@ public class StaticWebHelper {
 
 			Files.write(new File(cardsPath + filenameFriendlyId + "-S.html").toPath(), cardPageContent, StandardCharsets.UTF_8);
 		}
+	}
+	
+	private void createEmptyIndex() throws Exception{
+		
+		System.out.println("* Create Empty Index");
+
+		String seriesFullId = "HLL/WE28-";
+		String seriesFullIdFriendly = "HLL_WE28-";
+		String productType = "Booster Pack";
+		String seriesName = "Hina Logi ~From Luck & Logic~ Vol. 1";
+		
+		String indexPath = this.conf.getGeneralResultsFolderPath() + "hinaext1.0\\";
+		File newFile = new File(indexPath + "index.html");
+		
+		List<String> newFileContent = new ArrayList<>();
+		
+		newFileContent.add("<meta charset=\"utf-8\">");
+		newFileContent.add("<head>");
+		newFileContent.add("<title></title>");
+		newFileContent.add("</head>");
+		newFileContent.add("<body>");
+		newFileContent.add("<div align=center style=\"font-size:150%\"><b>");
+		newFileContent.add(productType + ": " + seriesName);
+		newFileContent.add("</b></div>");
+		newFileContent.add("<table border=2 width=100%>");
+		
+		int count = 1;
+		for(int i = 1; i <= 6; i++){
+			
+			newFileContent.add("<tr>");
+			
+			for(int j = 1; j <= 10; j++){
+				
+				String paddedCount = String.format("%02d", count);;
+				
+				newFileContent.add("<td width=10%  align=center>");
+				newFileContent.add("<a href='./cards/" + seriesFullIdFriendly + paddedCount + ".html'><img src='./images/" + seriesFullIdFriendly + paddedCount + ".png' width=100% height=auto'></img></a>" + seriesFullId + paddedCount);
+				newFileContent.add("</td>");
+				
+				count++;
+			}
+			
+			newFileContent.add("</tr>");
+		}
+		
+		newFileContent.add("</table>");
+		newFileContent.add("</body>");
+		
+		Files.write(newFile.toPath(), newFileContent, StandardCharsets.UTF_8);
+	}
+	
+	private void generateStaticSetPrPages(String setName) throws Exception{
+		
+		ArrayList<Card> allCards = TextFileParser.parseCards(setName);
+		ArrayList<Card> rawCards = CardListUtilities.filterOutParallelCards(allCards);
+		Translator translator = new Translator();
+		ArrayList<Card> cards = translator.translateSet(rawCards);
+		
+		this.pairs = CardListUtilities.getNameIdPairs(cards);
+		
+		for(Card card : cards){
+			
+			if(card.id.startsWith("HLL")){
+			
+			String templatePath = this.conf.getGeneralResultsFolderPath() + "hinaext1.0\\cards\\template.html";
+			
+			List<String> templateContent = new ArrayList<>(Files.readAllLines(new File(templatePath).toPath(), StandardCharsets.UTF_8));
+
+			String filenameFriendlyId = card.id.replace("/", "_");
+			
+			templateContent.set(templateContent.indexOf("[Card Id]"), card.id);
+			templateContent.set(templateContent.indexOf("[Image]"), "<img src='../images/" + filenameFriendlyId + ".png'></img>");
+			templateContent.set(templateContent.indexOf("[Nombre]"), card.name);
+			templateContent.set(templateContent.indexOf("[Nombre Jp]"), card.jpName);
+			templateContent.set(templateContent.indexOf("[Card Id Line]"), card.id + " " + card.rarity);
+
+			String arteAlternativo = "<a href='./" + filenameFriendlyId + "-S.html'>Arte Alternativo Foil</a>"; 
+			templateContent.set(templateContent.indexOf("[Arte Alternativo]"), arteAlternativo);
+			
+			String caracteristicas = "";
+			
+			if(card.type.equals("Personaje")){
+				caracteristicas = caracteristicas + "Personaje " + card.color;
+				caracteristicas = caracteristicas + ", Nivel: " + card.level;
+				caracteristicas = caracteristicas + ", Poder: " + card.power;
+				caracteristicas = caracteristicas + ", Soul: " + card.soul;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ", Traits: <<" + card.trait1;
+				caracteristicas = caracteristicas + ">> y <<" + card.trait2;
+				caracteristicas = caracteristicas + ">>.";
+			}
+			else if(card.type.equals("Climax")){
+				caracteristicas = caracteristicas + "Climax " + card.color;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ".";
+			}
+			else if(card.type.equals("Evento")){
+				caracteristicas = caracteristicas + "Evento " + card.color;
+				caracteristicas = caracteristicas + ", Nivel: " + card.level;
+				caracteristicas = caracteristicas + ", Trigger: " + card.trigger;
+				caracteristicas = caracteristicas + ".";
+			}
+			templateContent.set(templateContent.indexOf("[Caracteristicas]"), Utilities.escapeHtml(caracteristicas));
+
+			String habilidades = "";
+			for(int i = 0; i < card.habs.size(); i++){
+				habilidades = habilidades + this.processAbility(card.habs.get(i), card.name);
+				if(i < card.habs.size()-1){
+					habilidades = habilidades + "\r\n<br>\r\n";
+				}
+			}
+			templateContent.set(templateContent.indexOf("[Habilidades]"), habilidades);
+			
+			String cardsPath = this.conf.getGeneralResultsFolderPath() + "hinaext1.0\\cards\\"; 
+			Files.write(new File(cardsPath + filenameFriendlyId + ".html").toPath(), templateContent, StandardCharsets.UTF_8);
+			}
+		}
+		
+		//this.addReferencias(setName, cards);
+		//this.duplicateExtraBoosterAlternateCards(setName, cards);
 	}
 }
