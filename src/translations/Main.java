@@ -12,7 +12,7 @@ public class Main {
 		
 		//Dispatcher.rawAbilityMasterList();
 		//Dispatcher.rawRemainingAbilityMasterList();
-		Dispatcher.getTranlationProgress("hina_logic_vol._1_extra_pack");
+		Dispatcher.getTranlationProgress("bang_dream_girls_band_party!_booster_pack");
 		//Dispatcher.getTranlationProgress("sword_art_online_ordinal_scale_booster_pack");
 		//OutputFormatter.generateUselessPairsFile();
 		

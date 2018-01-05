@@ -22,7 +22,7 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		downloadHelper.downloadImages_Yuyutei_FillSetGaps("hinaext1.0");
+		downloadHelper.downloadImages_Yuyutei_FillSetGaps("bd2.0");
 		
 		System.out.println("*** Finished ***");
 	}

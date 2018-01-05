@@ -18,7 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import configuration.LocalConf;
-import download.DownloadHelper;
 import translations.Conf;
 import translations.TextFileParser;
 import translations.Utilities;
@@ -34,6 +33,7 @@ public class HotcCleanFilesHelper {
 		HotcCleanFilesHelper hotcCleanFilesHelper = new HotcCleanFilesHelper();
 		
 		//hotcCleanFilesHelper.generateCleanHotcFile("");
+		hotcCleanFilesHelper.generateCleanMissingHotcFiles();
 		hotcCleanFilesHelper.generateCleanPromoHotcFiles();
 		
 		System.out.println("*** Finished ***");
@@ -52,6 +52,25 @@ public class HotcCleanFilesHelper {
         for(String promoRawFileName : promoRawFileNames){
         		
     		this.generateCleanHotcFile(promoRawFileName);
+		}
+	}
+	
+	public void generateCleanMissingHotcFiles() throws Exception{
+		System.out.println("** Generate Clean Missing Hotc Files");
+		
+		File[] rawFiles = conf.hotcRawFilesFolder.listFiles();
+		File[] cleanFiles = conf.hotcCleanFilesFolder.listFiles();
+
+		for(File rawFile : rawFiles){
+			boolean missing = true;
+        	for(File cleanFile : cleanFiles){
+        		if(rawFile.getName().equals(cleanFile.getName())){
+        			missing = false;
+        		}
+        	}
+    		if(missing) {
+    			this.generateCleanHotcFile(rawFile.getName().replace(".txt", ""));
+    		}
 		}
 	}
 	
@@ -101,7 +120,7 @@ public class HotcCleanFilesHelper {
 		reader.close();
 		writer.close();
 
-		TextFileParser.cleanDoubleLineBreaks(resultFile);
+		//TextFileParser.cleanDoubleLineBreaks(resultFile);
 	}
 	
 	public static void updateHotcCleanFiles_LineBasedReplacement() throws Exception{
