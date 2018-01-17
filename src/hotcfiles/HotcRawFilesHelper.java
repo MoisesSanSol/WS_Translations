@@ -1,16 +1,12 @@
 package hotcfiles;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Properties;
 import java.util.Set;
 
@@ -20,7 +16,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import configuration.LocalConf;
-import translations.Conf;
+//import translations.Conf;
 import download.DownloadHelper;
 
 public class HotcRawFilesHelper {
@@ -32,7 +28,8 @@ public class HotcRawFilesHelper {
 		
 		// For testing and individual execution purposes.
 		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
-		
+
+		hotcRawFilesHelper.downloadNewHotcRawFiles();
 		hotcRawFilesHelper.downloadPromoHotcRawFiles();
 		
 		System.out.println("*** Finished ***");
@@ -42,13 +39,13 @@ public class HotcRawFilesHelper {
 		this.conf = LocalConf.getInstance();
 	}
 	
-	public static ArrayList<String> getAvailableSetRefs() throws Exception{
+	public ArrayList<String> getAvailableSetRefs() throws Exception{
 		
 		System.out.println("** Get Available Set Refs");
 		
 		ArrayList<String> availableSetRefs = new ArrayList<String>(); 
 		
-		Document mainPage = Jsoup.connect(Conf.hotcTranslationMainUrl).maxBodySize(0).get();	
+		Document mainPage = Jsoup.connect(conf.hotcTranslationMainUrl).maxBodySize(0).get();	
 		Elements anchors = mainPage.select("a[href*=cardset]");
 		
 		for (Element anchor : anchors){
@@ -61,13 +58,13 @@ public class HotcRawFilesHelper {
 		return availableSetRefs;
 	}
 	
-	public static String getHotcRawFileName(String setTranslationRefUrl) throws Exception{
+	public String getHotcRawFileName(String setTranslationRefUrl) throws Exception{
 		
 		System.out.println("** Get Raw File Name");
 		
 		String rawFileName = ""; 
 		
-		String setTranslationUrl = Conf.hotcTranslationSetBaseUrl + setTranslationRefUrl;
+		String setTranslationUrl = conf.hotcTranslationSetBaseUrl + setTranslationRefUrl;
 		System.out.println("* Set Translation Url: " + setTranslationUrl);
 		
 		Document mainPage = Jsoup.connect(setTranslationUrl).maxBodySize(0).get();	
@@ -91,8 +88,8 @@ public class HotcRawFilesHelper {
         		
     		System.out.println("* Promo file to download: " + promoRawFileName);
     		
-    		File rawFile = new File(Conf.hotcRawFilesFolder + promoRawFileName + ".txt");
-			String rawFileUrl = Conf.hotcTranslationFileBaseUrl + promoRawFileName + ".txt";
+    		File rawFile = new File(conf.gethotcRawFilesFolderPath() + promoRawFileName + ".txt");
+			String rawFileUrl = conf.hotcTranslationFileBaseUrl + promoRawFileName + ".txt";
 			
 			DownloadHelper.downloadFile(rawFileUrl, rawFile);
 			
@@ -103,10 +100,10 @@ public class HotcRawFilesHelper {
 	public void downloadNewHotcRawFiles() throws Exception{
 		System.out.println("** Download New Hotc Raw Files");
 		
-		ArrayList<String> setRefs = HotcRawFilesHelper.getAvailableSetRefs();
+		ArrayList<String> setRefs = this.getAvailableSetRefs();
 
 		Properties reference = new Properties();
-		InputStream input = new FileInputStream(Conf.hotcRawFilesReferenceFile);
+		InputStream input = new FileInputStream(conf.hotcRawFilesReferenceFile);
 
 		reference.load(input);
 		input.close();
@@ -123,21 +120,21 @@ public class HotcRawFilesHelper {
         	}
         	else{
         		
-        		Thread.sleep(5000);
+        		Thread.sleep(conf.politeness);
         		
         		System.out.println("* New file to download: " + setRef);
-        		String setUrl = Conf.hotcTranslationSetBaseUrl + setRef;
-        		String rawFileName = HotcRawFilesHelper.getHotcRawFileName(setUrl);
+        		String setUrl = conf.hotcTranslationSetBaseUrl + setRef;
+        		String rawFileName = this.getHotcRawFileName(setUrl);
         		
-        		File rawFile = new File(Conf.hotcRawFilesFolder + rawFileName + ".txt");
-    			String rawFileUrl = Conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
+        		File rawFile = new File(conf.gethotcRawFilesFolderPath() + rawFileName + ".txt");
+    			String rawFileUrl = conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
     			
     			DownloadHelper.downloadFile(rawFileUrl, rawFile);
     			reference.setProperty(setRef, rawFileName);
         	}
 		}
 		
-        OutputStream output = new FileOutputStream(Conf.hotcRawFilesReferenceFile);
+        OutputStream output = new FileOutputStream(conf.hotcRawFilesReferenceFile);
 		reference.store(output, "Updating with new series.");
 		output.close();
 	}

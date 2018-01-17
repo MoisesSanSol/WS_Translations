@@ -18,7 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import configuration.LocalConf;
-import translations.Conf;
 import translations.TextFileParser;
 import translations.Utilities;
 
@@ -123,14 +122,14 @@ public class HotcCleanFilesHelper {
 		//TextFileParser.cleanDoubleLineBreaks(resultFile);
 	}
 	
-	public static void updateHotcCleanFiles_LineBasedReplacement() throws Exception{
+	/*public void updateHotcCleanFiles_LineBasedReplacement() throws Exception{
 		
 		System.out.println("*** Update HotC Clean Files based on Line Replacement ***");
 
-		File linesFile = new File(Conf.correctionFilesFolder + Conf.lineBasedCorrectionFile + ".txt");
+		File linesFile = new File(Conf.correctionFilesFolder + this.conf.lineBasedCorrectionFile + ".txt");
 		HashMap<String,String> linePairs = TextFileParser.getHashMapFromFile(linesFile);
 		
-		ArrayList<File> allFiles = Utilities.getFilesInFolder(Conf.hotcCleanFilesFolder);
+		ArrayList<File> allFiles = Utilities.getFilesInFolder(this.conf.hotcCleanFilesFolder);
 		
 		for(File file : allFiles){
 			
@@ -153,13 +152,13 @@ public class HotcCleanFilesHelper {
 				Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
 			}
 		}
-	}
-	
-	public static void updateHotcCleanFiles_RemoveLines() throws Exception{
+	}*/
+	/*
+	public void updateHotcCleanFiles_RemoveLines() throws Exception{
 		
 		System.out.println("*** Update HotC Clean Files Remove Lines ***");
 
-		File linesFile = new File(Conf.correctionFilesFolder + Conf.removeLinesCorrectionFile + ".txt");
+		File linesFile = new File(this.conf.correctionFilesFolder + this.conf.removeLinesCorrectionFile + ".txt");
 		HashMap<String,ArrayList<String>> linesToBeRemoved = new HashMap<String,ArrayList<String>>();
 		
 		List<String> confFileContent = new ArrayList<>(Files.readAllLines(linesFile.toPath(), StandardCharsets.UTF_8));
@@ -188,7 +187,7 @@ public class HotcCleanFilesHelper {
 			}
 		}
 		
-		ArrayList<File> allFiles = Utilities.getFilesInFolder(Conf.hotcCleanFilesFolder);
+		ArrayList<File> allFiles = Utilities.getFilesInFolder(this.conf.hotcCleanFilesFolder);
 		
 		for(File file : allFiles){
 
@@ -208,16 +207,16 @@ public class HotcCleanFilesHelper {
 				Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
 			}
 		}
-	}
-	
-	public static void updateHotcCleanFiles_StringBasedReplacement() throws Exception{
+	}*/
+	/*
+	public void updateHotcCleanFiles_StringBasedReplacement() throws Exception{
 		
 		System.out.println("*** Update HotC Clean Files based on String Replacement ***");
 
-		File prefixFile = new File(Conf.correctionFilesFolder + Conf.stringReplacementBasedCorrectionFile + ".txt");
+		File prefixFile = new File(this.conf.correctionFilesFolder + this.conf.stringReplacementBasedCorrectionFile + ".txt");
 		HashMap<String,String> stringPairs = TextFileParser.getHashMapFromFile(prefixFile);
 		
-		ArrayList<File> allFiles = Utilities.getFilesInFolder(Conf.hotcCleanFilesFolder);
+		ArrayList<File> allFiles = Utilities.getFilesInFolder(this.conf.hotcCleanFilesFolder);
 		
 		for(File file : allFiles){
 			
@@ -241,13 +240,13 @@ public class HotcCleanFilesHelper {
 				Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
 			}
 		}
-	}
-	
-	public static void updateHotcCleanFiles_RegExpBasedReplacement() throws Exception{
+	}*/
+	/*
+	public void updateHotcCleanFiles_RegExpBasedReplacement() throws Exception{
 		
 		System.out.println("*** Update HotC Clean Files based on Regular Expression Replacement ***");
 
-		File prefixFile = new File(Conf.correctionFilesFolder + Conf.regExpBasedCorrectionFile + ".txt");
+		File prefixFile = new File(this.conf.correctionFilesFolder + this.conf.regExpBasedCorrectionFile + ".txt");
 		HashMap<String,String> regExpPairs = TextFileParser.getHashMapFromFile(prefixFile);
 
 		HashMap<Pattern,String> patternPairs = new HashMap<Pattern,String>();
@@ -257,7 +256,7 @@ public class HotcCleanFilesHelper {
 		}
 		
 		
-		ArrayList<File> allFiles = Utilities.getFilesInFolder(Conf.hotcCleanFilesFolder);
+		ArrayList<File> allFiles = Utilities.getFilesInFolder(this.conf.hotcCleanFilesFolder);
 		
 		for(File file : allFiles){
 			
@@ -282,17 +281,17 @@ public class HotcCleanFilesHelper {
 				Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
 			}
 		}
-	}
-	
-	public static void updateTranslationPairFiles_Order() throws Exception{
+	}*/
+	/*
+	public void updateTranslationPairFiles_Order() throws Exception{
 		
 		System.out.println("*** Update Translation Pair Files Order Pairs ***");
 		
-		for(String fileName : Conf.translationPairsFiles){
+		for(String fileName : this.conf.translationPairsFiles){
 		
 			System.out.println("*** Updating File: " + fileName + " ***");
 			
-			String fullPathReadBase = Conf.translationPairsFolder + fileName + ".txt";
+			String fullPathReadBase = this.conf.translationPairsFolder + fileName + ".txt";
 			BufferedReader readerBase = new BufferedReader(new InputStreamReader(new FileInputStream(fullPathReadBase), "UTF-8"));
 			
 			HashMap<String,String> trads = new HashMap<String,String>(); 
@@ -310,7 +309,7 @@ public class HotcCleanFilesHelper {
 			ArrayList<String> ordered = new ArrayList<String>(trads.keySet());
 			Collections.sort(ordered);
 			
-			String fullPathWrite = Conf.translationPairsFolder + fileName + ".txt";
+			String fullPathWrite = this.conf.translationPairsFolder + fileName + ".txt";
 			Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fullPathWrite), "UTF-8"));
 			
 			for(String key : ordered){
@@ -323,9 +322,9 @@ public class HotcCleanFilesHelper {
 			
 			HotcCleanFilesHelper.removeLastLineFromFile(new File(fullPathWrite));
 		}
-	}
-	
-	public static void removeLastLineFromFile(File file) throws Exception{
+	}*/
+	/*
+	public void removeLastLineFromFile(File file) throws Exception{
 		
 		System.out.println("*** Remove Last Line From File ***");
 		
@@ -334,9 +333,9 @@ public class HotcCleanFilesHelper {
         fileContent.remove(fileContent.size()-1);
 		
 		Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
-	}
-	
-	public static void orderLinesInFile(File file) throws Exception{
+	}*/
+	/*
+	public void orderLinesInFile(File file) throws Exception{
 		
 		System.out.println("*** Order Lines In File ***");
 		
@@ -345,9 +344,9 @@ public class HotcCleanFilesHelper {
 		Collections.sort(fileContent);
 		
 		Files.write(file.toPath(), fileContent, StandardCharsets.UTF_8);
-	}
-	
-	public static void updateRawAbilityFile_UniqueLines(File file) throws Exception{
+	}*/
+	/*
+	public void updateRawAbilityFile_UniqueLines(File file) throws Exception{
 		
 		System.out.println("*** Update Raw Ability File Unique Lines ***");
 		
@@ -362,9 +361,9 @@ public class HotcCleanFilesHelper {
 		}
 		
 		Files.write(file.toPath(), filteredFileContent, StandardCharsets.UTF_8);
-	}
-	
-	public static void backUpFiles(){
+	}*/
+	/*
+	public void backUpFiles(){
 		
-	}
+	}*/
 }

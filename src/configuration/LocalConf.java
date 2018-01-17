@@ -11,8 +11,6 @@ import utilities.Utilities;
 // Singleton Configuration class.
 public class LocalConf {
 
-	// URLs
-	
 	// Configuration file
 	public String folderConfFile = "LocalConfiguration.properties";
 	
@@ -26,6 +24,15 @@ public class LocalConf {
 	
 	// Files
 	public File hotcRawFilesReferenceFile;
+	
+	// Static Web URLs
+	public String hotcBaseUrl = "http://www.heartofthecards.com/";
+	public String hotcTranslationMainUrl = this.hotcBaseUrl + "code/cardlist.html?pagetype=ws";
+	public String hotcTranslationSetBaseUrl = this.hotcBaseUrl + "code/cardlist.html?pagetype=ws&cardset=";
+	public String hotcTranslationFileBaseUrl = this.hotcBaseUrl + "translations/";
+	
+	// Items
+	public int politeness = 5000;
 	
 	// Singleton instance
 	private static LocalConf instance;
@@ -48,14 +55,15 @@ public class LocalConf {
 		
 		try {
 
-			// Folders
+			// Local configuration
 			Properties folderConf = new Properties();
 			
 			String folderConfFilePath = "Files/Configuration/" + this.folderConfFile;
 			folderConfInput = new FileInputStream(folderConfFilePath);
 
 			folderConf.load(folderConfInput);
-			
+
+			// Folders
 			String generalResultsFolderPath = folderConf.getProperty("generalResultsFolder");
 			this.generalResultsFolder = new File(generalResultsFolderPath);
 			Utilities.checkFolderExistence(this.generalResultsFolder);
@@ -67,6 +75,10 @@ public class LocalConf {
 			this.hotcCleanFilesFolder = new File(hotcCleanFilesFolderPath);
 			String hotcRawFilesFolderPath = folderConf.getProperty("hotcRawFilesFolder");
 			this.hotcRawFilesFolder = new File(hotcRawFilesFolderPath);
+			
+			// Files
+			String hotcRawFilesReferenceFilePath = folderConf.getProperty("hotcRawFilesReferenceFile");
+			this.hotcRawFilesReferenceFile = new File(hotcRawFilesReferenceFilePath);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
