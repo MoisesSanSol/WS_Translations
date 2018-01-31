@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import translations.Card;
+import cards.Card;
 import translations.TextFileParser;
 import translations.Translator;
 import utilities.CardListUtilities;

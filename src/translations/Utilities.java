@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import cards.Card;
+
 public class Utilities {
 
 	public static String escapeForSql(String sql){

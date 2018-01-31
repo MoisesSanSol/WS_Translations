@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import cards.Card;
 import download.DownloadHelper;
 
 public class Dispatcher {

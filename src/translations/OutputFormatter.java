@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 
+import cards.Card;
 import translations.Translator.LineTranslation;
 
 public class OutputFormatter {

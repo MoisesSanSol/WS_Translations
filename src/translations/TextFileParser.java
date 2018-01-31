@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cards.Card;
+
 public class TextFileParser {
 
 	public static ArrayList<Card> getAllCards() throws Exception{

@@ -1,4 +1,4 @@
-package translations;
+package cards;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -109,7 +109,7 @@ public class Card {
 		}
 	}
 	
-	/* No sé qué quería hacer con esto
+	/* No sï¿½ quï¿½ querï¿½a hacer con esto
 	public boolean match(Card card){
 		boolean isTheSame = true;
 		return isTheSame;

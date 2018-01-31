@@ -3,7 +3,7 @@ package utilities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import translations.Card;
+import cards.Card;
 
 public class CardListUtilities {
 
