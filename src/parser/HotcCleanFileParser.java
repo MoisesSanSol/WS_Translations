@@ -11,7 +11,7 @@ import cards.Card;
 
 public class HotcCleanFileParser {
 
-	LocalConf conf;
+	private LocalConf conf;
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -26,7 +26,7 @@ public class HotcCleanFileParser {
 		this.conf = LocalConf.getInstance();
 	}
 	
-	public static ArrayList<Card> parseCards(File hotcCleanFile) throws Exception{
+	public ArrayList<Card> parseCards(File hotcCleanFile) throws Exception{
 		
     	System.out.println("*** Parsing Set File: " + hotcCleanFile.getName() + " ***");
 		

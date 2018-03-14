@@ -21,9 +21,11 @@ public class LocalConf {
 	public File hotcFilesFolder;
 	public File hotcCleanFilesFolder;
 	public File hotcRawFilesFolder;
-	
+	public File translationPairsFolder;
 	// Files
 	public File hotcRawFilesReferenceFile;
+	
+	public File translationPairsFullListFile;
 	
 	// Static Web URLs
 	public String hotcBaseUrl = "http://www.heartofthecards.com/";
@@ -75,10 +77,14 @@ public class LocalConf {
 			this.hotcCleanFilesFolder = new File(hotcCleanFilesFolderPath);
 			String hotcRawFilesFolderPath = folderConf.getProperty("hotcRawFilesFolder");
 			this.hotcRawFilesFolder = new File(hotcRawFilesFolderPath);
+			String translationPairsFolderPath = folderConf.getProperty("translationPairsFolder");
+			this.translationPairsFolder = new File(translationPairsFolderPath);
 			
 			// Files
 			String hotcRawFilesReferenceFilePath = folderConf.getProperty("hotcRawFilesReferenceFile");
 			this.hotcRawFilesReferenceFile = new File(hotcRawFilesReferenceFilePath);
+			String translationPairsFullListFilePath = folderConf.getProperty("translationPairsFullListFile");
+			this.translationPairsFullListFile = new File(translationPairsFullListFilePath);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -111,5 +117,9 @@ public class LocalConf {
 	
 	public String gethotcRawFilesFolderPath(){
 		return this.hotcRawFilesFolder.getPath() + "\\";
+	}
+	
+	public String getTranslationPairsFolderPath(){
+		return this.translationPairsFolder.getPath() + "\\";
 	}
 }

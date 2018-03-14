@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import parser.HotcCleanFileParser;
+import translator.Translator;
+import translator.Translator.LineTranslation;
+import utilities.CardListUtilities;
 import configuration.LocalConf;
 import cards.Card;
 
@@ -20,9 +23,9 @@ public class Summaries {
 		// For testing and individual execution purposes.
 		Summaries summaries = new Summaries();
 		HotcCleanFileParser parser = new HotcCleanFileParser();
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
-		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
-		summaries.generateAbilityListFile_NoIds(parser.parseCards(file), result);
+		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "gurren_lagann_booster_pack.txt");
+		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "gurren_lagann_booster_pack.txt");
+		summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
 		
 		System.out.println("*** Finished ***");
 	}
@@ -35,18 +38,35 @@ public class Summaries {
 		
 		System.out.println("*** Generate Ability List (No Ids) Txt for " + file.getName() + " ***");
 		
-		ArrayList<String> abilities = new ArrayList<String>(); 
+		ArrayList<String> abilities = CardListUtilities.getAbilities_Sorted(cards);
+
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_BaseSetReference(ArrayList<Card> cards, File file) throws Exception{
 		
-		for(Card card : cards){
-			for(String ability : card.habs){
-				if(!abilities.contains(ability)){
-					abilities.add(ability);
-				}
+		System.out.println("*** Generate Ability List (Base Set Reference) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+			abilities.add(ability);
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			if(lineTranslation == null){
+				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""));
+				abilities.add("***");
 			}
+			else{
+				abilities.add(lineTranslation.patternString);
+				abilities.add(lineTranslation.replace);
+			}
+			abilities.add("");
 		}
 		
-		Collections.sort(abilities);
-
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	

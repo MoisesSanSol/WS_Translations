@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import cards.Card;
@@ -39,5 +40,20 @@ public class CardListUtilities {
 		}
 		
 		return cards;
+	}
+	
+	public static ArrayList<String> getAbilities_Sorted(ArrayList<Card> cards){
+		ArrayList<String> abilities = new ArrayList<String>(); 
+		
+		for(Card card : cards){
+			for(String ability : card.habs){
+				if(!abilities.contains(ability)){
+					abilities.add(ability);
+				}
+			}
+		}
+		
+		Collections.sort(abilities);
+		return abilities;
 	}
 }
