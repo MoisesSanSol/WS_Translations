@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import parser.HotcCleanFileParser;
 import translator.Translator;
@@ -40,6 +41,34 @@ public class Summaries {
 		
 		ArrayList<String> abilities = CardListUtilities.getAbilities_Sorted(cards);
 
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_Ids(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (No Ids) Txt for " + file.getName() + " ***");
+		
+		HashMap<String,String> allAbilities = new HashMap<String,String>(); 
+		
+		for(Card card : cards){
+			for(String ability :card.habs){
+				if(allAbilities.containsKey(ability)){
+					allAbilities.put(ability, allAbilities.get(ability) + "," + card.id);
+				}
+				else{
+					allAbilities.put(ability, "\t" + card.id);
+				}
+			}
+		}
+		
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		for(String ability : allAbilities.keySet()){
+			abilities.add(ability + allAbilities.get(ability));
+		}
+		
+		Collections.sort(abilities);
+		
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
