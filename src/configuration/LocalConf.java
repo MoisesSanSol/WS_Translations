@@ -33,6 +33,8 @@ public class LocalConf {
 	public String hotcTranslationSetBaseUrl = this.hotcBaseUrl + "code/cardlist.html?pagetype=ws&cardset=";
 	public String hotcTranslationFileBaseUrl = this.hotcBaseUrl + "translations/";
 	
+	public String littleAkibaSetBaseUrl = "http://littleakiba.com/tcg/weiss-schwarz/browse.php?series_id=";
+	
 	// Items
 	public int politeness = 5000;
 	

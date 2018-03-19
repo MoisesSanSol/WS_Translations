@@ -104,7 +104,14 @@ public class Translator {
 				
 				Matcher m = attempt.pattern.matcher(result.habs.get(i));
 				if(m.find()){
-					result.habs.set(i, m.replaceAll(attempt.replace));
+					try{
+						result.habs.set(i, m.replaceAll(attempt.replace));
+					}catch(Exception ex){
+						System.out.println("Ability: " + result.habs.get(i));
+						System.out.println("Pattern: " + attempt.patternString);
+						System.out.println("Replace: " + attempt.replace);
+						throw ex;
+					}
 					break;
 				}
 			}

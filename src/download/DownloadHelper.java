@@ -23,7 +23,8 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		downloadHelper.downloadImages_Yuyutei_FullSet("konosuba2.0");
+		//downloadHelper.downloadImages_Yuyutei_FullSet("konosuba2.0");
+		downloadHelper.downloadImages_LittleAkiba_FullSet("371");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -32,21 +33,21 @@ public class DownloadHelper {
 		this.conf = LocalConf.getInstance();
 	}
 	
-	public static void downloadAllSetImages_LittleAkiba(String laSetId) throws Exception{
+	public void downloadImages_LittleAkiba_FullSet(String laSetId) throws Exception{
 		
-		System.out.println("** Download All SetImages Little Akiba");
+		System.out.println("** Download All Set Images from Little Akiba");
 		System.out.println("** Set Id: " + laSetId);
 		
-		String setUrl = Conf.littleAkibaSetBaseUrl + laSetId;
+		String setUrl = this.conf.littleAkibaSetBaseUrl + laSetId;
 		
-		File imageDir = new File(Conf.resultsFolder + laSetId);
+		File imageDir = new File(this.conf.getGeneralResultsFolderPath() + laSetId);
 		if(!imageDir.exists()){imageDir.mkdirs();}
 		
 		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
+		System.out.println("** Doc: " + doc.html());
 		
 		Elements cards = doc.select("div.card_list").first().select("a");
 		
-
 		for(Element card : cards){
 			
 			System.out.println("** Set Id: " + card.attr("href"));
@@ -60,15 +61,15 @@ public class DownloadHelper {
 
 			String cardId = cardFullId.split(" ")[0].split("/")[1].toLowerCase().replace("-", "_");
 
-			File imageFile = new File(Conf.resultsFolder + laSetId + "//" + cardId + ".jpg");
+			File imageFile = new File(this.conf.getGeneralResultsFolderPath() + laSetId + "//" + cardId + ".jpg");
 			
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 			DownloadHelper.downloadFile(imageLargeUrl, imageFile);
 		}		
 	}
 	
 	
-	public static void downloadAllSetImages_Yuyutei(String set) throws Exception{
+	/*public static void downloadAllSetImages_Yuyutei(String set) throws Exception{
 		
 		String setUrl = Conf.yuyuteiSetBaseUrl + set;
 		
@@ -79,7 +80,7 @@ public class DownloadHelper {
 		
 		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
 		/*File input = new File("C:\\Users\\Moises BSS\\Desktop\\PruebasTemporales\\test.html");
-		Document doc = Jsoup.parse(input, "UTF-8");*/
+		Document doc = Jsoup.parse(input, "UTF-8");*
 		//System.out.println(doc.html());
 		
 		Elements cards = doc.select("[class^=card_unit]");
@@ -100,7 +101,7 @@ public class DownloadHelper {
 			
 			/*System.out.println(rarity);
 			System.out.println(cardId);
-			System.out.println(imgSrc);*/
+			System.out.println(imgSrc);*
 			
 			String imgThumbUrl = Conf.yuyuteiBaseUrl + imgSrc;
 			String imgUrl = imgThumbUrl.replace("90_126", "front");
@@ -109,11 +110,11 @@ public class DownloadHelper {
 			File imageFile = new File(Conf.resultsFolder + set + "//" + cardId + ".jpg");
 			
 			/*Thread.sleep(5000);
-			DownloadHelper.downloadFile(imgThumbUrl, imageThumbFile);*/
+			DownloadHelper.downloadFile(imgThumbUrl, imageThumbFile);*
 			Thread.sleep(5000);
 			DownloadHelper.downloadFile(imgUrl, imageFile);
 		}		
-	}
+	}*/
 	
 	public static void downloadFile(String url, File file) throws Exception{
 		

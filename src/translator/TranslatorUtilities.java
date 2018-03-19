@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,13 +30,14 @@ public class TranslatorUtilities {
 		TranslatorUtilities utility = new TranslatorUtilities();
 		LocalConf conf = LocalConf.getInstance();
 		
-		File file = new File(conf.getTranslationPairsFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
-		utility.setTranslationsPairsInFile(utility.getTranslationsPairsFromFile(file));
+		File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
+
+		utility.updateTranslationsPairsFullListWithSetFile(file);
 		
 		System.out.println("*** Finished ***");
 	}
 	
-	public void addTranslationsPairsFromSet(File setTranslationPairsFile) throws Exception{
+	public void updateTranslationsPairsFullListWithSetFile(File setTranslationPairsFile) throws Exception{
 		
 		HashMap<String,String> fullTranslationsPairs = this.getTranslationsPairsFromFile(conf.translationPairsFullListFile);
 		HashMap<String,String> setTranslationsPairs = this.getTranslationsPairsFromFile(setTranslationPairsFile);
@@ -46,6 +48,7 @@ public class TranslatorUtilities {
 			}
 		}
 		
+		this.createFileFromTranslationPairs(fullTranslationsPairs);
 	}
 	
 	public HashMap<String,String> getTranslationsPairsFromFile(File translationPairs) throws Exception{
@@ -72,11 +75,13 @@ public class TranslatorUtilities {
 		return translationsPairs;
 	}
 	
-	public void setTranslationsPairsInFile(HashMap<String,String> translationPairs) throws Exception{
+	public void createFileFromTranslationPairs(HashMap<String,String> translationPairs) throws Exception{
 		
 		ArrayList<String> content = new ArrayList<>();
+		ArrayList<String> keys = new ArrayList<>(translationPairs.keySet());
+		Collections.sort(keys);
 		
-		for(String pattern : translationPairs.keySet()){
+		for(String pattern : keys){
 			
 			content.add(pattern);
 			content.add(translationPairs.get(pattern));
