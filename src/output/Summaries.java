@@ -25,8 +25,10 @@ public class Summaries {
 		// For testing and individual execution purposes.
 		Summaries summaries = new Summaries();
 		HotcCleanFileParser parser = new HotcCleanFileParser();
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "gurren_lagann_booster_pack.txt");
-		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "gurren_lagann_booster_pack.txt");
+		
+		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
+		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "result.txt");
+		
 		summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_RedundantPatterns();

@@ -32,7 +32,7 @@ public class TranslatorUtilities {
 		
 		File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
 
-		utility.updateTranslationsPairsFullListWithSetFile(file);
+		//utility.updateTranslationsPairsFullListWithSetFile(file);
 		
 		System.out.println("*** Finished ***");
 	}
@@ -48,7 +48,7 @@ public class TranslatorUtilities {
 			}
 		}
 		
-		this.createFileFromTranslationPairs(fullTranslationsPairs);
+		this.createFileFromTranslationPairs(fullTranslationsPairs, this.conf.translationPairsFullListFile);
 	}
 	
 	public HashMap<String,String> getTranslationsPairsFromFile(File translationPairs) throws Exception{
@@ -75,7 +75,7 @@ public class TranslatorUtilities {
 		return translationsPairs;
 	}
 	
-	public void createFileFromTranslationPairs(HashMap<String,String> translationPairs) throws Exception{
+	public void createFileFromTranslationPairs(HashMap<String,String> translationPairs, File file) throws Exception{
 		
 		ArrayList<String> content = new ArrayList<>();
 		ArrayList<String> keys = new ArrayList<>(translationPairs.keySet());
@@ -89,7 +89,7 @@ public class TranslatorUtilities {
 			
 		}
 		
-		Files.write(this.conf.translationPairsFullListFile.toPath(), content, StandardCharsets.UTF_8);
+		Files.write(file.toPath(), content, StandardCharsets.UTF_8);
 	}
 	
 }

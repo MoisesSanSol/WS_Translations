@@ -1,7 +1,11 @@
 package staticweb;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -20,9 +24,8 @@ public class ImagesHelper {
 		
 		// For testing and individual execution purposes.
 		ImagesHelper imagesHelper = new ImagesHelper();
-		//imagesHelper.mergeDownloadAndCotdImages();
-		File targetImage = new File(LocalConf.getInstance().getGeneralResultsFolderPath() + "images_cotd//w56_001.png");
-		imagesHelper.formatImage(targetImage, targetImage);
+		imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("SHS_W56");
+		
 		System.out.println("*** Finished ***");
 	}
 	
@@ -30,66 +33,67 @@ public class ImagesHelper {
 		this.conf = LocalConf.getInstance();
 	}
 	
-	public void mergeDownloadAndCotdImages() throws Exception{
+	public void mergeDownloadAndCotdImages_LittleAkiba(String setActualId) throws Exception{
 		
 		System.out.println("** Merge Download and Cotd Images");
 		
-		File yuyuteiFolder = new File(this.conf.getGeneralResultsFolderPath() + "temp");
-		File mergedFolder = new File(this.conf.getGeneralResultsFolderPath() + "merged");
+		String cotdFolderPath = this.conf.getGeneralResultsFolderPath() + "images_cotd//";
+		File cotdFolder = new File(cotdFolderPath);
+		String laFolderPath = this.conf.getGeneralResultsFolderPath() + "images_la//";
+		File laFolder = new File(laFolderPath);
+		String mergedFolderPath = this.conf.getGeneralResultsFolderPath() + "images//";
+		File mergedFolder = new File(mergedFolderPath);
 		Utilities.checkFolderExistence(mergedFolder);
 		
-		for(File yuyuteiImage : yuyuteiFolder.listFiles()) {
-			String name = yuyuteiImage.getName();
-			System.out.println("* Yuyutei Image: " + name);
-			File targetImage = new File(this.conf.getGeneralResultsFolderPath() + "merged//" + name);
-			String cotdEquivalent = name.replaceAll(".+?_(.+?)-(.+?)\\.png", "$1_$2.png").toLowerCase();
-			System.out.println("* Cotd Equivalent: " + cotdEquivalent);
-			File cotdImage = new File(this.conf.getGeneralResultsFolderPath() + "images\\" + cotdEquivalent);
-			if(cotdImage.exists()) {
-				System.out.println("* Cotd Equivalent Exist");
-				FileUtils.copyFile(cotdImage, targetImage);
+		ArrayList<String> cotdImages = Utilities.getFileNames(cotdFolder);
+		
+		for(File laImageFile : laFolder.listFiles()) {
+			String laImageName = FilenameUtils.removeExtension(laImageFile.getName());
+			String imageName = this.upperRaritySuffix(laImageName);
+			System.out.println("* Checking Image: " + imageName);
+			String actualImageName = imageName.replaceFirst(".+?_", setActualId + "-"); 
+			File targetImageFile = new File(mergedFolderPath + actualImageName + ".png");
+			if(!cotdImages.contains(imageName)){
+				this.createWebFormatImage(laImageFile, targetImageFile);
 			}
-			else {
-				System.out.println("* No Cotd Equivalent");
-				FileUtils.copyFile(yuyuteiImage, targetImage);
+			else{
+				File cotdImageFile = new File(cotdFolderPath + imageName + ".png");
+				FileUtils.copyFile(cotdImageFile, targetImageFile);
 			}
 		}
 	}
 	
-	public void mergeDownloadAndCotdImages_LittleAkiba() throws Exception{
-		
-		System.out.println("** Merge Download and Cotd Images");
-		
-		File cotdFolder = new File(this.conf.getGeneralResultsFolderPath() + "images_cotd");
-		File laFolder = new File(this.conf.getGeneralResultsFolderPath() + "images_la");
-		File mergedFolder = new File(this.conf.getGeneralResultsFolderPath() + "images_merged");
-		Utilities.checkFolderExistence(mergedFolder);
-		
-		for(File yuyuteiImage : laFolder.listFiles()) {
-			String fileName = yuyuteiImage.getName();
-			System.out.println("* LA Image: " + fileName);
-			String name = FilenameUtils.removeExtension(fileName);
-			
-			File targetImage = new File(this.conf.getGeneralResultsFolderPath() + "merged//" + name);
-			
-			String cotdEquivalent = name.replaceAll(".+?_(.+?)-(.+?)\\.png", "$1_$2.png").toLowerCase();
-			System.out.println("* Cotd Equivalent: " + cotdEquivalent);
-			File cotdImage = new File(this.conf.getGeneralResultsFolderPath() + "images\\" + cotdEquivalent);
-			if(cotdImage.exists()) {
-				System.out.println("* Cotd Equivalent Exist");
-				FileUtils.copyFile(cotdImage, targetImage);
-			}
-			else {
-				System.out.println("* No Cotd Equivalent");
-				FileUtils.copyFile(yuyuteiImage, targetImage);
-			}
-		}
+	public String upperRaritySuffix(String cardId){
+		return cardId.replace("sp","SP").replace("r","R").replace("s","S");
 	}
 	
-	public void formatImage(File origin, File target) throws Exception{
-		//BufferedImage bi = new BufferedImage(350, 489, BufferedImage.);
-		BufferedImage bufferedImage = ImageIO.read(origin);
-		System.out.println(bufferedImage.getType());
-		System.out.println(BufferedImage.TYPE_3BYTE_BGR);
+	public void createWebFormatImage(File originFile, File targetFile) throws Exception{
+		BufferedImage originBi = ImageIO.read(originFile);
+		int width = 350;
+		int height = 489;
+		Image tmp = originBi.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		BufferedImage targetBi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+        Graphics2D g2d = targetBi.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+		ImageIO.write(targetBi, "png", targetFile);
+	}
+	
+	public void rotateWebFormatImage(File targetFile) throws Exception{
+		BufferedImage originBi = ImageIO.read(targetFile);
+		int width = originBi.getWidth();
+	    int height = originBi.getHeight();
+	    
+	    if(height > width){
+	    
+		    BufferedImage targetBi = new BufferedImage(height, width, originBi.getType());
+		 
+		    for(int i = 0; i < width; i++){
+		        for(int j = 0; j < height; j++){
+		        	targetBi.setRGB(j, width-1-i, originBi.getRGB(i,j));
+		        }
+		    }
+			ImageIO.write(targetBi, "png", targetFile);
+	    }
 	}
 }
