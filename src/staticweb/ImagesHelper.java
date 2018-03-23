@@ -5,6 +5,8 @@ import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -24,7 +26,8 @@ public class ImagesHelper {
 		
 		// For testing and individual execution purposes.
 		ImagesHelper imagesHelper = new ImagesHelper();
-		imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("SHS_W56");
+		//imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("SHS_W56");
+		imagesHelper.renameCotdImagesToWebFormat("SHS_W56");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -63,8 +66,27 @@ public class ImagesHelper {
 		}
 	}
 	
-	public String upperRaritySuffix(String cardId){
+	public String upperRaritySuffix(String cardId) throws Exception{
 		return cardId.replace("sp","SP").replace("r","R").replace("s","S");
+	}
+	
+	public void renameCotdImagesToWebFormat(String setActualId) throws Exception{
+		System.out.println("** Rename Cotd Images to Web Format");
+		
+		String cotdFolderPath = this.conf.getGeneralResultsFolderPath() + "images_cotd//";
+		File cotdFolder = new File(cotdFolderPath);
+		
+		for(File imageFile : cotdFolder.listFiles()){
+			String imageName = imageFile.getName();
+			if(!imageName.startsWith(setActualId)){
+				String actualImageName = imageName.replaceFirst(".+?_", setActualId + "-");
+				/*File newImageFile = new File(FilenameUtils.getPath(imageFile.getAbsolutePath()) + actualImageName);
+				imageFile.renameTo(newImageFile);*/
+				Path source = imageFile.toPath();
+				Files.move(source, source.resolveSibling(actualImageName));
+			}
+		}
+		
 	}
 	
 	public void createWebFormatImage(File originFile, File targetFile) throws Exception{

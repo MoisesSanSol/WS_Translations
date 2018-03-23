@@ -42,6 +42,20 @@ public class CardListUtilities {
 		return cards;
 	}
 	
+	public static ArrayList<Card> filterCards_FindSetPrs(ArrayList<Card> allCards, String setId){
+		ArrayList<Card> cards = new ArrayList<Card>();
+		
+		for(Card card : allCards){
+			if(card.id != null){
+				if(card.id.startsWith(setId)){
+					cards.add(card);
+				}
+			}
+		}
+		
+		return cards;
+	}
+	
 	public static ArrayList<String> getAbilities_Sorted(ArrayList<Card> cards){
 		ArrayList<String> abilities = new ArrayList<String>(); 
 		

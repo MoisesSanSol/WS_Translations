@@ -26,7 +26,7 @@ public class HotcCleanFileParser {
 		this.conf = LocalConf.getInstance();
 	}
 	
-	public ArrayList<Card> parseCards(File hotcCleanFile) throws Exception{
+	public static ArrayList<Card> parseCards(File hotcCleanFile) throws Exception{
 		
     	System.out.println("*** Parsing Set File: " + hotcCleanFile.getName() + " ***");
 		

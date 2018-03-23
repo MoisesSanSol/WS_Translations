@@ -10,12 +10,14 @@ import org.jsoup.select.Elements;
 import org.jsoup.Jsoup;
 
 import configuration.LocalConf;
+import staticweb.ImagesHelper;
 import translations.Conf;
 import utilities.Utilities;
 
 public class DownloadHelper {
 
 	LocalConf conf;
+	int politeness = 1000;
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -23,8 +25,8 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		//downloadHelper.downloadImages_Yuyutei_FullSet("konosuba2.0");
-		downloadHelper.downloadImages_LittleAkiba_FullSet("371");
+		downloadHelper.downloadImages_Yuyutei_SetGaps("saekano");
+		//downloadHelper.downloadImages_LittleAkiba_FullSet("371");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -133,16 +135,18 @@ public class DownloadHelper {
 	}
 	
 	
-	public void downloadImages_Yuyutei_FillSetGaps(String set) throws Exception{
+	public void downloadImages_Yuyutei_SetGaps(String set) throws Exception{
 		
 		System.out.println("** Download Yuyutei Images: Fill Set Gaps");
 		System.out.println("* Set: " + set);
 		
 		String setUrl = Conf.yuyuteiSetBaseUrl + set;
 		
-		String imageDirPath = this.conf.getGeneralResultsFolderPath() + set + "\\images\\";
+		String imageDirPath = this.conf.getGeneralResultsFolderPath() + "images_cotd\\";
 		File imageDir = new File(imageDirPath);
 		if(!imageDir.exists()){throw new Exception("Folder for filling gaps does not exist.");}
+
+		ImagesHelper imagesHelper = new ImagesHelper();
 		
 		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
 		
@@ -171,12 +175,14 @@ public class DownloadHelper {
 			
 			File currentImageFile = new File(imageDirPath + cardId + ".png");
 			if(currentImageFile.exists()){
-				System.out.println("Image already exists.");
+				System.out.println("Image already exists: " + cardId);
 			}
 			else{
 				File imageFile = new File(imageDirPath + cardId + ".jpg");
-				Thread.sleep(5000);
-				DownloadHelper.downloadFile(imgUrl, imageFile);				
+				Thread.sleep(this.politeness);
+				DownloadHelper.downloadFile(imgUrl, imageFile);	
+				imagesHelper.createWebFormatImage(imageFile, currentImageFile);
+				imageFile.delete();
 			}
 		}
 	}
@@ -223,8 +229,8 @@ public class DownloadHelper {
 			}
 			else{
 				File imageFile = new File(imageDirPath + cardId + ".jpg");
-				Thread.sleep(5000);
-				DownloadHelper.downloadFile(imgUrl, imageFile);				
+				Thread.sleep(1000);
+				DownloadHelper.downloadFile(imgUrl, imageFile);
 			}
 		}
 	}

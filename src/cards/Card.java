@@ -9,6 +9,7 @@ public class Card {
 	public String name;
 	public String jpName;
 	public String id;
+	public String fileId;
 	public String rarity;
 	public String color;
 	public String side;
@@ -35,6 +36,7 @@ public class Card {
         m = r.matcher(idLine);
         if(m.find()){
         	this.id = m.group(1);
+        	this.fileId = this.id.replace("/", "_");
         	this.rarity = m.group(2);
         }
         else{

@@ -17,8 +17,6 @@ public class TranslatorUtilities {
 
 	private LocalConf conf;
 	
-	public ArrayList<LineTranslation> lineTranslations;
-	
 	public TranslatorUtilities() throws Exception{
 		this.conf = LocalConf.getInstance();
 	}
@@ -31,16 +29,17 @@ public class TranslatorUtilities {
 		LocalConf conf = LocalConf.getInstance();
 		
 		File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
-
-		//utility.updateTranslationsPairsFullListWithSetFile(file);
+		File result = new File(conf.getGeneralResultsFolderPath() + "result2.txt");
+		
+		utility.updateTranslationsPairsFullListWithSetFile(result);
 		
 		System.out.println("*** Finished ***");
 	}
 	
 	public void updateTranslationsPairsFullListWithSetFile(File setTranslationPairsFile) throws Exception{
 		
-		HashMap<String,String> fullTranslationsPairs = this.getTranslationsPairsFromFile(conf.translationPairsFullListFile);
-		HashMap<String,String> setTranslationsPairs = this.getTranslationsPairsFromFile(setTranslationPairsFile);
+		HashMap<String,String> fullTranslationsPairs = this.getTranslationsPairsFromFile_PairsFile(conf.translationPairsFullListFile);
+		HashMap<String,String> setTranslationsPairs = this.getTranslationsPairsFromFile_SetFile(setTranslationPairsFile);
 		
 		for(String pattern : setTranslationsPairs.keySet()){
 			if(!fullTranslationsPairs.containsKey(pattern)){
@@ -51,7 +50,7 @@ public class TranslatorUtilities {
 		this.createFileFromTranslationPairs(fullTranslationsPairs, this.conf.translationPairsFullListFile);
 	}
 	
-	public HashMap<String,String> getTranslationsPairsFromFile(File translationPairs) throws Exception{
+	public HashMap<String,String> getTranslationsPairsFromFile_PairsFile(File translationPairs) throws Exception{
 		
 		HashMap<String,String> translationsPairs = new HashMap<String,String>();
 		
@@ -62,6 +61,31 @@ public class TranslatorUtilities {
 			String patternLine = content.remove(0);
 			String replacementLine = content.remove(0);
 			content.remove(0); // Ignore line
+			if(!replacementLine.equals("")){
+				if(!translationsPairs.containsKey(patternLine)){
+					translationsPairs.put(patternLine, replacementLine);
+				}
+			}
+			else{
+				throw new Exception("Argh!");
+			}
+		}
+		
+		return translationsPairs;
+	}
+	
+	public HashMap<String,String> getTranslationsPairsFromFile_SetFile(File translationPairs) throws Exception{
+		
+		HashMap<String,String> translationsPairs = new HashMap<String,String>();
+		
+		List<String> content = new ArrayList<>(Files.readAllLines(translationPairs.toPath(), StandardCharsets.UTF_8));
+		
+		while(content.size() > 3){
+			
+			content.remove(0); // Ignore set ability line
+			String patternLine = content.remove(0);
+			String replacementLine = content.remove(0);
+			content.remove(0); // Ignore blank line
 			if(!replacementLine.equals("")){
 				if(!translationsPairs.containsKey(patternLine)){
 					translationsPairs.put(patternLine, replacementLine);

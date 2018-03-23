@@ -26,11 +26,14 @@ public class Summaries {
 		Summaries summaries = new Summaries();
 		HotcCleanFileParser parser = new HotcCleanFileParser();
 		
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
-		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "result.txt");
+		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "weib_promos.txt");
+		File file2 = new File(summaries.conf.getTranslationPairsFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_trial_prs.txt");
+		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "result2.txt");
 		
-		summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
+		//summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
+		summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
 		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
+		//summaries.generateAbilityListFile_PendingSetTranslations(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), result);
 		//summaries.generateAbilityListFile_RedundantPatterns();
 		//summaries.generateTranslationProgress(parser.parseCards(file), result);
 		
@@ -105,6 +108,33 @@ public class Summaries {
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
+	public void generateAbilityListFile_SetTranslationPairs(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Base Set Reference) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+			//abilities.add(ability);
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			if(lineTranslation == null){
+				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""));
+				abilities.add("***");
+			}
+			else{
+				abilities.add(lineTranslation.patternString);
+				abilities.add(lineTranslation.replace);
+			}
+			abilities.add("");
+		}
+		
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
 	public void generateAbilityListFile_PendingSetTranslations(ArrayList<Card> cards, File file) throws Exception{
 		
 		System.out.println("*** Generate Ability List (Set Pending Translations) Txt for " + file.getName() + " ***");
@@ -134,7 +164,7 @@ public class Summaries {
 		System.out.println("*** Generate Ability List (Redundant Patterns) Txt ***");
 		
 		TranslatorUtilities utilities = new TranslatorUtilities();
-		HashMap<String,String> pairs = utilities.getTranslationsPairsFromFile(this.conf.translationPairsFullListFile);
+		HashMap<String,String> pairs = utilities.getTranslationsPairsFromFile_PairsFile(this.conf.translationPairsFullListFile);
 		HashMap<String,String> seenPairs = new HashMap<String,String>();
 		HashMap<String,String> duplicatedReplaces = new HashMap<String,String>();
 		
