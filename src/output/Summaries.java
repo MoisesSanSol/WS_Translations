@@ -26,12 +26,11 @@ public class Summaries {
 		Summaries summaries = new Summaries();
 		HotcCleanFileParser parser = new HotcCleanFileParser();
 		
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "weib_promos.txt");
-		File file2 = new File(summaries.conf.getTranslationPairsFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_trial_prs.txt");
-		File result = new File(summaries.conf.getGeneralResultsFolderPath() + "result2.txt");
+		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "psycho-pass_extra_pack.txt");
+		File result = new File(summaries.conf.getTranslationPairsFolderPath() + "currentlyWorkingOn.txt");
 		
-		//summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
-		summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
+		summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
+		//summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
 		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_PendingSetTranslations(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), result);
 		//summaries.generateAbilityListFile_RedundantPatterns();

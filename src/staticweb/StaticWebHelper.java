@@ -21,8 +21,10 @@ public class StaticWebHelper {
 	LocalConf conf;
 	
 	HashMap<String,String> pairs;
+	HashMap<String,String> rarityPairs;
 	HashMap<String,ArrayList<String>> referencias;
 	HashMap<String,ArrayList<String>> parallels;
+	HashMap<String,ArrayList<String>> homonimas;
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -39,8 +41,8 @@ public class StaticWebHelper {
 		
 		HotcCleanFileParser parser = new HotcCleanFileParser();
 		File file = new File(LocalConf.getInstance().gethotcCleanFilesFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
-		staticWebHelper.prepareCardsForWeb(parser.parseCards(file));
-		//staticWebHelper.generateStaticSetWeb(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"));
+		
+		staticWebHelper.generateStaticSetWeb(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"));
 		
 		System.out.println("*** Finished ***");
 	}
@@ -48,6 +50,8 @@ public class StaticWebHelper {
 	public StaticWebHelper() throws Exception{
 		this.conf = LocalConf.getInstance();
 		this.referencias = new HashMap<String,ArrayList<String>>();
+		this.parallels = new HashMap<String,ArrayList<String>>();
+		this.homonimas = new HashMap<String,ArrayList<String>>();
 	}
 	
 	public void generateStaticSetWeb(String setName) throws Exception{
@@ -62,6 +66,8 @@ public class StaticWebHelper {
 		
 		ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(allCards);
 		this.pairs = CardListUtilities.getNameIdPairs(baseCards);
+		this.rarityPairs = CardListUtilities.getIdRarityPairs(baseCards);
+		this.homonimas = CardListUtilities.getHomonymIdPairs(baseCards);
 		
 		ArrayList<Card> translatedCards = translator.translateSet(allCards);
 		ArrayList<Card> cleanCards = this.prepareCardsForWeb(translatedCards);
@@ -94,10 +100,17 @@ public class StaticWebHelper {
 	public String getCardIdLine(Card card) throws Exception{
 		String line = card.id + " " + card.rarity;
 		if(this.parallels.containsKey(card.id)){
-			line = line + "(<a href='./" + ".html'>SP</a>)";
+			String suffix = parallels.get(card.id).get(0).replaceAll("^.+?(\\D+)$", "$1");
+			String rarity = suffix;
+			if(rarity.equals("R")){rarity = "RRR";}
+			if(rarity.equals("S")){rarity = "SR";}
+			line = line + " (<a href='./" + card.fileId + suffix + ".html'>" + rarity + "</a>)";
 		}
 		else if(card.id.matches(".+\\D$")){
 			String baseId = card.id.replaceAll("^(.+?)\\D+$", "$1");
+			String fileId = baseId.replace("/", "_");
+			String rarity = this.rarityPairs.get(baseId);
+			line = line + " (<a href='./" + fileId + ".html'>" + rarity + "</a>)";
 		}
 		return line;
 	}
@@ -158,9 +171,12 @@ public class StaticWebHelper {
 		}
 		template.set(template.indexOf("[Habilidades]"), habilidades);
 		
+		boolean hasReferencias = false;
+		String referenciada = "";
+		
 		if(this.referencias.containsKey(card.name)){
-			
-			String referenciada = "<tr>\r\n<td>\r\n";
+			hasReferencias = true;
+			referenciada = "<tr>\r\n<td>\r\n";
 			for(String nombre : this.referencias.get(card.name)){
 				String nombreFriendlyId = this.pairs.get(nombre).replace("/", "_");
 				referenciada = referenciada + "* Esta carta es referenciada en las habilidades de '<a href='./" + nombreFriendlyId + ".html'>" + nombre + "</a></a>'";
@@ -169,7 +185,25 @@ public class StaticWebHelper {
 				}
 			}
 			referenciada = referenciada + "\r\n</td>\r\n</tr>";
-			
+		}
+		
+		if(this.homonimas.containsKey(card.name)){
+			hasReferencias = true;
+			if(referenciada.equals("")){
+				referenciada = referenciada + "\r\n<br>\r\n";
+			}
+			referenciada = referenciada + "<tr>\r\n<td>\r\n";
+			for(String id : this.homonimas.get(card.name)){
+				String fileId = id.replace("/", "_");
+				referenciada = referenciada + "* Esta carta tiene el mismo nombre que '<a href='./" + fileId + ".html'>" + id + "</a></a>'";
+				if(!(this.homonimas.get(card.name).indexOf(id) == this.homonimas.get(card.name).size() - 1)){
+					referenciada = referenciada + "\r\n<br>\r\n";
+				}
+			}
+			referenciada = referenciada + "\r\n</td>\r\n</tr>";
+		}
+		
+		if(hasReferencias){
 			template.set(template.indexOf("[Referencias]"), referenciada);
 		}
 		else{
@@ -230,6 +264,7 @@ public class StaticWebHelper {
 					this.parallels.put(baseId, parallels);
 				}
 			}
+			
 		}
 		
 		return cards;

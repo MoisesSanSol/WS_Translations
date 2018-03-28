@@ -70,4 +70,42 @@ public class CardListUtilities {
 		Collections.sort(abilities);
 		return abilities;
 	}
+	
+	public static HashMap<String,String> getIdRarityPairs(ArrayList<Card> cards){
+		
+		HashMap<String,String> pairs = new HashMap<String,String>();
+		for(Card card: cards){
+			pairs.put(card.id, card.rarity);
+		}
+		
+		return pairs;
+	}
+	
+	public static HashMap<String,ArrayList<String>> getHomonymIdPairs(ArrayList<Card> cards){
+		
+		HashMap<String,ArrayList<String>> homonimas = new HashMap<String,ArrayList<String>>();
+		HashMap<String,String> processed = new HashMap<String,String>();
+		
+		for(Card card: cards){
+			if(processed.containsKey(card.name)){
+				if(homonimas.containsKey(card.name)){
+					ArrayList<String> ids = homonimas.get(card.name);
+					if(!ids.contains(card.id)){
+						ids.add(card.id);
+						homonimas.put(card.name, ids);
+					}
+				}
+				else{
+					ArrayList<String> ids = new ArrayList<String>();
+					ids.add(card.id);
+					homonimas.put(card.name, ids);
+				}
+			}
+			else{
+				processed.put(card.name, card.id);
+			}
+		}
+		
+		return homonimas;
+	}
 }

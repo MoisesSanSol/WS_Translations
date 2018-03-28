@@ -93,6 +93,7 @@ public class Card {
 		this.name = toCopy.name;
 		this.jpName = toCopy.jpName;
 		this.id = toCopy.id;
+		this.fileId = toCopy.fileId;
 		this.rarity = toCopy.rarity;
 		this.color = toCopy.color;
 		this.side = toCopy.side;

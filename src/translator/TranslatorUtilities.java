@@ -28,10 +28,10 @@ public class TranslatorUtilities {
 		TranslatorUtilities utility = new TranslatorUtilities();
 		LocalConf conf = LocalConf.getInstance();
 		
-		File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
-		File result = new File(conf.getGeneralResultsFolderPath() + "result2.txt");
+		//File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
+		//File result = new File(conf.getGeneralResultsFolderPath() + "result2.txt");
 		
-		utility.updateTranslationsPairsFullListWithSetFile(result);
+
 		
 		System.out.println("*** Finished ***");
 	}
