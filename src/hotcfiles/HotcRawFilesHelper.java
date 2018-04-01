@@ -7,9 +7,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,14 +32,35 @@ public class HotcRawFilesHelper {
 		// For testing and individual execution purposes.
 		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
 
-		hotcRawFilesHelper.downloadNewHotcRawFiles();
-		hotcRawFilesHelper.downloadPromoHotcRawFiles();
+		//hotcRawFilesHelper.downloadNewHotcRawFiles();
+		//hotcRawFilesHelper.downloadPromoHotcRawFiles();
+		
+		//hotcRawFilesHelper.checkIfHotcRawFileIsUpToDate("psycho-pass_extra_pack");
 		
 		System.out.println("*** Finished ***");
 	}
 	
 	public HotcRawFilesHelper() throws Exception{
 		this.conf = LocalConf.getInstance();
+	}
+	
+	public void checkIfHotcRawFileIsUpToDate(String rawFileName) throws Exception{
+		
+		System.out.println("** Check If Hotc Raw File Is Up To Date: " + rawFileName);
+		String rawFileUrl = conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
+
+		File rawFile = new File(conf.gethotcRawFilesFolderPath() + rawFileName + ".txt");
+		File tempFile = new File(conf.gethotcRawFilesFolderPath() + rawFileName + "_freshlyDownloaded.txt");
+		
+		DownloadHelper.downloadFile(rawFileUrl, tempFile);
+
+		if(FileUtils.contentEquals(rawFile, tempFile)) {
+			System.out.println("* Raw File Up To Date");
+			tempFile.delete();
+		}
+		else {
+			System.out.println("* Raw File Outdated");
+		}
 	}
 	
 	public ArrayList<String> getAvailableSetRefs() throws Exception{
@@ -101,22 +125,12 @@ public class HotcRawFilesHelper {
 		System.out.println("** Download New Hotc Raw Files");
 		
 		ArrayList<String> setRefs = this.getAvailableSetRefs();
-
-		Properties reference = new Properties();
-		InputStream input = new FileInputStream(conf.hotcRawFilesReferenceFile);
-
-		reference.load(input);
-		input.close();
-
-		Set<?> keySet = reference.keySet();
-		String[] keyArray = keySet.toArray(new String[keySet.size()]);
-		ArrayList<String> keyList = new ArrayList<String>(Arrays.asList(keyArray));
-
+		HashMap<String,String> references = this.getDowloadedReferences();
 		
         for(String setRef : setRefs){
         	
-        	if(keyList.contains(setRef)){
-        		System.out.println("* Already downloaded: " + setRef + ", " + reference.getProperty(setRef));
+        	if(references.containsKey(setRef)){
+        		System.out.println("* Already downloaded: " + setRef + ", " + references.get(setRef));
         	}
         	else{
         		
@@ -130,12 +144,30 @@ public class HotcRawFilesHelper {
     			String rawFileUrl = conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
     			
     			DownloadHelper.downloadFile(rawFileUrl, rawFile);
-    			reference.setProperty(setRef, rawFileName);
+    			references.put(setRef, rawFileName);
         	}
 		}
+        this.storeDowloadedReferences(references);
+	}
+	
+	public HashMap<String,String> getDowloadedReferences() throws Exception{
+		Properties properties = new Properties();
+		InputStream input = new FileInputStream(conf.hotcRawFilesReferenceFile);
 		
+		properties.load(input);
+		input.close();
+
+		HashMap<String, String> references = new HashMap<String,String>((Map)properties);
+		
+		return references;
+	}
+	
+	public void storeDowloadedReferences(HashMap<String,String> references) throws Exception{
+		Properties properties = new Properties();
+		properties.putAll(references);
+
         OutputStream output = new FileOutputStream(conf.hotcRawFilesReferenceFile);
-		reference.store(output, "Updating with new series.");
+        properties.store(output, "Updating with new series.");
 		output.close();
 	}
 }

@@ -34,8 +34,9 @@ public class Dispatcher {
 		}
 		
 		summaries.generateAbilityListFile_Ids(allCards, new File(conf.getGeneralResultsFolderPath() + "All.txt"));
+		*/
 		
-		System.out.println("*** Finished ***");*/
+		System.out.println("*** Finished ***");
 	}
 	
 	public Dispatcher() throws Exception{
@@ -49,18 +50,13 @@ public class Dispatcher {
 		TranslatorUtilities transUtilities = new TranslatorUtilities();
 		
 		File workingFile = new File(conf.getTranslationPairsFolderPath() + "currentlyWorkingOn.txt");
-		File tempPairsFile = new File(conf.getTranslationPairsFolderPath() + "tempPairs.txt");
+		transUtilities.updateTranslationsPairsFullListWithSetFile(workingFile);
 		
 		File setFile =  new File(conf.gethotcCleanFilesFolderPath() + setName + ".txt");
 		File setPairsFile =  new File(conf.getTranslationPairsFolderPath() + setName + ".txt");
 		
-		HashMap<String,String> newPairs = transUtilities.getTranslationsPairsFromFile_SetFile(workingFile);
-		transUtilities.createFileFromTranslationPairs(newPairs, tempPairsFile);
-		transUtilities.updateTranslationsPairsFullListWithSetFile(tempPairsFile);
-		tempPairsFile.delete();
-		
-		
-		//summaries.
+		ArrayList<Card> cards = HotcCleanFileParser.parseCards(setFile);
+		summaries.generateAbilityListFile_SetTranslationPairs(cards, setPairsFile);
 		
 	}
 	

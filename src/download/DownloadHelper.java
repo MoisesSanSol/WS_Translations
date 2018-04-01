@@ -25,8 +25,8 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		downloadHelper.downloadImages_Yuyutei_SetGaps("saekano");
-		//downloadHelper.downloadImages_LittleAkiba_FullSet("371");
+		downloadHelper.downloadImages_Yuyutei_FullSet("fsubw2.0");
+		//downloadHelper.downloadImages_LittleAkiba_FullSet("123");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -229,7 +229,7 @@ public class DownloadHelper {
 			}
 			else{
 				File imageFile = new File(imageDirPath + cardId + ".jpg");
-				Thread.sleep(1000);
+				Thread.sleep(this.politeness);
 				DownloadHelper.downloadFile(imgUrl, imageFile);
 			}
 		}

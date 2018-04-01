@@ -16,7 +16,8 @@ public class MainSetWebCreation {
 		
 		System.out.println("*** Starting ***");
 		
-		String setFileName = "" + ".txt";
+		String setName = "";
+		String setFileName = setName + ".txt";
 		String setLaPageId = "";
 		String setYytPageId = "";
 
