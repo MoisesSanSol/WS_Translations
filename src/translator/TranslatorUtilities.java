@@ -31,8 +31,6 @@ public class TranslatorUtilities {
 		//File file = new File(conf.getTranslationPairsFolderPath() + "gurren_lagann_booster_pack.txt");
 		//File result = new File(conf.getGeneralResultsFolderPath() + "result2.txt");
 		
-
-		
 		System.out.println("*** Finished ***");
 	}
 	
@@ -87,8 +85,16 @@ public class TranslatorUtilities {
 			String replacementLine = content.remove(0);
 			content.remove(0); // Ignore blank line
 			if(!replacementLine.equals("")){
-				if(!translationsPairs.containsKey(patternLine)){
-					translationsPairs.put(patternLine, replacementLine);
+				if(!replacementLine.equals("***")){
+					if(!translationsPairs.containsKey(patternLine)){
+						translationsPairs.put(patternLine, replacementLine);
+					}
+					else{
+						System.out.println("* Already exists: " + patternLine);
+					}
+				}
+				else{
+					System.out.println("* Ignoring WIP patters: " + patternLine);
 				}
 			}
 			else{

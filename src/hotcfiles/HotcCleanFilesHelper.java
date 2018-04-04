@@ -18,8 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import configuration.LocalConf;
-import translations.TextFileParser;
-import translations.Utilities;
 
 public class HotcCleanFilesHelper {
 

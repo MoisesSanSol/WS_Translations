@@ -11,7 +11,6 @@ import org.jsoup.Jsoup;
 
 import configuration.LocalConf;
 import staticweb.ImagesHelper;
-import translations.Conf;
 import utilities.Utilities;
 
 public class DownloadHelper {
@@ -25,8 +24,9 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		downloadHelper.downloadImages_Yuyutei_FullSet("fsubw2.0");
-		//downloadHelper.downloadImages_LittleAkiba_FullSet("123");
+		//downloadHelper.downloadImages_Yuyutei_FullSet("fsubw2.0");
+		//downloadHelper.downloadImages_LittleAkiba_Test("123");
+		downloadHelper.downloadImages_Yuyutei_SetGaps("ppext");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -70,6 +70,89 @@ public class DownloadHelper {
 		}		
 	}
 	
+	public void downloadImages_LittleAkiba_Test(String laSetId) throws Exception{
+		
+		System.out.println("** Download All Set Images from Little Akiba");
+		System.out.println("** Set Id: " + laSetId);
+		
+		String setUrl = this.conf.littleAkibaSetBaseUrl + laSetId;
+		
+		File imageDir = new File(this.conf.getGeneralResultsFolderPath() + laSetId);
+		if(!imageDir.exists()){imageDir.mkdirs();}
+		
+		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
+		//System.out.println("** Doc: " + doc.html());
+		
+		Elements bloques = doc.select("h6");
+				
+		boolean ebFoils = false;
+		
+		for(Element bloque : bloques){
+			
+			System.out.println("** Bloque: " + bloque.text());
+			if(bloque.text().contains("Foil/Parallel")){
+				ebFoils = true;
+			}
+			else{
+				ebFoils = false;
+			}
+			
+			Element ul = bloque.nextElementSibling();
+			
+			while(ul != null && ul.tagName().equals("ul")){
+				
+				Elements cards = ul.select("a");
+				
+				for(Element card : cards){
+					
+					System.out.println("** Card Href: " + card.attr("href"));
+					
+					Document cardDoc = Jsoup.connect(card.attr("href")).maxBodySize(0).validateTLSCertificates(false).get();
+					
+					Element imageLarge = cardDoc.select("a.fullview").first();
+					String imageLargeUrl = imageLarge.attr("href");
+					
+					String cardFullId = cardDoc.select("div.details").first().select("small").first().text();
+
+					String[] cardIdParts = cardFullId.split(" ");
+					
+					String cardId = cardIdParts[0].replace("-", "_");
+					
+					if(ebFoils){cardId = cardId + "-S";}
+					if(cardIdParts[1].equals("SP")){cardId = cardId + "SP";}
+					
+					File imageFile = new File(this.conf.getGeneralResultsFolderPath() + laSetId + "//" + cardId + ".jpg");
+					
+					Thread.sleep(this.politeness);
+					DownloadHelper.downloadFile(imageLargeUrl, imageFile);
+				}
+				
+				ul = ul.nextElementSibling();
+			}
+		}
+		
+		/*
+		Elements cards = doc.select("div.card_list").first().select("a");
+		
+		for(Element card : cards){
+			
+			System.out.println("** Set Id: " + card.attr("href"));
+			
+			Document cardDoc = Jsoup.connect(card.attr("href")).maxBodySize(0).validateTLSCertificates(false).get();
+			
+			Element imageLarge = cardDoc.select("a.fullview").first();
+			String imageLargeUrl = imageLarge.attr("href");
+			
+			String cardFullId = cardDoc.select("div.details").first().select("small").first().text();
+
+			String cardId = cardFullId.split(" ")[0].split("/")[1].toLowerCase().replace("-", "_");
+
+			File imageFile = new File(this.conf.getGeneralResultsFolderPath() + laSetId + "//" + cardId + ".jpg");
+			
+			Thread.sleep(1000);
+			DownloadHelper.downloadFile(imageLargeUrl, imageFile);
+		}*/		
+	}
 	
 	/*public static void downloadAllSetImages_Yuyutei(String set) throws Exception{
 		
@@ -140,9 +223,9 @@ public class DownloadHelper {
 		System.out.println("** Download Yuyutei Images: Fill Set Gaps");
 		System.out.println("* Set: " + set);
 		
-		String setUrl = Conf.yuyuteiSetBaseUrl + set;
+		String setUrl = this.conf.yuyuteiSetBaseUrl + set;
 		
-		String imageDirPath = this.conf.getGeneralResultsFolderPath() + "images_cotd\\";
+		String imageDirPath = this.conf.getGeneralResultsFolderPath() + "images\\";
 		File imageDir = new File(imageDirPath);
 		if(!imageDir.exists()){throw new Exception("Folder for filling gaps does not exist.");}
 
@@ -170,7 +253,7 @@ public class DownloadHelper {
 			System.out.println(cardId);
 			System.out.println(imgSrc);
 			
-			String imgThumbUrl = Conf.yuyuteiBaseUrl + imgSrc;
+			String imgThumbUrl = this.conf.yuyuteiBaseUrl + imgSrc;
 			String imgUrl = imgThumbUrl.replace("90_126", "front");
 			
 			File currentImageFile = new File(imageDirPath + cardId + ".png");
@@ -192,7 +275,7 @@ public class DownloadHelper {
 		System.out.println("** Download Yuyutei Images: Full Set");
 		System.out.println("* Set: " + set);
 		
-		String setUrl = Conf.yuyuteiSetBaseUrl + set;
+		String setUrl = this.conf.yuyuteiSetBaseUrl + set;
 		
 		String imageDirPath = this.conf.getGeneralResultsFolderPath() + set + "\\";
 		File imageDir = new File(imageDirPath);
@@ -220,7 +303,7 @@ public class DownloadHelper {
 			System.out.println(cardId);
 			System.out.println(imgSrc);
 			
-			String imgThumbUrl = Conf.yuyuteiBaseUrl + imgSrc;
+			String imgThumbUrl = this.conf.yuyuteiBaseUrl + imgSrc;
 			String imgUrl = imgThumbUrl.replace("90_126", "front");
 			
 			File currentImageFile = new File(imageDirPath + cardId + ".png");

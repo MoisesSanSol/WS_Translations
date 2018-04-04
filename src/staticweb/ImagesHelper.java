@@ -26,8 +26,8 @@ public class ImagesHelper {
 		
 		// For testing and individual execution purposes.
 		ImagesHelper imagesHelper = new ImagesHelper();
-		//imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("SHS_W56");
-		imagesHelper.renameCotdImagesToWebFormat("SHS_W56");
+		imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("PP_SE14");
+		//imagesHelper.renameCotdImagesToWebFormat("SHS_W56");
 		
 		System.out.println("*** Finished ***");
 	}

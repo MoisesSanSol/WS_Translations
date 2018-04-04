@@ -10,7 +10,6 @@ import java.util.List;
 import output.Summaries;
 import parser.HotcCleanFileParser;
 import cards.Card;
-import translations.TextFileParser;
 import translator.Translator;
 import utilities.CardListUtilities;
 import utilities.Utilities;
@@ -26,24 +25,31 @@ public class StaticWebHelper {
 	HashMap<String,ArrayList<String>> parallels;
 	HashMap<String,ArrayList<String>> homonimas;
 	
+	public boolean isExtraBoosterCard;
+	public boolean isFoilCard;
+	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
 		
 		// For testing and individual execution purposes.
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
+		
+		//staticWebHelper.generateIndex_ExtraBooster("PP/SE14", "Psycho-Pass", 4);
+		
 		//staticWebHelper.generateStaticSetWeb("hina_logic_vol._1_extra_pack");
 		//staticWebHelper.createEmptyIndex();
 		//staticWebHelper.generateStaticSetPrPages("weib_promos");
 		//staticWebHelper.generateStaticSetWeb("saekano_-_how_to_raise_a_boring_girlfriend_trial_deck");
 		//staticWebHelper.createTrialDeckIndex();
 		//staticWebHelper.createBoosterPackIndex();
-		//staticWebHelper.rotateClimax("saekano_-_how_to_raise_a_boring_girlfriend_trial_deck");
+		staticWebHelper.isExtraBoosterCard = true;
+		staticWebHelper.rotateClimax("psycho-pass_extra_pack");
 		
-		HotcCleanFileParser parser = new HotcCleanFileParser();
+		/*HotcCleanFileParser parser = new HotcCleanFileParser();
 		File file = new File(LocalConf.getInstance().gethotcCleanFilesFolderPath() + "saekano_-_how_to_raise_a_boring_girlfriend_booster_pack.txt");
 		
 		staticWebHelper.generateStaticSetWeb(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"));
-		
+		*/
 		System.out.println("*** Finished ***");
 	}
 	
@@ -54,13 +60,14 @@ public class StaticWebHelper {
 		this.homonimas = new HashMap<String,ArrayList<String>>();
 	}
 	
-	public void generateStaticSetWeb(String setName) throws Exception{
+	public void generateCardPages_FullSet(String setFileName) throws Exception{
 		
-		ArrayList<Card> allCards = TextFileParser.parseCards(setName);
-		this.generateStaticSetWeb(allCards);		
+		File setFile = new File(this.conf.gethotcCleanFilesFolderPath() + setFileName + ".txt");
+		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setFile);
+		this.generateCardPages_ArbitraryCards(allCards);
 	}
 	
-	public void generateStaticSetWeb(ArrayList<Card> allCards) throws Exception{
+	public void generateCardPages_ArbitraryCards(ArrayList<Card> allCards) throws Exception{
 		
 		Translator translator = new Translator();
 		
@@ -76,7 +83,7 @@ public class StaticWebHelper {
 		ArrayList<String> templateContent = new ArrayList<>(Files.readAllLines(new File(templatePath).toPath(), StandardCharsets.UTF_8));
 		
 		for(Card card : cleanCards){
-			this.createCardWebPage(card, templateContent);
+			this.generateCardPage(card, templateContent);
 		}
 		
 	}
@@ -84,14 +91,19 @@ public class StaticWebHelper {
 	public void rotateClimax(String setName) throws Exception{
 		
 		ImagesHelper imagesHelper = new ImagesHelper();
+		File setCleanFile = new File(this.conf.gethotcCleanFilesFolderPath() + setName + ".txt"); 
 		
-		ArrayList<Card> allCards = TextFileParser.parseCards(setName);
+		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
 		
 		for(Card card : allCards){
 			if(card.type.equals("Climax")){
 				String filenameFriendlyId = card.id.replace("/", "_");
 				File imageFile = new File(this.conf.getGeneralResultsFolderPath() + "images//" + filenameFriendlyId + ".png");
 				imagesHelper.rotateWebFormatImage(imageFile);
+				if(this.isExtraBoosterCard){
+					File imageFoilFile = new File(this.conf.getGeneralResultsFolderPath() + "images//" + filenameFriendlyId + "-S.png");
+					imagesHelper.rotateWebFormatImage(imageFoilFile);
+				}
 			}
 		}
 		
@@ -115,18 +127,34 @@ public class StaticWebHelper {
 		return line;
 	}
 	
-	public void createCardWebPage(Card card, ArrayList<String> baseTemplate) throws Exception{
+	public void generateCardPage(Card card, ArrayList<String> baseTemplate) throws Exception{
 
 		ArrayList<String> template = (ArrayList<String>)baseTemplate.clone();
 		
 		String filenameFriendlyId = card.id.replace("/", "_");
-		
+		String filename = filenameFriendlyId;
+				
 		template.set(template.indexOf("[Card Id]"), card.id);
-		template.set(template.indexOf("[Image]"), "<img src='../images/" + filenameFriendlyId + ".png'></img>");
 		template.set(template.indexOf("[Nombre]"), card.name);
 		template.set(template.indexOf("[Nombre Jp]"), card.jpName);
 		template.set(template.indexOf("[Card Id Line]"), this.getCardIdLine(card));
 
+		String imageLine = "";
+		if(this.isExtraBoosterCard){
+			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
+			imageLine = imageLine + "<br><a href='./" + card.fileId + "-S.html'>Versión Foil</a>";
+		}
+		else if(this.isFoilCard){
+			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + "-S.png'></img>";
+			imageLine = imageLine + "<br><a href='./" + card.fileId + ".html'>Versión Normal</a>";
+			filename = filename + "-S";
+		}
+		else{
+			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
+		}
+		
+		template.set(template.indexOf("[Image]"), imageLine);
+		
 		String caracteristicas = "";
 		
 		if(card.type.equals("Personaje")){
@@ -211,7 +239,7 @@ public class StaticWebHelper {
 		}
 		
 		String cardsPath = this.conf.getGeneralResultsFolderPath() + "cards\\"; 
-		Files.write(new File(cardsPath + filenameFriendlyId + ".html").toPath(), template, StandardCharsets.UTF_8);
+		Files.write(new File(cardsPath + filename + ".html").toPath(), template, StandardCharsets.UTF_8);
 
 		
 	}
@@ -270,7 +298,7 @@ public class StaticWebHelper {
 		return cards;
 	}
 	
-	public void createBoosterPackIndex() throws Exception{
+	public void createIndex_BoosterPack() throws Exception{
 		
 		System.out.println("* Create Empty Index");
 
@@ -317,6 +345,89 @@ public class StaticWebHelper {
 		newFileContent.add("</body>");
 		
 		Files.write(newFile.toPath(), newFileContent, StandardCharsets.UTF_8);
+	}
+	
+	public void generateIndex_ExtraBooster(String seriesFullId, String setName, int rows) throws Exception{
+		
+		System.out.println("* Create Empty Index");
+
+		String seriesFullIdFriendly = seriesFullId.replace("/", "_") + "-";
+		String productType = "Extra Booster";
+		
+		String indexPath = this.conf.getGeneralResultsFolderPath();
+		File newFile = new File(indexPath + "index.html");
+		
+		ArrayList<String> newFileContent = new ArrayList<String>();
+		
+		newFileContent.add("<meta charset=\"utf-8\">");
+		newFileContent.add("<head>");
+		newFileContent.add("<title>" + setName + "</title>");
+		newFileContent.add("</head>");
+		newFileContent.add("<body>");
+		newFileContent.add("<div align=center style=\"font-size:150%\"><b>");
+		newFileContent.add(productType + ": " + setName);
+		newFileContent.add("</b></div>");
+		newFileContent.add("<table border=2 width=100%>");
+		
+		int count = 1;
+		for(int i = 1; i <= rows; i++){
+			
+			newFileContent.add("<tr>");
+			
+			for(int j = 1; j <= 10; j++){
+				
+				String paddedCount = String.format("%02d", count);;
+				
+				newFileContent.add("<td width=10%  align=center>");
+				newFileContent.add("<a href='./cards/" + seriesFullIdFriendly + paddedCount + ".html'><img src='./images/" + seriesFullIdFriendly + paddedCount + ".png' width=100% height=auto'></img></a>" + seriesFullId + "-" + paddedCount);
+				newFileContent.add("</td>");
+				
+				count++;
+			}
+			
+			newFileContent.add("</tr>");
+		}
+		
+		newFileContent.add("</table>");
+		
+		newFileContent.addAll(this.createIndex_PromotionalLines(seriesFullId));
+		
+		newFileContent.add("</body>");
+		
+		Files.write(newFile.toPath(), newFileContent, StandardCharsets.UTF_8);
+	}
+	
+	public ArrayList<String> createIndex_PromotionalLines(String seriesFullId) throws Exception{
+		
+		String seriesFullIdFriendly = seriesFullId.replace("/", "_") + "-";;
+		
+		ArrayList<String> indexLines = new ArrayList<String>();
+		
+		indexLines.add("<div align=center style=\"font-size:150%\"><b>");
+		indexLines.add("Promotional Cards");
+		indexLines.add("</b></div>");
+		indexLines.add("<table border=2 width=100%>");
+		
+		int count = 1;
+			
+		indexLines.add("<tr>");
+			
+		for(int j = 1; j <= 10; j++){
+				
+			String paddedCount = "P" + String.format("%02d", count);;
+			
+			indexLines.add("<td width=10%  align=center>");
+			indexLines.add("<a href='./cards/" + seriesFullIdFriendly + paddedCount + ".html'><img src='./images/" + seriesFullIdFriendly + paddedCount + ".png' width=100% height=auto'></img></a>" + seriesFullId + paddedCount);
+			indexLines.add("</td>");
+			
+			count++;
+		}
+			
+		indexLines.add("</tr>");
+		
+		indexLines.add("</table>");
+		
+		return indexLines;
 	}
 	
 	public void createTrialDeckIndex() throws Exception{

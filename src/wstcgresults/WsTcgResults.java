@@ -19,7 +19,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import configuration.LocalConf;
-import translations.TextFileParser;
 import utilities.Utilities;
 
 public class WsTcgResults {
@@ -35,7 +34,7 @@ public class WsTcgResults {
 		LocalConf conf = LocalConf.getInstance();
 		Utilities.checkFolderExistence(conf.wsTcgResultsFolder);
 		File pairsFile = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\IdNamePairs.txt"); 
-		this.idNamePairs = TextFileParser.getHashMapFromFile(pairsFile);
+		//this.idNamePairs = TextFileParser.getHashMapFromFile(pairsFile);
 		
 	}
 	

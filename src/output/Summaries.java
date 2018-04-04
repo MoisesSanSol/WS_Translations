@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import parser.HotcCleanFileParser;
 import translator.Translator;
@@ -26,15 +27,16 @@ public class Summaries {
 		Summaries summaries = new Summaries();
 		HotcCleanFileParser parser = new HotcCleanFileParser();
 		
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "psycho-pass_extra_pack.txt");
+		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "is_the_order_a_rabbit_booster_pack.txt");
 		File result = new File(summaries.conf.getTranslationPairsFolderPath() + "currentlyWorkingOn.txt");
+		File result2 = new File(summaries.conf.getTranslationPairsFolderPath() + "currentProgress.txt");
 		
-		summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
+		//summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
-		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
+		summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_PendingSetTranslations(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), result);
 		//summaries.generateAbilityListFile_RedundantPatterns();
-		//summaries.generateTranslationProgress(parser.parseCards(file), result);
+		//summaries.generateTranslationProgress(parser.parseCards(file), result2);
 		
 		System.out.println("*** Finished ***");
 	}
@@ -193,7 +195,7 @@ public class Summaries {
 		Files.write(result.toPath(), content, StandardCharsets.UTF_8);
 	}
 
-	public void generateTranslationProgress(ArrayList<Card> cards, File file) throws Exception{
+	public void generateTranslationProgress(ArrayList<Card> cards, File file, boolean update) throws Exception{
 		
 		System.out.println("*** Generate Translation Progress Txt for " + file.getName() + " ***");
 		
@@ -221,10 +223,21 @@ public class Summaries {
 			}
 			content.add(card.id + "\t" + cardTranslatedAbilities + "/" + card.habs.size());
 		}
+
+
 		
-		content.add("");
-		content.add("Total cards: " + translatedCards + "/" + filteredCards.size());
-		content.add("Total abilities: " + translatedAbilities + "/" + abilityCount);
+		if(update){
+			
+			ArrayList<String> oldContent = new ArrayList<>(Files.readAllLines(file.toPath(), StandardCharsets.UTF_8));
+			
+			content.add(0, "");
+			content.add(0, "Past " + oldContent.get(1));
+			content.add(0, "Past " + oldContent.get(0));
+		}
+		
+		content.add(0, "");
+		content.add(0, "Total abilities: " + translatedAbilities + "/" + abilityCount);
+		content.add(0, "Total cards: " + translatedCards + "/" + filteredCards.size());
 		
 		Files.write(file.toPath(), content, StandardCharsets.UTF_8);
 	}

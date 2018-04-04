@@ -34,6 +34,8 @@ public class LocalConf {
 	public String hotcTranslationFileBaseUrl = this.hotcBaseUrl + "translations/";
 	
 	public String littleAkibaSetBaseUrl = "http://littleakiba.com/tcg/weiss-schwarz/browse.php?series_id=";
+	public String yuyuteiBaseUrl = "http://yuyu-tei.jp/";
+	public String yuyuteiSetBaseUrl = yuyuteiBaseUrl + "game_ws/sell/sell_price.php?ver=";
 	
 	// Items
 	public int politeness = 5000;
