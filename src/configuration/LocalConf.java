@@ -27,6 +27,8 @@ public class LocalConf {
 	
 	public File translationPairsFullListFile;
 	
+	public File staticWebPageTemplateFile;
+	
 	// Static Web URLs
 	public String hotcBaseUrl = "http://www.heartofthecards.com/";
 	public String hotcTranslationMainUrl = this.hotcBaseUrl + "code/cardlist.html?pagetype=ws";
@@ -89,6 +91,8 @@ public class LocalConf {
 			this.hotcRawFilesReferenceFile = new File(hotcRawFilesReferenceFilePath);
 			String translationPairsFullListFilePath = folderConf.getProperty("translationPairsFullListFile");
 			this.translationPairsFullListFile = new File(translationPairsFullListFilePath);
+			String staticWebPageTemplateFilePath = folderConf.getProperty("staticWebPageTemplateFile");
+			this.staticWebPageTemplateFile = new File(staticWebPageTemplateFilePath);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();

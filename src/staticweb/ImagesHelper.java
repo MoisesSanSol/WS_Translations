@@ -26,9 +26,7 @@ public class ImagesHelper {
 		
 		// For testing and individual execution purposes.
 		ImagesHelper imagesHelper = new ImagesHelper();
-		imagesHelper.mergeDownloadAndCotdImages_LittleAkiba("PP_SE14");
-		//imagesHelper.renameCotdImagesToWebFormat("SHS_W56");
-		
+
 		System.out.println("*** Finished ***");
 	}
 	
@@ -57,7 +55,7 @@ public class ImagesHelper {
 			String actualImageName = imageName.replaceFirst(".+?_", setActualId + "-"); 
 			File targetImageFile = new File(mergedFolderPath + actualImageName + ".png");
 			if(!cotdImages.contains(imageName)){
-				this.createWebFormatImage(laImageFile, targetImageFile);
+				this.createWebFormatImage(laImageFile);
 			}
 			else{
 				File cotdImageFile = new File(cotdFolderPath + imageName + ".png");
@@ -89,7 +87,7 @@ public class ImagesHelper {
 		
 	}
 	
-	public void createWebFormatImage(File originFile, File targetFile) throws Exception{
+	public static void createWebFormatImage(File originFile) throws Exception{
 		BufferedImage originBi = ImageIO.read(originFile);
 		int width = 350;
 		int height = 489;
@@ -98,6 +96,7 @@ public class ImagesHelper {
         Graphics2D g2d = targetBi.createGraphics();
         g2d.drawImage(tmp, 0, 0, null);
         g2d.dispose();
+        File targetFile = new File(originFile.getAbsolutePath().replace(".jpg", ".png"));
 		ImageIO.write(targetBi, "png", targetFile);
 	}
 	
@@ -108,6 +107,7 @@ public class ImagesHelper {
 	    
 	    if(height > width){
 	    
+	    	System.out.println("* Rotating Image: " + targetFile.getName());
 		    BufferedImage targetBi = new BufferedImage(height, width, originBi.getType());
 		 
 		    for(int i = 0; i < width; i++){
