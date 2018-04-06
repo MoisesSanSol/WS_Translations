@@ -38,8 +38,8 @@ public class Dispatcher {
 		//dispatcher.createSetTranslationRelatedFiles_Ongoing();
 		
 		/* Getting images for set web */
-		dispatcher.checkWebFolders();
-		dispatcher.createWebImages_NoCotd();
+		//dispatcher.checkWebFolders();
+		//dispatcher.createWebImages();
 		
 		/* Creating web pages */
 		//dispatcher.createWebPages();
@@ -53,6 +53,7 @@ public class Dispatcher {
 	
 	public Dispatcher() throws Exception{
 		this.conf = LocalConf.getInstance();
+		
 	}
 	
 	public void createSetTranslationRelatedFiles_Init() throws Exception{
@@ -125,9 +126,9 @@ public class Dispatcher {
 		Utilities.checkFolderExistence(imagesFolder);
 	}
 	
-	public void createWebImages_NoCotd() throws Exception{
+	public void createWebImages() throws Exception{
 		
-		System.out.println("** Create Web Images (No Cotd)");
+		System.out.println("** Create Web Images");
 		
 		DownloadHelper downloadHelper = new DownloadHelper();
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
@@ -141,6 +142,8 @@ public class Dispatcher {
 		
 		downloadHelper.downloadImages_Yuyutei_SetGaps(this.setYytPageId, imagesFolderPath);
 		
+		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
+		staticWebHelper.isExtraBooster = HotcCleanFileParser.isExtraBooster(setCleanFile);
 		staticWebHelper.rotateClimax(this.getAllSetCards(), imagesFolderPath);
 	}
 	

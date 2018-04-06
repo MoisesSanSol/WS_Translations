@@ -73,4 +73,16 @@ public class HotcCleanFileParser {
 		return cards;
 	}
 	
+	public static boolean isExtraBooster(File hotcCleanFile) throws Exception{
+		
+		boolean isExtraBooster = false;
+		
+		List<String> content = new ArrayList<>(Files.readAllLines(hotcCleanFile.toPath(), StandardCharsets.UTF_8));
+		String infoLine = content.get(0);
+		
+		isExtraBooster = infoLine.contains("Extra Pack"); 
+		
+		return isExtraBooster;
+	}
+	
 }
