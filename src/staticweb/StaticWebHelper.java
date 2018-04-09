@@ -10,6 +10,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import output.Summaries;
 import parser.HotcCleanFileParser;
 import cards.Card;
@@ -556,9 +561,12 @@ public class StaticWebHelper {
 		
 		System.out.println("* Create Empty Index for Web: " + this.setName);
 		
-		String productImagesPath = this.conf.getGeneralResultsFolderPath() + "//ProductImages//";
+		String productImagesPath = this.conf.getStaticWebFolderPath() + "//ProductImages//";
 		String imageReferencePath = productImagesPath + "imageReferences.txt";
-		String webIndexPath = this.conf.getGeneralResultsFolderPath() + "fullIndex.html";
+		String webIndexPath = this.conf.getStaticWebFolderPath() + "index.html";
+		
+		File completedIndexFile = new File(this.conf.getStaticWebFolderPath() + "completedIndex.html");
+		Document doc = Jsoup.parse(completedIndexFile, "UTF-8");
 		
 		ArrayList<String> imageReferences = new ArrayList<>(Files.readAllLines(new File(imageReferencePath).toPath(), StandardCharsets.UTF_8));
 		
@@ -566,22 +574,29 @@ public class StaticWebHelper {
 		
 		newFileContent.add("<meta charset=\"utf-8\">");
 		newFileContent.add("<head>");
-		newFileContent.add("<title></title>");
+		newFileContent.add("<title>Traducciones por Producto</title>");
 		newFileContent.add("</head>");
 		newFileContent.add("<body>");
+		newFileContent.add("<a href='./completedIndex.html'><b>");
+		newFileContent.add("Lista de Traducciones Completadas");
+		newFileContent.add("</b></a><br><br>");
+		newFileContent.add("<div style='font-size:150%'><b>");
+		newFileContent.add("Traducciones por Producto: ");
+		newFileContent.add("</b></div><br>");
 
 		for(String reference : imageReferences){
 			if(!reference.isEmpty()){
 				String[] references = reference.split("\t");
-				
-				String what = references[0];
-				String date = references[1].replaceAll("\\(.+", "");
-				DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-				Date when = formatter.parse(date);
-				Date today = new Date();
-				if(when.before(today)){
-					newFileContent.add("<div style='display:inline-block;'><div style='display:table;width:200px;height:200px;border:thin black solid;text-align:center;'><div style='display:table-cell;vertical-align:middle;'><img style='display:inline-block;max-height:190px;max-width:190px;vertical-align:middle;' src='./ProductImages/" + references[2] + "'></img></div></div></div>");
-					
+				if(references[3].equals("Useful")) {
+					String cssQuery = "[src*=" + references[2] + "]";
+					Elements imgs = doc.select(cssQuery);
+					if(imgs.size() > 0) {
+						String href = imgs.first().parent().parent().attr("href");
+						newFileContent.add("<a href='" + href + "'><div style='display:inline-block;'><div style='display:table;width:200px;height:200px;border:thin black solid;text-align:center;'><div style='display:table-cell;vertical-align:middle;'><img style='display:inline-block;max-height:190px;max-width:190px;vertical-align:middle;' src='./ProductImages/" + references[2] + "'></img></div></div></div></a>");
+					}
+					else {
+						newFileContent.add("<div style='display:inline-block;'><div style='display:table;width:200px;height:200px;border:thin black solid;text-align:center;'><div style='display:table-cell;vertical-align:middle;'><img style='display:inline-block;max-height:190px;max-width:190px;vertical-align:middle;filter:grayscale(100%);' src='./ProductImages/" + references[2] + "'></img></div></div></div>");
+					}
 				}
 			}
 		}

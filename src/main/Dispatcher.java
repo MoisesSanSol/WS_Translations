@@ -18,22 +18,22 @@ public class Dispatcher {
 
 	private LocalConf conf;
 	
-	String setName = "CANAAN";
-	String setFileName = "canaan_extra_pack";
-	String setTdFileName = "";
-	String setId = "CN/SE02";
-	String setFileId = "CN_SE02";
-	String setLaPageId = "72";
-	String setYytPageId = "ca";
-	String promoFileName = "schwarz_promos";
-	//String promoFileName = "weib_promos";
+	String setName = "KONOSUBA -God’s blessing on this wonderful world!";
+	String setFileName = "konosuba_booster_pack";
+	String setTdFileName = "konosuba_trial_deck";
+	String setId = "KS/W49";
+	String setFileId = "KS_W49";
+	String setLaPageId = "328";
+	String setYytPageId = "konosuba";
+	//String promoFileName = "schwarz_promos";
+	String promoFileName = "weib_promos";
 	
 	int regularCardCount = 0;
 	int extendedCardCount = 0;
 	int promoCardCount = 0;
 	int tdCardCount = 0;
 	
-	boolean isLegacy = true;
+	boolean isLegacy = false;
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -50,7 +50,7 @@ public class Dispatcher {
 		//dispatcher.createWebImages();
 		
 		/* Creating web pages */
-		dispatcher.createWebPages();
+		//dispatcher.createWebPages();
 		
 		/* Other shit that will end in other place */
 		//dispatcher.createTranslationReferenceFile_AllSets();

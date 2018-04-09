@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.commons.io.FilenameUtils;
 import org.jsoup.Connection.Response;
@@ -313,13 +316,13 @@ public class DownloadHelper {
 		
 		String setUrl = "https://ws-tcg.com/products/page/";
 		
-		String imageDirPath = this.conf.getGeneralResultsFolderPath() + "wstcg\\";
+		String imageDirPath = this.conf.getStaticWebFolderPath() + "ProductImages\\";
 		File imageDir = new File(imageDirPath);
 		Utilities.checkFolderExistence(imageDir);
 		
 		ArrayList<String> imgReferences = new ArrayList<String>();
 		
-		for(int i = 1; i <= 1; i++){
+		for(int i = 2; i <= 27; i++){
 		
 			System.out.println("** Parsing Page: " + setUrl + i);
 			
@@ -333,25 +336,42 @@ public class DownloadHelper {
 				
 				Element set = imageContainer.select("h4").first();
 				referencia = referencia + set.text() + "\t";
-				Element relase = imageContainer.select("p.release").first();
 				
-				referencia = referencia + relase.text() + "\t";
+				Element releaseDate = imageContainer.select("p.release").first();
+				referencia = referencia + releaseDate.text() + "\t";
+
 				Element image = imageContainer.select("img").first();
 				String imgUrl = image.attr("src");
 				String imgName = FilenameUtils.getName(imgUrl);
 				referencia = referencia + imgName;
 				
+				String date = releaseDate.text().replaceAll("\\(.+", "");
+				DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+				Date when = formatter.parse(date);
+				Date today = new Date();
+				if(set.text().contains("トライアルデッキ") || set.text().contains("ブースターパック") || set.text().contains("エクストラブースター") || set.text().contains("エクストラパック")) {
+					if(when.before(today)){
+						//System.out.println("* Something: " + releaseDate.text());
+						File imageFile = new File(imageDirPath + imgName);
+						if(!imageFile.exists()) {
+							Thread.sleep(this.politeness);
+							DownloadHelper.downloadFile(imgUrl, imageFile);
+						}
+						referencia = referencia + "\tUseful";
+					}
+					else {
+						referencia = referencia + "\tTooNew";
+					}
+				}
+				else {
+					referencia = referencia + "\tOtherShit";
+				}
 				imgReferences.add(referencia);
-				
-				System.out.println("* Something: " + relase.text());
-				
-				/*File imageFile = new File(imageDirPath + imgName);
-				Thread.sleep(this.politeness);
-				DownloadHelper.downloadFile(imgUrl, imageFile);*/
 			}
+			Thread.sleep(this.politeness);
 		}
 		
-		String imageRefPath = imageDirPath + "reference.txt";
+		String imageRefPath = imageDirPath + "imageReferences.txt";
 		File imageRef = new File(imageRefPath);
 		Files.write(imageRef.toPath(), imgReferences, StandardCharsets.UTF_8);
 	}
