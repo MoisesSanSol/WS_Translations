@@ -48,7 +48,7 @@ public class MainSetWebCreation {
 
 		/* Create promo cards pages */
 		File file = new File(LocalConf.getInstance().gethotcCleanFilesFolderPath() + promoFileName +".txt");
-		staticWebHelper.generateCardPages_ArbitraryCards(CardListUtilities.filterCards_FindSetPrs(HotcCleanFileParser.parseCards(file), setId));
+		staticWebHelper.generateCardPages_ArbitraryCards(CardListUtilities.filterCards_FindSetPrs_All(HotcCleanFileParser.parseCards(file), setId));
 		
 		
 		System.out.println("*** Finished ***");

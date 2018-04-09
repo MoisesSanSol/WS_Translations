@@ -42,12 +42,54 @@ public class CardListUtilities {
 		return cards;
 	}
 	
-	public static ArrayList<Card> filterCards_FindSetPrs(ArrayList<Card> allCards, String setId){
+	public static ArrayList<Card> filterInParallelCards(ArrayList<Card> allCards){
+		ArrayList<Card> cards = new ArrayList<Card>();
+		
+		for(Card card : allCards){
+			if(card.id != null){
+				if(!card.id.matches(".+\\da?")){
+					cards.add(card);
+				}
+			}
+		}
+		
+		return cards;
+	}
+	
+	public static ArrayList<Card> filterCards_FindSetPrs_All(ArrayList<Card> allCards, String setId){
 		ArrayList<Card> cards = new ArrayList<Card>();
 		
 		for(Card card : allCards){
 			if(card.id != null){
 				if(card.id.startsWith(setId)){
+					cards.add(card);
+				}
+			}
+		}
+		
+		return cards;
+	}
+	
+	public static ArrayList<Card> filterCards_FindSetPrs_Pr(ArrayList<Card> allCards, String setId){
+		ArrayList<Card> cards = new ArrayList<Card>();
+		
+		for(Card card : allCards){
+			if(card.id != null){
+				if(card.id.startsWith(setId) && card.id.contains("P")){
+					cards.add(card);
+				}
+			}
+		}
+		
+		return cards;
+	}
+	
+	public static ArrayList<Card> filterCards_FindSetPrs_Extended(ArrayList<Card> allCards, String setId){
+		ArrayList<Card> cards = new ArrayList<Card>();
+		
+		for(Card card : allCards){
+			if(card.id != null){
+				if(card.id.startsWith(setId) && !card.id.contains("P")){
 					cards.add(card);
 				}
 			}

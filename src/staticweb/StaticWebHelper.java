@@ -3,7 +3,10 @@ package staticweb;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class StaticWebHelper {
 	
 	public boolean isExtraBooster;
 	public boolean isFoilRun;
+	public boolean isLegacyEb;
 	public boolean isLegacyTd;
 	
 	public int regularCardCount;
@@ -42,6 +46,7 @@ public class StaticWebHelper {
 		
 		// For testing and individual execution purposes.
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
+		staticWebHelper.createWebIndex_Main();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -94,6 +99,12 @@ public class StaticWebHelper {
 		for(Card card : cleanCards){
 			this.generateCardPage(card, templateContent);
 		}
+		if(this.isExtraBooster){
+			this.isFoilRun = true;
+			for(Card card : cleanCards){
+				this.generateCardPage(card, templateContent);
+			}
+		}
 		
 	}
 	
@@ -107,7 +118,13 @@ public class StaticWebHelper {
 				File imageFile = new File(folderPath + card.fileId + ".png");
 				imagesHelper.rotateWebFormatImage(imageFile);
 				if(this.isExtraBooster){
-					File imageFoilFile = new File(folderPath + card.fileId + "-S.png");
+					File imageFoilFile;
+					if(this.isLegacyEb){
+						imageFoilFile = new File(folderPath + card.fileId + "S-S.png");
+					}
+					else{
+						imageFoilFile = new File(folderPath + card.fileId + "-S.png");
+					}
 					imagesHelper.rotateWebFormatImage(imageFoilFile);
 				}
 			}
@@ -167,14 +184,25 @@ public class StaticWebHelper {
 		template.set(template.indexOf("[Set Name]"), this.setName);
 		
 		String imageLine = "";
-		if(this.isExtraBooster){
+		if(this.isExtraBooster && !this.isFoilRun){
 			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
-			imageLine = imageLine + "<br><a href='./" + card.fileId + "-S.html'>Versión Foil</a>";
+			if(this.isLegacyEb){
+				imageLine = imageLine + "<br><a href='./" + card.fileId + "S-S.html'>Versión Foil</a>";
+			}
+			else{
+				imageLine = imageLine + "<br><a href='./" + card.fileId + "-S.html'>Versión Foil</a>";
+			}
 		}
-		else if(this.isFoilRun){
-			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + "-S.png'></img>";
+		else if(this.isExtraBooster && this.isFoilRun){
+			if(this.isLegacyEb){
+				imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + "S-S.png'></img>";
+				filename = filename + "S-S";
+			}
+			else{
+				imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + "-S.png'></img>";
+				filename = filename + "-S";
+			}
 			imageLine = imageLine + "<br><a href='./" + card.fileId + ".html'>Versión Normal</a>";
-			filename = filename + "-S";
 		}
 		else{
 			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
@@ -276,26 +304,31 @@ public class StaticWebHelper {
 		
 		for(Card card : cards){
 			for(int i = 0; i < card.habs.size(); i++){
-				String ability = card.habs.get(i);
-				ability = Utilities.escapeHtml(ability);
+				String baseAbility = card.habs.get(i);
+				String ability = Utilities.escapeHtml(baseAbility);
 				while(ability.contains("@@")){
-					String[] splitting =  ability.split("@@");
-					String refName = splitting[1];
-					String refId = this.pairs.get(refName);
+					String refName = ability.split("@@")[1];
+					String baseName = baseAbility.split("@@")[1];
+					String refId = this.pairs.get(baseName);
+					if(refId == null){
+						System.out.println("! RefName missing: " + refName);
+						System.out.println("! in ability: " + ability);
+						throw (new Exception("prepareCardsForWeb Exception"));
+					}
 					String urlRefId = refId.replace("/", "_");
 					String referencia = "<a href='./" + urlRefId + ".html'>" + refName + "</a>";
 					ability = ability.replace("@@" + refName + "@@", referencia);
-					if(this.referencias.containsKey(refName)){
-						ArrayList<String> origenes = referencias.get(refName);
+					if(this.referencias.containsKey(baseName)){
+						ArrayList<String> origenes = referencias.get(baseName);
 						if(!origenes.contains(card.name)){
 							origenes.add(card.name);
-							this.referencias.put(refName, origenes);
+							this.referencias.put(baseName, origenes);
 						}
 					}
 					else{
 						ArrayList<String> origenes = new ArrayList<String>();
 						origenes.add(card.name);
-						this.referencias.put(refName, origenes);
+						this.referencias.put(baseName, origenes);
 					}
 				}
 				ability = ability.replace("##", "");
@@ -362,14 +395,12 @@ public class StaticWebHelper {
 			newFileContent.add("<tr>");
 			
 			for(int j = 1; j <= 10; j++){
-				
+				newFileContent.add("<td width=10%  align=center>");
 				if(count <= this.regularCardCount){
 					String paddedCount = String.format(padding, count);
-					
-					newFileContent.add("<td width=10%  align=center>");
 					newFileContent.add(this.getCardIndexLine(paddedCount));
-					newFileContent.add("</td>");
 				}
+				newFileContent.add("</td>");
 				count++;
 			}
 			
@@ -393,7 +424,6 @@ public class StaticWebHelper {
 	
 	public ArrayList<String> createIndex_PromotionalLines() throws Exception{
 		
-		String setFileId = this.setId.replace("/", "_") + "-";;
 		String padding = "%03d";
 		
 		if(this.isExtraBooster){
@@ -415,14 +445,12 @@ public class StaticWebHelper {
 			promoLines.add("<tr>");
 			
 			for(int j = 1; j <= 10; j++){
-				
+				promoLines.add("<td width=10%  align=center>");				
 				if(count <= this.regularCardCount + this.extendedCardCount){
 					String paddedCount = String.format(padding, count);
-					
-					promoLines.add("<td width=10%  align=center>");
 					promoLines.add(this.getCardIndexLine(paddedCount));
-					promoLines.add("</td>");
 				}
+				promoLines.add("</td>");
 				count++;
 			}
 			
@@ -437,14 +465,12 @@ public class StaticWebHelper {
 			promoLines.add("<tr>");
 			
 			for(int j = 1; j <= 10; j++){
-				
+				promoLines.add("<td width=10%  align=center>");				
 				if(count <= this.promoCardCount){
 					String paddedCount = String.format("%02d", count);
-					
-					promoLines.add("<td width=10%  align=center>");
 					promoLines.add(this.getCardIndexLine("P" + paddedCount));
-					promoLines.add("</td>");
 				}
+				promoLines.add("</td>");
 				count++;
 			}
 			
@@ -476,14 +502,12 @@ public class StaticWebHelper {
 			tdLines.add("<tr>");
 			
 			for(int j = 1; j <= 10; j++){
-				
+				tdLines.add("<td width=10%  align=center>");				
 				if(count <= this.tdCardCount){
 					String paddedCount = String.format("%02d", count);
-					
-					tdLines.add("<td width=10%  align=center>");
 					tdLines.add(this.getCardIndexLine("T" + paddedCount));
-					tdLines.add("</td>");
 				}
+				tdLines.add("</td>");
 				count++;
 			}
 			
@@ -526,5 +550,44 @@ public class StaticWebHelper {
 		}
 		
 		return line;
+	}
+	
+	public void createWebIndex_Main() throws Exception{
+		
+		System.out.println("* Create Empty Index for Web: " + this.setName);
+		
+		String productImagesPath = this.conf.getGeneralResultsFolderPath() + "//ProductImages//";
+		String imageReferencePath = productImagesPath + "imageReferences.txt";
+		String webIndexPath = this.conf.getGeneralResultsFolderPath() + "fullIndex.html";
+		
+		ArrayList<String> imageReferences = new ArrayList<>(Files.readAllLines(new File(imageReferencePath).toPath(), StandardCharsets.UTF_8));
+		
+		List<String> newFileContent = new ArrayList<>();
+		
+		newFileContent.add("<meta charset=\"utf-8\">");
+		newFileContent.add("<head>");
+		newFileContent.add("<title></title>");
+		newFileContent.add("</head>");
+		newFileContent.add("<body>");
+
+		for(String reference : imageReferences){
+			if(!reference.isEmpty()){
+				String[] references = reference.split("\t");
+				
+				String what = references[0];
+				String date = references[1].replaceAll("\\(.+", "");
+				DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+				Date when = formatter.parse(date);
+				Date today = new Date();
+				if(when.before(today)){
+					newFileContent.add("<div style='display:inline-block;'><div style='display:table;width:200px;height:200px;border:thin black solid;text-align:center;'><div style='display:table-cell;vertical-align:middle;'><img style='display:inline-block;max-height:190px;max-width:190px;vertical-align:middle;' src='./ProductImages/" + references[2] + "'></img></div></div></div>");
+					
+				}
+			}
+		}
+		
+		newFileContent.add("</body>");
+		
+		Files.write(new File(webIndexPath).toPath(), newFileContent, StandardCharsets.UTF_8);
 	}
 }

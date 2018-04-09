@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -17,15 +18,22 @@ public class Dispatcher {
 
 	private LocalConf conf;
 	
-	String setName = "Devil Survivor 2 Anime";
-	String setFileName = "devil_survivor_2_anime_extra_pack";
+	String setName = "CANAAN";
+	String setFileName = "canaan_extra_pack";
 	String setTdFileName = "";
-	String setId = "DS2/SE16";
-	String setFileId = "DS2_SE16";
-	String setLaPageId = "129";
-	String setYytPageId = "ds2ext";
+	String setId = "CN/SE02";
+	String setFileId = "CN_SE02";
+	String setLaPageId = "72";
+	String setYytPageId = "ca";
 	String promoFileName = "schwarz_promos";
 	//String promoFileName = "weib_promos";
+	
+	int regularCardCount = 0;
+	int extendedCardCount = 0;
+	int promoCardCount = 0;
+	int tdCardCount = 0;
+	
+	boolean isLegacy = true;
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -42,7 +50,7 @@ public class Dispatcher {
 		//dispatcher.createWebImages();
 		
 		/* Creating web pages */
-		//dispatcher.createWebPages();
+		dispatcher.createWebPages();
 		
 		/* Other shit that will end in other place */
 		//dispatcher.createTranslationReferenceFile_AllSets();
@@ -70,6 +78,7 @@ public class Dispatcher {
 		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
 		summaries.generateTranslationProgress(allCards, progressFile, false);
 		
+		Desktop.getDesktop().open(this.conf.generalResultsFolder);
 	}
 	
 	public void createSetTranslationRelatedFiles_Ongoing() throws Exception{
@@ -89,6 +98,7 @@ public class Dispatcher {
 		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
 		summaries.generateTranslationProgress(allCards, progressFile, true);
 		
+		Desktop.getDesktop().open(this.conf.generalResultsFolder);
 	}
 	
 	public void createTranslationReferenceFile_AllSets() throws Exception{
@@ -136,14 +146,17 @@ public class Dispatcher {
 		String imagesFolderPath = this.conf.getGeneralResultsFolderPath() + this.setFileId + "\\images\\";
 		
 		downloadHelper.downloadImages_LittleAkiba_SetGaps(this.setLaPageId, imagesFolderPath);
+		if(this.isLegacy){
+			downloadHelper.downloadImages_LittleAkiba_LegacyPromos(this.setLaPageId, imagesFolderPath);	
+		}
 		
 		System.out.println("* Check missing images and proceed to yyt to fill gaps. Press enter to continue:");
 		System.in.read();
 		
 		downloadHelper.downloadImages_Yuyutei_SetGaps(this.setYytPageId, imagesFolderPath);
 		
-		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
-		staticWebHelper.isExtraBooster = HotcCleanFileParser.isExtraBooster(setCleanFile);
+		staticWebHelper.isExtraBooster = this.setFileName.contains("extra_pack");
+		staticWebHelper.isLegacyEb = this.isLegacy;
 		staticWebHelper.rotateClimax(this.getAllSetCards(), imagesFolderPath);
 	}
 	
@@ -155,31 +168,88 @@ public class Dispatcher {
 		
 		staticWebHelper.setId = this.setId;
 		staticWebHelper.setName = this.setName;
-		staticWebHelper.isLegacyTd = true;
+		staticWebHelper.isLegacyTd = this.isLegacy;
+		staticWebHelper.isLegacyEb = this.isLegacy;
 		
-		staticWebHelper.regularCardCount = 100;
-		staticWebHelper.extendedCardCount = 5;
-		staticWebHelper.promoCardCount = 17;
-		staticWebHelper.tdCardCount = 21;
+		if(this.setFileName.contains("extra_pack")){
+			ArrayList<Card> uniqueCards = this.getEbSetUniqueCards();
+			staticWebHelper.generateCardPages_ArbitraryCards(uniqueCards);
+			staticWebHelper.isExtraBooster = true;
+			staticWebHelper.isLegacyEb = this.isLegacy;
+			ArrayList<Card> baseCards = this.getEbSetBaseCards();
+			staticWebHelper.generateCardPages_ArbitraryCards(baseCards);
+		}
+		else{
+			ArrayList<Card> allCards = this.getAllSetCards();
+			staticWebHelper.generateCardPages_ArbitraryCards(allCards);
+		}
 		
-		ArrayList<Card> allCards = this.getAllSetCards();
+		staticWebHelper.regularCardCount = this.regularCardCount;
+		staticWebHelper.extendedCardCount = this.extendedCardCount;
+		staticWebHelper.promoCardCount = this.promoCardCount;
+		staticWebHelper.tdCardCount = this.tdCardCount;
 		
-		staticWebHelper.generateCardPages_ArbitraryCards(allCards);
 		staticWebHelper.createIndex_Main();
-		
 	}
 	
 	public ArrayList<Card> getAllSetCards() throws Exception{
 		
 		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
 		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
+		ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(allCards);
+		this.regularCardCount = baseCards.size();
+		
 		if(!this.setTdFileName.equals("")){
 			File setCleanTdFile = new File(conf.gethotcCleanFilesFolderPath() + this.setTdFileName + ".txt");
-			allCards.addAll(HotcCleanFileParser.parseCards(setCleanTdFile));
+			ArrayList<Card> tdCards = HotcCleanFileParser.parseCards(setCleanTdFile);
+			ArrayList<Card> baseTdCards = CardListUtilities.filterOutParallelCards(tdCards);
+			this.tdCardCount = baseTdCards.size();
+			allCards.addAll(tdCards);
 		}
+		
 		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
-		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_All(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
+		this.promoCardCount = basePrCards.size();
 		allCards.addAll(promoCards);
+		
 		return allCards;
+	}
+	
+	public ArrayList<Card> getEbSetBaseCards() throws Exception{
+		
+		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
+		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
+		ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(allCards);
+		this.regularCardCount = baseCards.size();
+		
+		return baseCards;
+	}
+	
+	public ArrayList<Card> getEbSetUniqueCards() throws Exception{
+		
+		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
+		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
+		ArrayList<Card> uniqueCards = CardListUtilities.filterInParallelCards(allCards);
+		
+		if(!this.setTdFileName.equals("")){
+			File setCleanTdFile = new File(conf.gethotcCleanFilesFolderPath() + this.setTdFileName + ".txt");
+			ArrayList<Card> tdCards = HotcCleanFileParser.parseCards(setCleanTdFile);
+			ArrayList<Card> baseTdCards = CardListUtilities.filterOutParallelCards(tdCards);
+			this.tdCardCount = baseTdCards.size();
+			uniqueCards.addAll(tdCards);
+		}
+		
+		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
+		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
+		this.promoCardCount = basePrCards.size();
+		uniqueCards.addAll(promoCards);
+		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> baseExtendedCards = CardListUtilities.filterOutParallelCards(extendedCards);
+		this.extendedCardCount = baseExtendedCards.size();
+		uniqueCards.addAll(baseExtendedCards);
+		
+		return uniqueCards;
 	}
 }

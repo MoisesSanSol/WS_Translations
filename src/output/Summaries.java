@@ -218,10 +218,12 @@ public class Summaries {
 					translatedAbilities++;
 				}
 			}
+			String check = "X";
 			if(cardTranslatedAbilities == card.habs.size()){
+				check = "O";
 				translatedCards++;
 			}
-			content.add(card.id + "\t" + cardTranslatedAbilities + "/" + card.habs.size());
+			content.add(card.id + "\t" + cardTranslatedAbilities + "/" + card.habs.size() + "\t" + check);
 		}
 
 

@@ -2,7 +2,11 @@ package download;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
 
+import org.apache.commons.io.FilenameUtils;
 import org.jsoup.Connection.Response;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,9 +28,7 @@ public class DownloadHelper {
 		// For testing and individual execution purposes.
 		DownloadHelper downloadHelper = new DownloadHelper();
 		
-		//downloadHelper.downloadImages_Yuyutei_FullSet("fsubw2.0");
-		//downloadHelper.downloadImages_LittleAkiba_Test("123");
-		//downloadHelper.downloadImages_Yuyutei_SetGaps("ppext");
+		downloadHelper.downloadImages_WsTcg_Products();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -133,64 +135,61 @@ public class DownloadHelper {
 		}
 	}
 	
-	public void downloadImages_LittleAkiba_Test(String laSetId) throws Exception{
+	public void downloadImages_LittleAkiba_LegacyPromos(String laSetId, String folderPath) throws Exception{
 		
 		System.out.println("** Download All Set Images from Little Akiba");
 		System.out.println("** Set Id: " + laSetId);
 		
 		String setUrl = this.conf.littleAkibaSetBaseUrl + laSetId;
 		
-		File imageDir = new File(this.conf.getGeneralResultsFolderPath() + laSetId);
-		if(!imageDir.exists()){imageDir.mkdirs();}
-		
 		Document doc = Jsoup.connect(setUrl).maxBodySize(0).get();
 		//System.out.println("** Doc: " + doc.html());
 		
 		Elements bloques = doc.select("h6");
-				
-		boolean ebFoils = false;
 		
 		for(Element bloque : bloques){
 			
 			System.out.println("** Bloque: " + bloque.text());
-			if(bloque.text().contains("Foil/Parallel")){
-				ebFoils = true;
-			}
-			else{
-				ebFoils = false;
-			}
+			if(bloque.text().contains("Specials/Promo")){
+				Element ul = bloque.nextElementSibling();
 			
-			Element ul = bloque.nextElementSibling();
-			
-			while(ul != null && ul.tagName().equals("ul")){
-				
-				Elements cards = ul.select("a");
-				
-				for(Element card : cards){
+				while(ul != null && ul.tagName().equals("ul")){
 					
-					System.out.println("** Card Href: " + card.attr("href"));
+					Elements cards = ul.select("a");
 					
-					Document cardDoc = Jsoup.connect(card.attr("href")).maxBodySize(0).validateTLSCertificates(false).get();
+					for(Element card : cards){
+						
+						System.out.println("** Card Href: " + card.attr("href"));
+						
+						Document cardDoc = Jsoup.connect(card.attr("href")).maxBodySize(0).validateTLSCertificates(false).get();
+						
+						Element imageLarge = cardDoc.select("a.fullview").first();
+						String imageLargeUrl = imageLarge.attr("href");
+						
+						String cardFullId = cardDoc.select("div.details").first().select("small").first().text();
+	
+						String cardId = cardFullId.split(" ")[0].replace("/", "_");
+						
+						String[] cardIdParts = cardFullId.split(" ");
+						if(cardIdParts[1].equals("SP")){cardId = cardId + "SP";}
+						
+						File laImageFile = new File(folderPath + cardId + ".jpg");
+						
+						File currentImageFile = new File(folderPath + cardId + ".png");
+						if(currentImageFile.exists()){
+							System.out.println("Image already exists: " + cardId);
+						}
+						else{
+							File imageFile = new File(folderPath + cardId + ".jpg");
+							Thread.sleep(this.politeness);
+							DownloadHelper.downloadFile(imageLargeUrl, laImageFile);	
+							ImagesHelper.createWebFormatImage(imageFile);
+							imageFile.delete();
+						}
+					}
 					
-					Element imageLarge = cardDoc.select("a.fullview").first();
-					String imageLargeUrl = imageLarge.attr("href");
-					
-					String cardFullId = cardDoc.select("div.details").first().select("small").first().text();
-
-					String[] cardIdParts = cardFullId.split(" ");
-					
-					String cardId = cardIdParts[0].replace("-", "_");
-					
-					if(ebFoils){cardId = cardId + "-S";}
-					if(cardIdParts[1].equals("SP")){cardId = cardId + "SP";}
-					
-					File imageFile = new File(this.conf.getGeneralResultsFolderPath() + laSetId + "//" + cardId + ".jpg");
-					
-					Thread.sleep(this.politeness);
-					DownloadHelper.downloadFile(imageLargeUrl, imageFile);
+					ul = ul.nextElementSibling();
 				}
-				
-				ul = ul.nextElementSibling();
 			}
 		}
 	}
@@ -306,5 +305,54 @@ public class DownloadHelper {
 				DownloadHelper.downloadFile(imgUrl, imageFile);
 			}
 		}
+	}
+	
+	public void downloadImages_WsTcg_Products() throws Exception{
+		
+		System.out.println("** Download ws-tcg Product Images");
+		
+		String setUrl = "https://ws-tcg.com/products/page/";
+		
+		String imageDirPath = this.conf.getGeneralResultsFolderPath() + "wstcg\\";
+		File imageDir = new File(imageDirPath);
+		Utilities.checkFolderExistence(imageDir);
+		
+		ArrayList<String> imgReferences = new ArrayList<String>();
+		
+		for(int i = 1; i <= 1; i++){
+		
+			System.out.println("** Parsing Page: " + setUrl + i);
+			
+			Document doc = Jsoup.connect(setUrl + i).maxBodySize(0).get();
+			
+			Elements imageContainers = doc.select("ul.product-list > li");
+	
+			for(Element imageContainer : imageContainers){
+				
+				String referencia = "";
+				
+				Element set = imageContainer.select("h4").first();
+				referencia = referencia + set.text() + "\t";
+				Element relase = imageContainer.select("p.release").first();
+				
+				referencia = referencia + relase.text() + "\t";
+				Element image = imageContainer.select("img").first();
+				String imgUrl = image.attr("src");
+				String imgName = FilenameUtils.getName(imgUrl);
+				referencia = referencia + imgName;
+				
+				imgReferences.add(referencia);
+				
+				System.out.println("* Something: " + relase.text());
+				
+				/*File imageFile = new File(imageDirPath + imgName);
+				Thread.sleep(this.politeness);
+				DownloadHelper.downloadFile(imgUrl, imageFile);*/
+			}
+		}
+		
+		String imageRefPath = imageDirPath + "reference.txt";
+		File imageRef = new File(imageRefPath);
+		Files.write(imageRef.toPath(), imgReferences, StandardCharsets.UTF_8);
 	}
 }
