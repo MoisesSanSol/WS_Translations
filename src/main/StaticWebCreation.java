@@ -14,7 +14,7 @@ import utilities.Utilities;
 import configuration.LocalConf;
 import download.DownloadHelper;
 
-public class Dispatcher {
+public class StaticWebCreation {
 
 	private LocalConf conf;
 	
@@ -27,23 +27,23 @@ public class Dispatcher {
 	String setYytPageId = "konosuba";
 	//String promoFileName = "schwarz_promos";
 	String promoFileName = "weib_promos";
+
+	boolean isLegacy = false;
 	
 	int regularCardCount = 0;
 	int extendedCardCount = 0;
 	int promoCardCount = 0;
 	int tdCardCount = 0;
 	
-	boolean isLegacy = false;
-	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
 		
 		// For testing and individual execution purposes.
-		Dispatcher dispatcher = new Dispatcher();
+		StaticWebCreation dispatcher = new StaticWebCreation();
 		
 		/* Creating translations for set */
 		//dispatcher.createSetTranslationRelatedFiles_Init();
-		//dispatcher.createSetTranslationRelatedFiles_Ongoing();
+		dispatcher.createSetTranslationRelatedFiles_Ongoing();
 		
 		/* Getting images for set web */
 		//dispatcher.checkWebFolders();
@@ -59,7 +59,7 @@ public class Dispatcher {
 		System.out.println("*** Finished ***");
 	}
 	
-	public Dispatcher() throws Exception{
+	public StaticWebCreation() throws Exception{
 		this.conf = LocalConf.getInstance();
 		
 	}
@@ -128,9 +128,9 @@ public class Dispatcher {
 	}
 	
 	public void checkWebFolders() throws Exception{
-		File baseFolder = new File(this.conf.getGeneralResultsFolderPath() + this.setFileId);
-		File cardsFolder = new File(this.conf.getGeneralResultsFolderPath() + this.setFileId + "\\cards");
-		File imagesFolder = new File(this.conf.getGeneralResultsFolderPath() + this.setFileId + "\\images");
+		File baseFolder = new File(this.conf.getStaticWebFolderPath() + this.setFileId);
+		File cardsFolder = new File(this.conf.getStaticWebFolderPath() + this.setFileId + "\\cards");
+		File imagesFolder = new File(this.conf.getStaticWebFolderPath() + this.setFileId + "\\images");
 		Utilities.checkFolderExistence(baseFolder);
 		Utilities.checkFolderExistence(cardsFolder);
 		Utilities.checkFolderExistence(imagesFolder);
@@ -143,7 +143,7 @@ public class Dispatcher {
 		DownloadHelper downloadHelper = new DownloadHelper();
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
 		
-		String imagesFolderPath = this.conf.getGeneralResultsFolderPath() + this.setFileId + "\\images\\";
+		String imagesFolderPath = this.conf.getStaticWebFolderPath() + this.setFileId + "\\images\\";
 		
 		downloadHelper.downloadImages_LittleAkiba_SetGaps(this.setLaPageId, imagesFolderPath);
 		if(this.isLegacy){

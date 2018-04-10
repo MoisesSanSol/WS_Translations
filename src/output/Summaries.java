@@ -56,7 +56,7 @@ public class Summaries {
 	
 	public void generateAbilityListFile_Ids(ArrayList<Card> cards, File file) throws Exception{
 		
-		System.out.println("*** Generate Ability List (No Ids) Txt for " + file.getName() + " ***");
+		System.out.println("*** Generate Ability List (Ids) Txt for " + file.getName() + " ***");
 		
 		HashMap<String,String> allAbilities = new HashMap<String,String>(); 
 		

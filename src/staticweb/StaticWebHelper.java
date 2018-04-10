@@ -298,7 +298,7 @@ public class StaticWebHelper {
 			template.remove(template.indexOf("[Referencias]"));
 		}
 		
-		String cardsPath = this.conf.getGeneralResultsFolderPath() + setFileId + "\\cards\\"; 
+		String cardsPath = this.conf.getStaticWebFolderPath() + setFileId + "\\cards\\"; 
 		Files.write(new File(cardsPath + filename + ".html").toPath(), template, StandardCharsets.UTF_8);
 	
 	}
@@ -367,7 +367,7 @@ public class StaticWebHelper {
 		System.out.println("* Create Empty Index for Set: " + this.setName);
 
 		String setFileId = this.setId.replace("/", "_");
-		String indexPath = this.conf.getGeneralResultsFolderPath() + setFileId + "\\";
+		String indexPath = this.conf.getStaticWebFolderPath() + setFileId + "\\";
 		File newFile = new File(indexPath + "index.html");
 		
 		setFileId = setFileId + "-";
@@ -530,8 +530,8 @@ public class StaticWebHelper {
 		String setBaseFileId = this.setId.replace("/", "_");
 		String setFileId = this.setId.replace("/", "_") + "-";
 		
-		File targetCardPage = new File(this.conf.getGeneralResultsFolderPath() + setBaseFileId + "\\cards\\" + setFileId + paddedCount + ".html");
-		File targetCardImage = new File(this.conf.getGeneralResultsFolderPath() + setBaseFileId + "\\images\\" + setFileId + paddedCount + ".png");
+		File targetCardPage = new File(this.conf.getStaticWebFolderPath() + setBaseFileId + "\\cards\\" + setFileId + paddedCount + ".html");
+		File targetCardImage = new File(this.conf.getStaticWebFolderPath() + setBaseFileId + "\\images\\" + setFileId + paddedCount + ".png");
 		if(targetCardPage.exists()){
 			line = "<a href='./cards/" + setFileId + paddedCount + ".html'><img src='./images/" + setFileId + paddedCount + ".png' width=100% height=auto'></img></a>" + this.setId + "-" + paddedCount;
 		}
@@ -541,8 +541,8 @@ public class StaticWebHelper {
 			}
 			else{
 				// Maybe it is a variation -> quick and dirty recheck
-				targetCardPage = new File(this.conf.getGeneralResultsFolderPath() + setBaseFileId + "\\cards\\" + setFileId + paddedCount + "a.html");
-				targetCardImage = new File(this.conf.getGeneralResultsFolderPath() + setBaseFileId + "\\images\\" + setFileId + paddedCount + "a.png");
+				targetCardPage = new File(this.conf.getStaticWebFolderPath() + setBaseFileId + "\\cards\\" + setFileId + paddedCount + "a.html");
+				targetCardImage = new File(this.conf.getStaticWebFolderPath() + setBaseFileId + "\\images\\" + setFileId + paddedCount + "a.png");
 				if(targetCardPage.exists()){
 					line = "<a href='./cards/" + setFileId + paddedCount + "a.html'><img src='./images/" + setFileId + paddedCount + "a.png' width=100% height=auto'></img></a>" + this.setId + "-" + paddedCount;
 				}

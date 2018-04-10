@@ -29,6 +29,11 @@ public class Translator {
 			Matcher m = this.pattern.matcher(ability);
 			return m.replaceAll(this.replace);
 		}
+		
+		public boolean matchesPattern(String ability){
+			Matcher m = this.pattern.matcher(ability);
+			return m.matches();
+		}
 	}
 	
 	private LocalConf conf;
