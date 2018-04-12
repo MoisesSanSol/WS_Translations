@@ -8,6 +8,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.TreeMap;
 
 import org.apache.commons.io.FilenameUtils;
 import org.jsoup.Connection.Response;
@@ -314,12 +318,26 @@ public class DownloadHelper {
 		
 		System.out.println("** Download ws-tcg Product Images");
 		
-		String setUrl = "https://ws-tcg.com/products/page/";
+		/*String setUrl = "https://ws-tcg.com/products/page/";
 		
 		String imageDirPath = this.conf.getStaticWebFolderPath() + "ProductImages\\";
 		File imageDir = new File(imageDirPath);
 		Utilities.checkFolderExistence(imageDir);
 		
+		String imageRefPath = imageDirPath + "imageReferences.txt";
+		File imageRef = new File(imageRefPath);
+		
+		LinkedHashMap<String,String[]> references = new LinkedHashMap<String,String[]>();
+				
+		ArrayList<String> imageRefContent = new ArrayList<String>(Files.readAllLines(imageRef.toPath(), StandardCharsets.UTF_8));
+		
+		for(String reference : imageRefContent){
+			if(!reference.isEmpty()){
+				String[] data = reference.split("\t");
+				references.put(data[0], data);
+			}
+		}
+
 		ArrayList<String> imgReferences = new ArrayList<String>();
 		
 		for(int i = 2; i <= 27; i++){
@@ -370,9 +388,7 @@ public class DownloadHelper {
 			}
 			Thread.sleep(this.politeness);
 		}
-		
-		String imageRefPath = imageDirPath + "imageReferences.txt";
-		File imageRef = new File(imageRefPath);
-		Files.write(imageRef.toPath(), imgReferences, StandardCharsets.UTF_8);
+
+		Files.write(imageRef.toPath(), imgReferences, StandardCharsets.UTF_8);*/
 	}
 }

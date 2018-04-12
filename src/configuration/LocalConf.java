@@ -21,6 +21,7 @@ public class LocalConf {
 	public File hotcFilesFolder;
 	public File hotcCleanFilesFolder;
 	public File hotcRawFilesFolder;
+	public File referenceFilesFolder;
 	public File translationPairsFolder;
 	
 	public File staticWebFolder;
@@ -90,6 +91,8 @@ public class LocalConf {
 			this.translationPairsFolder = new File(translationPairsFolderPath);
 			String staticWebFolderPath = folderConf.getProperty("staticWebFolder");
 			this.staticWebFolder = new File(staticWebFolderPath);
+			String referenceFilesFolderPath = folderConf.getProperty("referenceFilesFolder");
+			this.referenceFilesFolder = new File(referenceFilesFolderPath);
 			
 			// Files
 			String hotcRawFilesReferenceFilePath = folderConf.getProperty("hotcRawFilesReferenceFile");
@@ -138,5 +141,9 @@ public class LocalConf {
 	
 	public String getStaticWebFolderPath(){
 		return this.staticWebFolder.getPath() + "\\";
+	}
+	
+	public String getReferenceFilesFolderPath(){
+		return this.referenceFilesFolder.getPath() + "\\";
 	}
 }

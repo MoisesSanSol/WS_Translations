@@ -2,7 +2,10 @@ package main;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import cards.Card;
 import output.Summaries;
@@ -17,16 +20,16 @@ import download.DownloadHelper;
 public class StaticWebCreation {
 
 	private LocalConf conf;
+
+	String setFileId = "VS_W50";
 	
-	String setName = "KONOSUBA -God’s blessing on this wonderful world!";
-	String setFileName = "konosuba_booster_pack";
-	String setTdFileName = "konosuba_trial_deck";
-	String setId = "KS/W49";
-	String setFileId = "KS_W49";
-	String setLaPageId = "328";
-	String setYytPageId = "konosuba";
-	//String promoFileName = "schwarz_promos";
-	String promoFileName = "weib_promos";
+	String setName = "";
+	String setFileName = "";
+	String setTdFileName = "";
+	String setId = "";
+	String setLaPageId = "";
+	String setYytPageId = "";
+	String promoFileName = "";
 
 	boolean isLegacy = false;
 	
@@ -61,7 +64,33 @@ public class StaticWebCreation {
 	
 	public StaticWebCreation() throws Exception{
 		this.conf = LocalConf.getInstance();
+		this.loadSetInfo();
+	}
+	
+	public void loadSetInfo() throws Exception{
+
+		Properties setReference = new Properties();
 		
+		String setReferenceFilePath = this.conf.getReferenceFilesFolderPath() + this.setFileId + ".txt";
+		InputStream setReferenceFileStream = new FileInputStream(setReferenceFilePath);
+
+		setReference.load(setReferenceFileStream);
+
+		this.setName = setReference.getProperty("setName");
+		this.setFileName = setReference.getProperty("setFileName");
+		this.setTdFileName = setReference.getProperty("setTdFileName");
+		this.setId = setReference.getProperty("setId");
+		this.setLaPageId = setReference.getProperty("setLaPageId");
+		this.setYytPageId = setReference.getProperty("setYytPageId");
+		this.promoFileName = setReference.getProperty("promoFileName");
+		this.isLegacy = Boolean.parseBoolean(setReference.getProperty("isLegacy"));
+
+		if(this.setFileId.contains("_W")){
+			this.promoFileName = "weib_promos";
+		}
+		else{
+			this.promoFileName = "schwarz_promos";
+		}
 	}
 	
 	public void createSetTranslationRelatedFiles_Init() throws Exception{
@@ -208,10 +237,14 @@ public class StaticWebCreation {
 		}
 		
 		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
-		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_All(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
 		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
 		this.promoCardCount = basePrCards.size();
 		allCards.addAll(promoCards);
+		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> baseExtendedCards = CardListUtilities.filterOutParallelCards(extendedCards);
+		this.extendedCardCount = baseExtendedCards.size();
+		allCards.addAll(baseExtendedCards);
 		
 		return allCards;
 	}

@@ -13,6 +13,7 @@ import translator.Translator;
 import translator.Translator.LineTranslation;
 import translator.TranslatorUtilities;
 import utilities.CardListUtilities;
+import utilities.Utilities;
 import configuration.LocalConf;
 import cards.Card;
 
@@ -33,7 +34,7 @@ public class Summaries {
 		
 		//summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
-		summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
+		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
 		//summaries.generateAbilityListFile_PendingSetTranslations(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), result);
 		//summaries.generateAbilityListFile_RedundantPatterns();
 		//summaries.generateTranslationProgress(parser.parseCards(file), result2);
@@ -156,6 +157,7 @@ public class Summaries {
 				abilities.add("");
 			}
 		}
+		abilities.add("LóL: force notepad++ to recognice the file as UTF-8. No real need to remove before processing, but suit yourself.");
 		
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
@@ -166,29 +168,22 @@ public class Summaries {
 		
 		TranslatorUtilities utilities = new TranslatorUtilities();
 		HashMap<String,String> pairs = utilities.getTranslationsPairsFromFile_PairsFile(this.conf.translationPairsFullListFile);
-		HashMap<String,String> seenPairs = new HashMap<String,String>();
-		HashMap<String,String> duplicatedReplaces = new HashMap<String,String>();
-		
-		for(String key : pairs.keySet()){
+		HashMap<String,ArrayList<String>> inversePairs = Utilities.getHashMap_ReverseHashMap(pairs);
 
-			if(seenPairs.containsKey(pairs.get(key))){
-				duplicatedReplaces.put(pairs.get(key), seenPairs.get(pairs.get(key)) + "$%&" + key);
-				seenPairs.put(pairs.get(key), seenPairs.get(key) + "$%&" + key);
-			}
-			else{
-				seenPairs.put(pairs.get(key), key);
-			}
-		}
-		
 		ArrayList<String> content = new ArrayList<String>();
 		
-		for(String key : duplicatedReplaces.keySet()){
-			content.add(key);
-			String[] patterns = duplicatedReplaces.get(key).split("\\Q$%&\\E");
-			for(String pattern : patterns){
-				content.add(pattern);
+		ArrayList<String> sortedKeys = new ArrayList<String>(inversePairs.keySet());
+		Collections.sort(sortedKeys);
+		
+		for(String replace : sortedKeys){
+			ArrayList<String> patterns = inversePairs.get(replace);
+			if(patterns.size() > 1){
+				content.add(replace);
+				for(String pattern : patterns){
+					content.add(pattern);	
+				}
+				content.add("");
 			}
-			content.add("");
 		}
 		
 		File result = new File(this.conf.getGeneralResultsFolderPath() + "RedundantPatterns.txt");

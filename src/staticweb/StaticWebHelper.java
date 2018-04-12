@@ -364,7 +364,7 @@ public class StaticWebHelper {
 	
 	public void createIndex_Main() throws Exception{
 		
-		System.out.println("* Create Empty Index for Set: " + this.setName);
+		System.out.println("* Create Index for Set: " + this.setName);
 
 		String setFileId = this.setId.replace("/", "_");
 		String indexPath = this.conf.getStaticWebFolderPath() + setFileId + "\\";

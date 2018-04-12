@@ -18,7 +18,7 @@ public class StaticWebMaintenance {
 		// For testing and individual execution purposes.
 		StaticWebMaintenance dispatcher = new StaticWebMaintenance();
 		
-		dispatcher.searchCardsByPattern("[A] [(1)] At the start of Encore Step, if there are no other Rested Characters in your Front Row, you may pay cost. If so, Rest this.");
+		dispatcher.searchCardsByPattern("Choose up to 2 Character in your Waiting Room and return them to your hand, and discard a card from your hand to the Waiting Room.");
 		
 		System.out.println("*** Finished ***");
 	}
