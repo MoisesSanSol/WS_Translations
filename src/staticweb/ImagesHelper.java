@@ -68,23 +68,21 @@ public class ImagesHelper {
 		return cardId.replace("sp","SP").replace("r","R").replace("s","S");
 	}
 	
-	public void renameCotdImagesToWebFormat(String setActualId) throws Exception{
+	public void renameCotdImagesToWebFormat(String setFileId) throws Exception{
+		
 		System.out.println("** Rename Cotd Images to Web Format");
 		
-		String cotdFolderPath = this.conf.getGeneralResultsFolderPath() + "images_cotd//";
-		File cotdFolder = new File(cotdFolderPath);
+		String imgFolderPath = this.conf.getStaticWebFolderPath() + setFileId + "//images//";
+		File imgFolder = new File(imgFolderPath);
 		
-		for(File imageFile : cotdFolder.listFiles()){
+		for(File imageFile : imgFolder.listFiles()){
 			String imageName = imageFile.getName();
-			if(!imageName.startsWith(setActualId)){
-				String actualImageName = imageName.replaceFirst(".+?_", setActualId + "-");
-				/*File newImageFile = new File(FilenameUtils.getPath(imageFile.getAbsolutePath()) + actualImageName);
-				imageFile.renameTo(newImageFile);*/
+			if(!imageName.startsWith(setFileId)){
+				String actualImageName = imageName.replaceFirst(".+?_", setFileId + "-");
 				Path source = imageFile.toPath();
 				Files.move(source, source.resolveSibling(actualImageName));
 			}
 		}
-		
 	}
 	
 	public static void createWebFormatImage(File originFile) throws Exception{

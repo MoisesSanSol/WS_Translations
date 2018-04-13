@@ -10,6 +10,7 @@ import java.util.Properties;
 import cards.Card;
 import output.Summaries;
 import parser.HotcCleanFileParser;
+import staticweb.ImagesHelper;
 import staticweb.StaticWebHelper;
 import translator.TranslatorUtilities;
 import utilities.CardListUtilities;
@@ -21,7 +22,7 @@ public class StaticWebCreation {
 
 	private LocalConf conf;
 
-	String setFileId = "VS_W50";
+	String setFileId = "APO_S53";
 	
 	String setName = "";
 	String setFileName = "";
@@ -45,15 +46,14 @@ public class StaticWebCreation {
 		StaticWebCreation dispatcher = new StaticWebCreation();
 		
 		/* Creating translations for set */
-		//dispatcher.createSetTranslationRelatedFiles_Init();
-		dispatcher.createSetTranslationRelatedFiles_Ongoing();
+		//dispatcher.createSetTranslationRelatedFiles();
 		
 		/* Getting images for set web */
 		//dispatcher.checkWebFolders();
 		//dispatcher.createWebImages();
 		
 		/* Creating web pages */
-		//dispatcher.createWebPages();
+		dispatcher.createWebPages();
 		
 		/* Other shit that will end in other place */
 		//dispatcher.createTranslationReferenceFile_AllSets();
@@ -93,39 +93,24 @@ public class StaticWebCreation {
 		}
 	}
 	
-	public void createSetTranslationRelatedFiles_Init() throws Exception{
-		
-		Summaries summaries = new Summaries();
-		
-		File setTranslationsFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_Translations.txt");
-		File workingFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_WorkingOn.txt");
-		File progressFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_Progress.txt");
-		
-		ArrayList<Card> allCards = this.getAllSetCards();
-		
-		summaries.generateAbilityListFile_BaseSetReference(allCards, setTranslationsFile);
-		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
-		summaries.generateTranslationProgress(allCards, progressFile, false);
-		
-		Desktop.getDesktop().open(this.conf.generalResultsFolder);
-	}
-	
-	public void createSetTranslationRelatedFiles_Ongoing() throws Exception{
+	public void createSetTranslationRelatedFiles() throws Exception{
 		
 		Summaries summaries = new Summaries();
 		TranslatorUtilities utility = new TranslatorUtilities();
 		
-		File setTranslationsFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_Translations.txt");
-		File workingFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_WorkingOn.txt");
-		File progressFile = new File(conf.getGeneralResultsFolderPath() + this.setFileName + "_Progress.txt");
+		File setTranslationsFile = new File(conf.getGeneralResultsFolderPath() + this.setFileId + "_Translations.txt");
+		File workingFile = new File(conf.getGeneralResultsFolderPath() + this.setFileId + "_WorkingOn.txt");
+		File progressFile = new File(conf.getGeneralResultsFolderPath() + this.setFileId + "_Progress.txt");
 		
-		utility.updateTranslationsPairsFullListWithSetFile(workingFile);
+		if(workingFile.exists()){
+			utility.updateTranslationsPairsFullListWithSetFile(workingFile);
+		}
 		
 		ArrayList<Card> allCards = this.getAllSetCards();
 		
 		summaries.generateAbilityListFile_BaseSetReference(allCards, setTranslationsFile);
 		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
-		summaries.generateTranslationProgress(allCards, progressFile, true);
+		summaries.generateTranslationProgress(allCards, progressFile, progressFile.exists());
 		
 		Desktop.getDesktop().open(this.conf.generalResultsFolder);
 	}
@@ -171,16 +156,21 @@ public class StaticWebCreation {
 		
 		DownloadHelper downloadHelper = new DownloadHelper();
 		StaticWebHelper staticWebHelper = new StaticWebHelper();
+		ImagesHelper imagesHelper = new ImagesHelper();
 		
 		String imagesFolderPath = this.conf.getStaticWebFolderPath() + this.setFileId + "\\images\\";
 		
-		downloadHelper.downloadImages_LittleAkiba_SetGaps(this.setLaPageId, imagesFolderPath);
-		if(this.isLegacy){
-			downloadHelper.downloadImages_LittleAkiba_LegacyPromos(this.setLaPageId, imagesFolderPath);	
-		}
+		imagesHelper.renameCotdImagesToWebFormat(this.setFileId);
 		
-		System.out.println("* Check missing images and proceed to yyt to fill gaps. Press enter to continue:");
-		System.in.read();
+		if(!this.setLaPageId.equals("NotYet")){
+			downloadHelper.downloadImages_LittleAkiba_SetGaps(this.setLaPageId, imagesFolderPath);
+			if(this.isLegacy){
+				downloadHelper.downloadImages_LittleAkiba_LegacyPromos(this.setLaPageId, imagesFolderPath);	
+			}
+			
+			System.out.println("* Check missing images and proceed to yyt to fill gaps. Press enter to continue:");
+			System.in.read();
+		}
 		
 		downloadHelper.downloadImages_Yuyutei_SetGaps(this.setYytPageId, imagesFolderPath);
 		
@@ -223,11 +213,15 @@ public class StaticWebCreation {
 	
 	public ArrayList<Card> getAllSetCards() throws Exception{
 		
-		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
-		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
-		ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(allCards);
-		this.regularCardCount = baseCards.size();
+		ArrayList<Card> allCards = new ArrayList<Card>();
 		
+		if(!this.setFileName.equals("")){
+			File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
+			ArrayList<Card> setCards = HotcCleanFileParser.parseCards(setCleanFile);
+			ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(setCards);
+			this.regularCardCount = baseCards.size();
+			allCards.addAll(setCards);
+		}
 		if(!this.setTdFileName.equals("")){
 			File setCleanTdFile = new File(conf.gethotcCleanFilesFolderPath() + this.setTdFileName + ".txt");
 			ArrayList<Card> tdCards = HotcCleanFileParser.parseCards(setCleanTdFile);

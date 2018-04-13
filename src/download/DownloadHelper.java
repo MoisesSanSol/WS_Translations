@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -318,7 +319,7 @@ public class DownloadHelper {
 		
 		System.out.println("** Download ws-tcg Product Images");
 		
-		/*String setUrl = "https://ws-tcg.com/products/page/";
+		String setUrl = "https://ws-tcg.com/products/page/";
 		
 		String imageDirPath = this.conf.getStaticWebFolderPath() + "ProductImages\\";
 		File imageDir = new File(imageDirPath);
@@ -326,6 +327,8 @@ public class DownloadHelper {
 		
 		String imageRefPath = imageDirPath + "imageReferences.txt";
 		File imageRef = new File(imageRefPath);
+		String newImageRefPath = imageDirPath + "imageReferencesNew.txt";
+		File newImageRef = new File(newImageRefPath);
 		
 		LinkedHashMap<String,String[]> references = new LinkedHashMap<String,String[]>();
 				
@@ -340,7 +343,7 @@ public class DownloadHelper {
 
 		ArrayList<String> imgReferences = new ArrayList<String>();
 		
-		for(int i = 2; i <= 27; i++){
+		for(int i = 2; i <= 2; i++){
 		
 			System.out.println("** Parsing Page: " + setUrl + i);
 			
@@ -365,10 +368,17 @@ public class DownloadHelper {
 				
 				String date = releaseDate.text().replaceAll("\\(.+", "");
 				DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-				Date when = formatter.parse(date);
+				
+				Date when = new Date();
+				try{
+					when = formatter.parse(date);
+				}
+				catch(ParseException wrongFormat){
+					
+				}
 				Date today = new Date();
 				if(set.text().contains("トライアルデッキ") || set.text().contains("ブースターパック") || set.text().contains("エクストラブースター") || set.text().contains("エクストラパック")) {
-					if(when.before(today)){
+					if(!when.after(today)){
 						//System.out.println("* Something: " + releaseDate.text());
 						File imageFile = new File(imageDirPath + imgName);
 						if(!imageFile.exists()) {
@@ -389,6 +399,6 @@ public class DownloadHelper {
 			Thread.sleep(this.politeness);
 		}
 
-		Files.write(imageRef.toPath(), imgReferences, StandardCharsets.UTF_8);*/
+		Files.write(newImageRef.toPath(), imgReferences, StandardCharsets.UTF_8);
 	}
 }

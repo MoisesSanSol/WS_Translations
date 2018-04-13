@@ -32,8 +32,8 @@ public class HotcRawFilesHelper {
 		// For testing and individual execution purposes.
 		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
 
-		//hotcRawFilesHelper.downloadNewHotcRawFiles();
-		//hotcRawFilesHelper.downloadPromoHotcRawFiles();
+		hotcRawFilesHelper.downloadNewHotcRawFiles();
+		hotcRawFilesHelper.downloadPromoHotcRawFiles();
 		
 		//hotcRawFilesHelper.checkIfHotcRawFileIsUpToDate("psycho-pass_extra_pack");
 		
