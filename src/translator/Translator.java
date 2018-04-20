@@ -13,29 +13,6 @@ import cards.Card;
 
 public class Translator {
 
-	public class LineTranslation{
-		public String patternString;
-		public Pattern pattern;
-		public String replace;
-		
-		public LineTranslation(String pattern, String replace){
-			this.patternString = pattern;
-			String escapedPattern = "^\\Q" + pattern.replace("(.+?)", "\\E(.+?)\\Q") + "\\E$";
-			this.pattern = Pattern.compile(escapedPattern);
-			this.replace = replace;
-		}
-		
-		public String translateAbility(String ability){
-			Matcher m = this.pattern.matcher(ability);
-			return m.replaceAll(this.replace);
-		}
-		
-		public boolean matchesPattern(String ability){
-			Matcher m = this.pattern.matcher(ability);
-			return m.matches();
-		}
-	}
-	
 	private LocalConf conf;
 	
 	public ArrayList<LineTranslation> lineTranslations;
@@ -106,17 +83,9 @@ public class Translator {
 		
 		for(int i = 0; i < card.habs.size(); i++){
 			for(LineTranslation attempt : this.lineTranslations){
-				
-				Matcher m = attempt.pattern.matcher(result.habs.get(i));
-				if(m.find()){
-					try{
-						result.habs.set(i, m.replaceAll(attempt.replace));
-					}catch(Exception ex){
-						System.out.println("Ability: " + result.habs.get(i));
-						System.out.println("Pattern: " + attempt.patternString);
-						System.out.println("Replace: " + attempt.replace);
-						throw ex;
-					}
+				String ability = result.habs.get(i);
+				if(attempt.matchesPattern(ability)){
+					result.habs.set(i, attempt.translateAbility(ability));
 					break;
 				}
 			}

@@ -1,13 +1,31 @@
 package utilities;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+import configuration.LocalConf;
+import parser.HotcCleanFileParser;
 import cards.Card;
 
 public class CardListUtilities {
 
+	public static int getMaxPrNumber(ArrayList<Card> cards){
+		
+		int max = 0;
+		
+		for(Card card: cards){
+			String numberStr = card.id.replaceAll(".+?-P(\\d+)", "$1");
+			int cardNumber = Integer.parseInt(numberStr);
+			if(cardNumber > max){
+				max = cardNumber; 
+			}
+		}
+		
+		return max;
+	}
+	
 	public static HashMap<String,String> getIdNamePairs(ArrayList<Card> cards){
 		
 		HashMap<String,String> pairs = new HashMap<String,String>();
@@ -75,7 +93,7 @@ public class CardListUtilities {
 		
 		for(Card card : allCards){
 			if(card.id != null){
-				if(card.id.startsWith(setId) && card.id.contains("P")){
+				if(card.id.startsWith(setId) && card.id.contains("-P")){
 					cards.add(card);
 				}
 			}
@@ -149,5 +167,24 @@ public class CardListUtilities {
 		}
 		
 		return homonimas;
+	}
+	
+	public static ArrayList<Card> getCards_All() throws Exception{
+		
+		ArrayList<Card> allCards = new ArrayList<Card>(); 
+		
+		for(File cleanFile : LocalConf.getInstance().hotcCleanFilesFolder.listFiles()){
+			
+			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
+		}
+		
+		return allCards;
+	}
+	
+	public static ArrayList<String> getAbilities_AllSorted() throws Exception{
+		
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
+		
+		return CardListUtilities.getAbilities_Sorted(allCards);
 	}
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 import output.Summaries;
 import parser.HotcCleanFileParser;
-import translator.Translator.LineTranslation;
+import translator.LineTranslation;
 import configuration.LocalConf;
 
 public class TranslatorUtilities {
@@ -43,6 +43,33 @@ public class TranslatorUtilities {
 			if(!fullTranslationsPairs.containsKey(pattern)){
 				fullTranslationsPairs.put(pattern, setTranslationsPairs.get(pattern));
 			}
+			else{
+				if(!fullTranslationsPairs.get(pattern).equals(setTranslationsPairs.get(pattern))){
+					System.out.println("Pattern: " + pattern);
+					System.out.println("Original Replace: " + fullTranslationsPairs.get(pattern));
+					System.out.println("New Replace: " + setTranslationsPairs.get(pattern));
+					throw new Exception("Pattern Replacement Missmatch");
+				}
+			}
+		}
+		
+		this.createFileFromTranslationPairs(fullTranslationsPairs, this.conf.translationPairsFullListFile);
+	}
+	
+	public void updateTranslationsPairsFullListWithPairs(HashMap<String,String> translationsPairs) throws Exception{
+		
+		this.createFileFromTranslationPairs(translationsPairs, this.conf.translationPairsFullListFile);
+	}
+	
+	public void updateTranslationsPairsFullListWithPairsFile(File setTranslationPairsFile) throws Exception{
+		
+		HashMap<String,String> fullTranslationsPairs = this.getTranslationsPairsFromFile_PairsFile(conf.translationPairsFullListFile);
+		HashMap<String,String> setTranslationsPairs = this.getTranslationsPairsFromFile_PairsFile(setTranslationPairsFile);
+		
+		for(String pattern : setTranslationsPairs.keySet()){
+			if(!fullTranslationsPairs.containsKey(pattern)){
+				fullTranslationsPairs.put(pattern, setTranslationsPairs.get(pattern));
+			}
 		}
 		
 		this.createFileFromTranslationPairs(fullTranslationsPairs, this.conf.translationPairsFullListFile);
@@ -60,8 +87,16 @@ public class TranslatorUtilities {
 			String replacementLine = content.remove(0);
 			content.remove(0); // Ignore line
 			if(!replacementLine.equals("")){
-				if(!translationsPairs.containsKey(patternLine)){
-					translationsPairs.put(patternLine, replacementLine);
+				if(!replacementLine.equals("***")){
+					if(!translationsPairs.containsKey(patternLine)){
+						translationsPairs.put(patternLine, replacementLine);
+					}
+					else{
+						System.out.println("* Already exists: " + patternLine);
+					}
+				}
+				else{
+					System.out.println("* Ignoring WIP patters: " + patternLine);
 				}
 			}
 			else{
@@ -120,6 +155,13 @@ public class TranslatorUtilities {
 		}
 		
 		Files.write(file.toPath(), content, StandardCharsets.UTF_8);
+	}
+	
+	public static String removeCustomTags(String ability){
+		
+		String cleanAbility = ability.replaceAll("@@(.+?)@@", "").replaceAll("##(.+?)##", "").replaceAll("%%(.+?)%%", "");
+		
+		return cleanAbility;
 	}
 	
 }

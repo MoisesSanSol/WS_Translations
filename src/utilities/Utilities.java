@@ -18,6 +18,18 @@ public class Utilities {
 		}
 	}
 	
+	public static boolean checkFileExistence(File file) throws Exception{
+		
+		boolean exists = file.exists();
+		
+		if(!exists){
+			file.createNewFile();
+			System.out.println("# " + file + " did not exist. New file created.");
+		}
+		
+		return exists;
+	}
+	
 	public static String escapeHtml(String line) throws Exception{
 		return line.replace("&", "&amp;").replace(">", "&gt;").replace("<", "&lt;");
 	}

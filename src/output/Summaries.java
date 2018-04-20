@@ -10,7 +10,7 @@ import java.util.List;
 
 import parser.HotcCleanFileParser;
 import translator.Translator;
-import translator.Translator.LineTranslation;
+import translator.LineTranslation;
 import translator.TranslatorUtilities;
 import utilities.CardListUtilities;
 import utilities.Utilities;
@@ -26,18 +26,6 @@ public class Summaries {
 		
 		// For testing and individual execution purposes.
 		Summaries summaries = new Summaries();
-		HotcCleanFileParser parser = new HotcCleanFileParser();
-		
-		File file = new File(summaries.conf.gethotcCleanFilesFolderPath() + "is_the_order_a_rabbit_booster_pack.txt");
-		File result = new File(summaries.conf.getTranslationPairsFolderPath() + "currentlyWorkingOn.txt");
-		File result2 = new File(summaries.conf.getTranslationPairsFolderPath() + "currentProgress.txt");
-		
-		//summaries.generateAbilityListFile_BaseSetReference(parser.parseCards(file), result);
-		//summaries.generateAbilityListFile_SetTranslationPairs(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), file2);
-		//summaries.generateAbilityListFile_PendingSetTranslations(parser.parseCards(file), result);
-		//summaries.generateAbilityListFile_PendingSetTranslations(CardListUtilities.filterCards_FindSetPrs(parser.parseCards(file),"SHS/W56"), result);
-		//summaries.generateAbilityListFile_RedundantPatterns();
-		//summaries.generateTranslationProgress(parser.parseCards(file), result2);
 		
 		System.out.println("*** Finished ***");
 	}
@@ -110,6 +98,35 @@ public class Summaries {
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
+	public void generateAbilityListFile_TranslatedSetReference(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Base Set Reference) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+			abilities.add(ability);
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			if(lineTranslation == null){
+				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""));
+				abilities.add("***");
+				abilities.add("***");
+			}
+			else{
+				abilities.add(lineTranslation.patternString);
+				abilities.add(lineTranslation.replace);
+				abilities.add(lineTranslation.translateAbility(ability));
+			}
+			abilities.add("");
+		}
+		
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
 	public void generateAbilityListFile_SetTranslationPairs(ArrayList<Card> cards, File file) throws Exception{
 		
 		System.out.println("*** Generate Ability List (Base Set Reference) Txt for " + file.getName() + " ***");
@@ -152,7 +169,7 @@ public class Summaries {
 			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
 			if(lineTranslation == null){
 				abilities.add(ability);
-				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""));
+				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\"").replaceAll("\\+\\d+? Power", "+(d+?) Power"));
 				abilities.add("***");
 				abilities.add("");
 			}
@@ -160,6 +177,63 @@ public class Summaries {
 		abilities.add("LóL: force notepad++ to recognice the file as UTF-8. No real need to remove before processing, but suit yourself.");
 		
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_PendingReferencelessTranslations(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Set Pending Translations) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			if(lineTranslation == null){
+				String referencelesAbility = ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""); 
+				if(!abilities.contains(referencelesAbility)){
+					abilities.add(referencelesAbility);
+					abilities.add("***");
+					abilities.add("");
+				}
+			}
+		}
+		abilities.add("LóL: force notepad++ to recognice the file as UTF-8. No real need to remove before processing, but suit yourself.");
+		
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_TranslationReferences(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Translations Refrences) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> translations = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			
+			if(lineTranslation != null){
+				
+				String translation = lineTranslation.translateAbility(ability);
+				String cleanTranslation = TranslatorUtilities.removeCustomTags(translation);
+
+				if(!translations.contains(cleanTranslation)){
+					translations.add(cleanTranslation);
+				}
+			}
+		}
+
+		Collections.sort(translations);
+		
+		Files.write(file.toPath(), translations, StandardCharsets.UTF_8);
 	}
 	
 	public void generateAbilityListFile_RedundantPatterns() throws Exception{
@@ -233,8 +307,10 @@ public class Summaries {
 		}
 		
 		content.add(0, "");
-		content.add(0, "Total abilities: " + translatedAbilities + "/" + abilityCount);
-		content.add(0, "Total cards: " + translatedCards + "/" + filteredCards.size());
+		int abilityPercent = (int)(((double)translatedAbilities / (double)abilityCount) * 100);
+		content.add(0, "Total abilities: " + translatedAbilities + "/" + abilityCount + "(" + abilityPercent + "%)");
+		int cardPercent = (int)(((double)translatedCards / (double)filteredCards.size()) * 100);
+		content.add(0, "Total cards: " + translatedCards + "/" + filteredCards.size() + "(" + cardPercent + "%)");
 		
 		Files.write(file.toPath(), content, StandardCharsets.UTF_8);
 	}

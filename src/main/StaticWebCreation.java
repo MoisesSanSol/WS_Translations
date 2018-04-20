@@ -22,7 +22,7 @@ public class StaticWebCreation {
 
 	private LocalConf conf;
 
-	String setFileId = "APO_S53";
+	String setFileId = "VS_W50";
 	
 	String setName = "";
 	String setFileName = "";
@@ -44,20 +44,18 @@ public class StaticWebCreation {
 		
 		// For testing and individual execution purposes.
 		StaticWebCreation dispatcher = new StaticWebCreation();
+
+		/* Getting Started */
+		//dispatcher.checkWebFolders();
 		
 		/* Creating translations for set */
-		//dispatcher.createSetTranslationRelatedFiles();
+		dispatcher.createSetTranslationRelatedFiles();
 		
 		/* Getting images for set web */
-		//dispatcher.checkWebFolders();
 		//dispatcher.createWebImages();
 		
 		/* Creating web pages */
-		dispatcher.createWebPages();
-		
-		/* Other shit that will end in other place */
-		//dispatcher.createTranslationReferenceFile_AllSets();
-		//dispatcher.createTranslationProgressFile_AllSets();
+		//dispatcher.createWebPages();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -108,37 +106,11 @@ public class StaticWebCreation {
 		
 		ArrayList<Card> allCards = this.getAllSetCards();
 		
-		summaries.generateAbilityListFile_BaseSetReference(allCards, setTranslationsFile);
+		summaries.generateAbilityListFile_TranslatedSetReference(allCards, setTranslationsFile);
 		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
 		summaries.generateTranslationProgress(allCards, progressFile, progressFile.exists());
 		
 		Desktop.getDesktop().open(this.conf.generalResultsFolder);
-	}
-	
-	public void createTranslationReferenceFile_AllSets() throws Exception{
-		
-		Summaries summaries = new Summaries();
-		
-		for(File cleanFile : this.conf.hotcCleanFilesFolder.listFiles()){
-			
-			ArrayList<Card> allCards = HotcCleanFileParser.parseCards(cleanFile);
-			File file = new File(this.conf.getTranslationPairsFolderPath() + cleanFile.getName());
-			summaries.generateAbilityListFile_BaseSetReference(allCards, file);
-			
-		}
-	}
-	
-	public void createTranslationProgressFile_AllSets() throws Exception{
-		
-		Summaries summaries = new Summaries();
-		ArrayList<Card> allCards = new ArrayList<Card>();
-		
-		for(File cleanFile : this.conf.hotcCleanFilesFolder.listFiles()){
-			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
-		}
-		
-		File file = new File(this.conf.generalResultsFolder + "AllSetsProgress.txt");
-		summaries.generateTranslationProgress(allCards, file, false);
 	}
 	
 	public void checkWebFolders() throws Exception{
@@ -233,7 +205,7 @@ public class StaticWebCreation {
 		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
 		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
 		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
-		this.promoCardCount = basePrCards.size();
+		this.promoCardCount = CardListUtilities.getMaxPrNumber(basePrCards);
 		allCards.addAll(promoCards);
 		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
 		ArrayList<Card> baseExtendedCards = CardListUtilities.filterOutParallelCards(extendedCards);
