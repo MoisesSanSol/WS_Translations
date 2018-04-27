@@ -27,6 +27,8 @@ public class Summaries {
 		// For testing and individual execution purposes.
 		Summaries summaries = new Summaries();
 		
+		summaries.generateAbilityListFile_RedundantPatterns();
+		
 		System.out.println("*** Finished ***");
 	}
 	
@@ -89,6 +91,29 @@ public class Summaries {
 				abilities.add("***");
 			}
 			else{
+				abilities.add(lineTranslation.patternString);
+				abilities.add(lineTranslation.replace);
+			}
+			abilities.add("");
+		}
+		
+		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_TranslatedSetForCorrections(ArrayList<Card> cards, File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Base Set Reference) Txt for " + file.getName() + " ***");
+		
+		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
+
+		ArrayList<String> abilities = new ArrayList<String>();
+		
+		Translator translator = new Translator();
+		
+		for(String ability: abilitiesBase){
+			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
+			if(lineTranslation != null){
+				abilities.add(lineTranslation.patternString);
 				abilities.add(lineTranslation.patternString);
 				abilities.add(lineTranslation.replace);
 			}
@@ -193,7 +218,7 @@ public class Summaries {
 
 			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
 			if(lineTranslation == null){
-				String referencelesAbility = ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\""); 
+				String referencelesAbility = ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\"").replaceAll("\\+\\d+? Power", "+(d+?) Power"); 
 				if(!abilities.contains(referencelesAbility)){
 					abilities.add(referencelesAbility);
 					abilities.add("***");
@@ -206,9 +231,9 @@ public class Summaries {
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
-	public void generateAbilityListFile_TranslationReferences(ArrayList<Card> cards, File file) throws Exception{
+	public void generateAbilityListFile_TranlationReferences_Applied(ArrayList<Card> cards, File file) throws Exception{
 		
-		System.out.println("*** Generate Ability List (Translations Refrences) Txt for " + file.getName() + " ***");
+		System.out.println("*** Generate Ability List (Translations References Applied to Cards) Txt for " + file.getName() + " ***");
 		
 		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
 
@@ -234,6 +259,29 @@ public class Summaries {
 		Collections.sort(translations);
 		
 		Files.write(file.toPath(), translations, StandardCharsets.UTF_8);
+	}
+	
+	public void generateAbilityListFile_TranlationReferences_Raw(File file) throws Exception{
+		
+		System.out.println("*** Generate Ability List (Translations References Raw) Txt for " + file.getName() + " ***");
+		
+		Translator auxTranslator = new Translator();
+
+		ArrayList<String> replaceStrs = new ArrayList<String>();
+		
+		for(LineTranslation lineTranslation : auxTranslator.lineTranslations){
+
+			String replaceStr = lineTranslation.replace;
+			
+			if(!replaceStrs.contains(replaceStr)){
+				
+				replaceStrs.add(replaceStr);
+			}
+		}
+
+		Collections.sort(replaceStrs);
+		
+		Files.write(file.toPath(), replaceStrs, StandardCharsets.UTF_8);
 	}
 	
 	public void generateAbilityListFile_RedundantPatterns() throws Exception{

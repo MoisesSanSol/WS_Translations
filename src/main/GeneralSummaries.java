@@ -24,6 +24,8 @@ public class GeneralSummaries {
 		//dispatcher.createPendingSetTranslationsFile_AllCards();
 		//dispatcher.createTranslationProgressFile_AllSets();
 		
+		dispatcher.createTranslationReferencesFile_Raw();
+		
 		System.out.println("*** Finished ***");
 	}
 	
@@ -55,7 +57,7 @@ public class GeneralSummaries {
 			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
 		}
 		
-		summaries.generateAbilityListFile_TranslationReferences(allCards, file);
+		summaries.generateAbilityListFile_TranlationReferences_Applied(allCards, file);
 	}
 	
 	public void createPendingSetTranslationsFile_AllCards() throws Exception{
@@ -90,6 +92,13 @@ public class GeneralSummaries {
 		
 		File file = new File(this.conf.generalResultsFolder + "AllSetsProgress.txt");
 		summaries.generateTranslationProgress(allCards, file, false);
+	}
+
+	public void createTranslationReferencesFile_Raw() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllTranslationReferences_Raw.txt");
+		summaries.generateAbilityListFile_TranlationReferences_Raw(file);
 	}
 	
 }

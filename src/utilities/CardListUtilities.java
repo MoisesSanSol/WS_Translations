@@ -66,6 +66,22 @@ public class CardListUtilities {
 		for(Card card : allCards){
 			if(card.id != null){
 				if(!card.id.matches(".+\\da?")){
+					if(!card.id.matches(".+[b-z]$")){
+						cards.add(card);
+					}
+				}
+			}
+		}
+		
+		return cards;
+	}
+	
+	public static ArrayList<Card> filterInMultipleImageCards(ArrayList<Card> allCards){
+		ArrayList<Card> cards = new ArrayList<Card>();
+		
+		for(Card card : allCards){
+			if(card.id != null){
+				if(card.id.matches(".+[b-z]$")){
 					cards.add(card);
 				}
 			}
@@ -107,7 +123,7 @@ public class CardListUtilities {
 		
 		for(Card card : allCards){
 			if(card.id != null){
-				if(card.id.startsWith(setId) && !card.id.contains("P")){
+				if(card.id.startsWith(setId) && !card.id.contains("-P")){
 					cards.add(card);
 				}
 			}
@@ -186,5 +202,16 @@ public class CardListUtilities {
 		ArrayList<Card> allCards = CardListUtilities.getCards_All();
 		
 		return CardListUtilities.getAbilities_Sorted(allCards);
+	}
+	
+	public static Card getCardById(ArrayList<Card> cards, String id){
+		
+		Card card = null;
+		for(Card attempt : cards){
+			if(attempt.id.equals(id)){
+				return attempt;
+			}
+		}
+		return card;
 	}
 }

@@ -105,12 +105,14 @@ public class StaticWebHelper {
 			this.generateCardPage(card, templateContent);
 		}
 		if(this.isExtraBooster){
+			System.out.println("** Generate Card Pages: Foil Run");
 			this.isFoilRun = true;
 			for(Card card : cleanCards){
-				this.generateCardPage(card, templateContent);
+				if(card.hasEbFoil){
+					this.generateCardPage(card, templateContent);
+				}
 			}
 		}
-		
 	}
 	
 	public void rotateClimax(ArrayList<Card> cards, String folderPath) throws Exception{
@@ -138,8 +140,17 @@ public class StaticWebHelper {
 	}
 	
 	public String getCardIdLine(Card card) throws Exception{
+		
 		String line = card.id + " " + card.rarity;
-		if(this.parallels.containsKey(card.id)){
+		
+		if(this.isLegacyEb && this.isFoilRun){
+			line = card.id + "S " + card.rarity;
+		}
+
+		if(card.isLegacySp && card.id.contains("SP")){
+			line = card.id.replace("SP", "") + " " + card.rarity;
+		}
+		else if(this.parallels.containsKey(card.id)){
 			String suffix = parallels.get(card.id).get(0).replaceAll("^.+?(\\D+)$", "$1");
 			String rarity = suffix;
 			if(rarity.equals("R")){rarity = "RRR";}
@@ -177,7 +188,7 @@ public class StaticWebHelper {
 		
 		ArrayList<String> template = (ArrayList<String>)baseTemplate.clone();
 		
-		String filenameFriendlyId = card.id.replace("/", "_");
+		String filenameFriendlyId = card.fileId;
 		String filename = filenameFriendlyId;
 		String setFileId = filename.split("-")[0];
 		
@@ -189,7 +200,7 @@ public class StaticWebHelper {
 		template.set(template.indexOf("[Set Name]"), this.setName);
 		
 		String imageLine = "";
-		if(this.isExtraBooster && !this.isFoilRun){
+		if(card.hasEbFoil && !this.isFoilRun){
 			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
 			if(this.isLegacyEb){
 				imageLine = imageLine + "<br><a href='./" + card.fileId + "S-S.html'>Versión Foil</a>";
@@ -198,7 +209,7 @@ public class StaticWebHelper {
 				imageLine = imageLine + "<br><a href='./" + card.fileId + "-S.html'>Versión Foil</a>";
 			}
 		}
-		else if(this.isExtraBooster && this.isFoilRun){
+		else if(card.hasEbFoil && this.isFoilRun){
 			if(this.isLegacyEb){
 				imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + "S-S.png'></img>";
 				filename = filename + "S-S";
@@ -212,7 +223,14 @@ public class StaticWebHelper {
 		else{
 			imageLine = imageLine + "<img src='../images/" + filenameFriendlyId + ".png'></img>";
 		}
-		
+		if(card.isLegacySp && !card.id.contains("SP") && !this.isFoilRun){
+			imageLine = imageLine + "<br><a href='./" + card.fileId + "SP.html'>Versión SP (Mismo Id)</a>";
+		}
+		if(card.isLegacySp && card.id.contains("SP")){
+			String cardBaseId = card.fileId.replace("SP", "");
+			imageLine = imageLine + "<br><a href='./" + cardBaseId + ".html'>Versión Normal</a>";
+		}
+
 		template.set(template.indexOf("[Image]"), imageLine);
 		
 		String caracteristicas = "";
@@ -341,7 +359,7 @@ public class StaticWebHelper {
 				card.habs.set(i, ability);
 			}
 			
-			if(card.id.matches(".+\\D$")){
+			if(card.id.matches(".+\\D$") && !card.isLegacySp){
 				String baseId = card.id.replaceAll("^(.+?)\\D+$", "$1");
 				if(this.parallels.containsKey(baseId)){
 					ArrayList<String> parallels = this.parallels.get(baseId);

@@ -22,7 +22,7 @@ public class StaticWebCreation {
 
 	private LocalConf conf;
 
-	String setFileId = "VS_W50";
+	String setFileId = "MB_S10";
 	
 	String setName = "";
 	String setFileName = "";
@@ -32,7 +32,10 @@ public class StaticWebCreation {
 	String setYytPageId = "";
 	String promoFileName = "";
 
-	boolean isLegacy = false;
+	boolean isExtraBooster = false;
+	boolean isLegacyEb = false;
+	boolean isLegacySp = false;
+	boolean isLegacyTd = false;
 	
 	int regularCardCount = 0;
 	int extendedCardCount = 0;
@@ -49,7 +52,8 @@ public class StaticWebCreation {
 		//dispatcher.checkWebFolders();
 		
 		/* Creating translations for set */
-		dispatcher.createSetTranslationRelatedFiles();
+		//dispatcher.createSetTranslationRelatedFiles();
+		dispatcher.createSetTranslationWorkingFile();
 		
 		/* Getting images for set web */
 		//dispatcher.createWebImages();
@@ -81,14 +85,36 @@ public class StaticWebCreation {
 		this.setLaPageId = setReference.getProperty("setLaPageId");
 		this.setYytPageId = setReference.getProperty("setYytPageId");
 		this.promoFileName = setReference.getProperty("promoFileName");
-		this.isLegacy = Boolean.parseBoolean(setReference.getProperty("isLegacy"));
+		this.isLegacyEb = Boolean.parseBoolean(setReference.getProperty("isLegacyEb"));
+		this.isLegacySp = Boolean.parseBoolean(setReference.getProperty("isLegacySp"));
+		this.isLegacyTd = Boolean.parseBoolean(setReference.getProperty("isLegacyTd"));
 
+		this.isExtraBooster = this.setFileName.contains("extra_pack");
+		
 		if(this.setFileId.contains("_W")){
 			this.promoFileName = "weib_promos";
 		}
 		else{
 			this.promoFileName = "schwarz_promos";
 		}
+	}
+	
+	public void createSetTranslationWorkingFile() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		TranslatorUtilities utility = new TranslatorUtilities();
+		
+		File workingFile = new File(conf.getGeneralResultsFolderPath() + this.setFileId + "_WorkingOn.txt");
+	
+		if(workingFile.exists()){
+			utility.updateTranslationsPairsFullListWithSetFile(workingFile);
+		}
+		
+		ArrayList<Card> allCards = this.getAllSetCards();
+		
+		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
+		
+		Desktop.getDesktop().open(this.conf.generalResultsFolder);
 	}
 	
 	public void createSetTranslationRelatedFiles() throws Exception{
@@ -134,9 +160,11 @@ public class StaticWebCreation {
 		
 		imagesHelper.renameCotdImagesToWebFormat(this.setFileId);
 		
+		downloadHelper.isLegacyEb = this.isLegacyEb;
+		
 		if(!this.setLaPageId.equals("NotYet")){
 			downloadHelper.downloadImages_LittleAkiba_SetGaps(this.setLaPageId, imagesFolderPath);
-			if(this.isLegacy){
+			if(this.isLegacySp){
 				downloadHelper.downloadImages_LittleAkiba_LegacyPromos(this.setLaPageId, imagesFolderPath);	
 			}
 			
@@ -146,8 +174,8 @@ public class StaticWebCreation {
 		
 		downloadHelper.downloadImages_Yuyutei_SetGaps(this.setYytPageId, imagesFolderPath);
 		
-		staticWebHelper.isExtraBooster = this.setFileName.contains("extra_pack");
-		staticWebHelper.isLegacyEb = this.isLegacy;
+		staticWebHelper.isExtraBooster = this.isExtraBooster;
+		staticWebHelper.isLegacyEb = this.isLegacyEb;
 		staticWebHelper.rotateClimax(this.getAllSetCards(), imagesFolderPath);
 	}
 	
@@ -159,21 +187,11 @@ public class StaticWebCreation {
 		
 		staticWebHelper.setId = this.setId;
 		staticWebHelper.setName = this.setName;
-		staticWebHelper.isLegacyTd = this.isLegacy;
-		staticWebHelper.isLegacyEb = this.isLegacy;
+		staticWebHelper.isExtraBooster = this.isExtraBooster;
+		staticWebHelper.isLegacyEb = this.isLegacyEb;
 		
-		if(this.setFileName.contains("extra_pack")){
-			ArrayList<Card> uniqueCards = this.getEbSetUniqueCards();
-			staticWebHelper.generateCardPages_ArbitraryCards(uniqueCards);
-			staticWebHelper.isExtraBooster = true;
-			staticWebHelper.isLegacyEb = this.isLegacy;
-			ArrayList<Card> baseCards = this.getEbSetBaseCards();
-			staticWebHelper.generateCardPages_ArbitraryCards(baseCards);
-		}
-		else{
-			ArrayList<Card> allCards = this.getAllSetCards();
-			staticWebHelper.generateCardPages_ArbitraryCards(allCards);
-		}
+		ArrayList<Card> allCards = this.getAllSetCards();
+		staticWebHelper.generateCardPages_ArbitraryCards(allCards);
 		
 		staticWebHelper.regularCardCount = this.regularCardCount;
 		staticWebHelper.extendedCardCount = this.extendedCardCount;
@@ -188,11 +206,40 @@ public class StaticWebCreation {
 		ArrayList<Card> allCards = new ArrayList<Card>();
 		
 		if(!this.setFileName.equals("")){
+			
 			File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
+
 			ArrayList<Card> setCards = HotcCleanFileParser.parseCards(setCleanFile);
 			ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(setCards);
+			ArrayList<Card> multipleImageCards = CardListUtilities.filterInMultipleImageCards(setCards);
+			ArrayList<Card> parallelCards = CardListUtilities.filterInParallelCards(setCards);
+			
+			if(this.isExtraBooster){
+				for(Card card : baseCards){
+					card.hasEbFoil = true;
+				}
+				for(Card card : multipleImageCards){
+					card.hasEbFoil = true;
+				}
+			}
+			
+			if(this.isLegacySp){
+				for(Card card : parallelCards){
+					if(card.rarity.equals("SP")){
+						card.isLegacySp = true;
+						String cardBaseId = card.id.replace("SP", "");
+						Card baseCard = CardListUtilities.getCardById(baseCards, cardBaseId);
+						card.isLegacySp = true;
+						baseCard.isLegacySp = true;
+						card.rarity = baseCard.rarity;
+					}
+				}
+			}
+			
 			this.regularCardCount = baseCards.size();
-			allCards.addAll(setCards);
+			allCards.addAll(baseCards);
+			allCards.addAll(multipleImageCards);
+			allCards.addAll(parallelCards);
 		}
 		if(!this.setTdFileName.equals("")){
 			File setCleanTdFile = new File(conf.gethotcCleanFilesFolderPath() + this.setTdFileName + ".txt");
@@ -213,42 +260,5 @@ public class StaticWebCreation {
 		allCards.addAll(baseExtendedCards);
 		
 		return allCards;
-	}
-	
-	public ArrayList<Card> getEbSetBaseCards() throws Exception{
-		
-		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
-		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
-		ArrayList<Card> baseCards = CardListUtilities.filterOutParallelCards(allCards);
-		this.regularCardCount = baseCards.size();
-		
-		return baseCards;
-	}
-	
-	public ArrayList<Card> getEbSetUniqueCards() throws Exception{
-		
-		File setCleanFile = new File(conf.gethotcCleanFilesFolderPath() + this.setFileName + ".txt");
-		ArrayList<Card> allCards = HotcCleanFileParser.parseCards(setCleanFile);
-		ArrayList<Card> uniqueCards = CardListUtilities.filterInParallelCards(allCards);
-		
-		if(!this.setTdFileName.equals("")){
-			File setCleanTdFile = new File(conf.gethotcCleanFilesFolderPath() + this.setTdFileName + ".txt");
-			ArrayList<Card> tdCards = HotcCleanFileParser.parseCards(setCleanTdFile);
-			ArrayList<Card> baseTdCards = CardListUtilities.filterOutParallelCards(tdCards);
-			this.tdCardCount = baseTdCards.size();
-			uniqueCards.addAll(tdCards);
-		}
-		
-		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
-		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
-		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
-		this.promoCardCount = basePrCards.size();
-		uniqueCards.addAll(promoCards);
-		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
-		ArrayList<Card> baseExtendedCards = CardListUtilities.filterOutParallelCards(extendedCards);
-		this.extendedCardCount = baseExtendedCards.size();
-		uniqueCards.addAll(baseExtendedCards);
-		
-		return uniqueCards;
 	}
 }

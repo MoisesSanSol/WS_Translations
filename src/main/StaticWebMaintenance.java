@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import output.Summaries;
 import parser.HotcCleanFileParser;
 import translator.LineTranslation;
 import translator.Translator;
@@ -26,16 +27,32 @@ public class StaticWebMaintenance {
 		// For testing and individual execution purposes.
 		StaticWebMaintenance dispatcher = new StaticWebMaintenance();
 
+		//dispatcher.prepareSetTranslationsPairForFixes();
 		//dispatcher.checkAllTranlationPairs();
-		dispatcher.fixTranlationPairs();
-		//dispatcher.searchCardsByPattern("[A] When this is placed from hand to the Stage, draw a card, choose 1 of your Characters, and that Character gains +2000 Power and +1 Soul for the turn.");
+		//dispatcher.fixTranlationPairs();
 		
+		//dispatcher.searchCardsByPattern("[S] [Counter] BACKUP (d+?), Level (d+?) [(1) Discard a card from your hand to the Waiting Room]");
+				
 		System.out.println("*** Finished ***");
 	}
 	
 	public StaticWebMaintenance() throws Exception{
 		this.conf = LocalConf.getInstance();
 		
+	}
+	
+	public void prepareSetTranslationsPairForFixes() throws Exception{
+		
+		System.out.println("** Prepare Set Translations Pair For Fixes");
+		
+		StaticWebCreation dispatcher = new StaticWebCreation();
+		Summaries summaries = new Summaries();
+		
+		String fixesFilePath = this.conf.getGeneralResultsFolderPath() + "TranlationPairFixes" + ".txt";
+		File fixesFile = new File(fixesFilePath);
+		
+		ArrayList<Card> setCards = dispatcher.getAllSetCards();
+		summaries.generateAbilityListFile_TranslatedSetForCorrections(setCards, fixesFile);		
 	}
 	
 	public HashMap<Card, String> searchCardsByPattern(LineTranslation helper) throws Exception{
@@ -58,6 +75,17 @@ public class StaticWebMaintenance {
 				}
 			}
 		}
+		
+		return foundCards;
+	}
+	
+	public HashMap<Card, String> searchCardsByPattern(String pattern) throws Exception{
+		
+		System.out.println("** Search Cards By Ability");
+		
+		LineTranslation helper = new LineTranslation(pattern,"Irrelevant");
+		
+		HashMap<Card, String> foundCards = this.searchCardsByPattern(helper); 
 		
 		return foundCards;
 	}

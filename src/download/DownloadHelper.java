@@ -30,6 +30,8 @@ public class DownloadHelper {
 	LocalConf conf;
 	int politeness = 1000;
 	
+	public boolean isLegacyEb = false;
+	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
 		
@@ -290,6 +292,9 @@ public class DownloadHelper {
 			String cardId = name.text().replace("/", "_");
 
 			if(rarity.startsWith("S-")){
+				if(this.isLegacyEb){
+					cardId = cardId + "S";
+				}
 				cardId = cardId + "-S";
 			}
 			

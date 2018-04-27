@@ -22,6 +22,8 @@ public class Card {
 	public String trait1;
 	public String trait2;
 	public String flavor;
+	public boolean hasEbFoil;
+	public boolean isLegacySp;
 	public ArrayList<String> habs;
 	
 	
@@ -87,6 +89,8 @@ public class Card {
 
 		this.habs = habLines;
 		
+		this.hasEbFoil = false;
+		this.isLegacySp = false;
 	}
 	
 	public Card(Card toCopy){
@@ -110,12 +114,7 @@ public class Card {
 		for(String hab : toCopy.habs){
 			this.habs.add(hab);
 		}
+		this.hasEbFoil = toCopy.hasEbFoil;
+		this.isLegacySp = toCopy.isLegacySp;
 	}
-	
-	/* No s� qu� quer�a hacer con esto
-	public boolean match(Card card){
-		boolean isTheSame = true;
-		return isTheSame;
-	}
-	*/
 }
