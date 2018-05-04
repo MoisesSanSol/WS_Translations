@@ -21,10 +21,10 @@ public class GeneralSummaries {
 		
 		//dispatcher.createTranslationReferenceFile_AllSets()
 		//dispatcher.createTranslationReferenceFile_AllCards();
-		//dispatcher.createPendingSetTranslationsFile_AllCards();
+		dispatcher.createPendingSetTranslationsFile_AllCards();
 		//dispatcher.createTranslationProgressFile_AllSets();
 		
-		dispatcher.createTranslationReferencesFile_Raw();
+		//dispatcher.createTranslationReferencesFile_Raw();
 		
 		System.out.println("*** Finished ***");
 	}

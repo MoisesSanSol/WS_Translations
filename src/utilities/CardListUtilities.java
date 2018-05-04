@@ -8,6 +8,7 @@ import java.util.HashMap;
 import configuration.LocalConf;
 import parser.HotcCleanFileParser;
 import cards.Card;
+import cards.CardUtilities;
 
 public class CardListUtilities {
 
@@ -204,14 +205,42 @@ public class CardListUtilities {
 		return CardListUtilities.getAbilities_Sorted(allCards);
 	}
 	
-	public static Card getCardById(ArrayList<Card> cards, String id){
+	public static Card filterCards_FindCard_ById(ArrayList<Card> cards, String id){
 		
 		Card card = null;
 		for(Card attempt : cards){
-			if(attempt.id.equals(id)){
-				return attempt;
+			if(attempt.id != null){
+				if(attempt.id.equals(id)){
+					return attempt;
+				}
 			}
 		}
 		return card;
 	}
+	
+	public static HashMap<String, String> compareCards(ArrayList<Card> oldCards, ArrayList<Card> newCards){
+		
+		HashMap<String, String> differences = new HashMap<String, String>();
+		
+		for(Card newCard : newCards){
+			Card oldCard = filterCards_FindCard_ById(oldCards, newCard.id);
+			if(oldCard == null){
+				differences.put(newCard.id, "New Card\r\n");
+			}
+			else{
+				String cardDifferences = CardUtilities.compareCards(newCard, oldCard);
+				if (cardDifferences != null){
+					differences.put(newCard.id, cardDifferences);
+				}
+				oldCards.remove(oldCard);
+			}
+		}
+		for(Card oldCard : oldCards){
+			differences.put(oldCard.id, "Removed Card\r\n");
+		}
+
+		return differences;
+	}
+	
+	
 }

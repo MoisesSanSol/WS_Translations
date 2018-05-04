@@ -29,10 +29,6 @@ public class HotcCleanFilesHelper {
 		// For testing and individual execution purposes.
 		HotcCleanFilesHelper hotcCleanFilesHelper = new HotcCleanFilesHelper();
 		
-		//hotcCleanFilesHelper.generateCleanHotcFile("");
-		hotcCleanFilesHelper.generateCleanMissingHotcFiles();
-		hotcCleanFilesHelper.generateCleanPromoHotcFiles();
-		
 		System.out.println("*** Finished ***");
 	}
 	

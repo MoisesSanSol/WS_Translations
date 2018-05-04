@@ -53,10 +53,10 @@ public class StaticWebCreation {
 		
 		/* Creating translations for set */
 		//dispatcher.createSetTranslationRelatedFiles();
-		dispatcher.createSetTranslationWorkingFile();
+		//dispatcher.createSetTranslationWorkingFile();
 		
 		/* Getting images for set web */
-		//dispatcher.createWebImages();
+		dispatcher.createWebImages();
 		
 		/* Creating web pages */
 		//dispatcher.createWebPages();
@@ -228,7 +228,7 @@ public class StaticWebCreation {
 					if(card.rarity.equals("SP")){
 						card.isLegacySp = true;
 						String cardBaseId = card.id.replace("SP", "");
-						Card baseCard = CardListUtilities.getCardById(baseCards, cardBaseId);
+						Card baseCard = CardListUtilities.filterCards_FindCard_ById(baseCards, cardBaseId);
 						card.isLegacySp = true;
 						baseCard.isLegacySp = true;
 						card.rarity = baseCard.rarity;
@@ -250,11 +250,12 @@ public class StaticWebCreation {
 		}
 		
 		File setCleanPromoFile = new File(conf.gethotcCleanFilesFolderPath() + this.promoFileName + ".txt");
-		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> allPromoCards = HotcCleanFileParser.parseCards(setCleanPromoFile);
+		ArrayList<Card> promoCards = CardListUtilities.filterCards_FindSetPrs_Pr(allPromoCards, this.setId);
 		ArrayList<Card> basePrCards = CardListUtilities.filterOutParallelCards(promoCards);
 		this.promoCardCount = CardListUtilities.getMaxPrNumber(basePrCards);
 		allCards.addAll(promoCards);
-		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(HotcCleanFileParser.parseCards(setCleanPromoFile), this.setId);
+		ArrayList<Card> extendedCards = CardListUtilities.filterCards_FindSetPrs_Extended(allPromoCards, this.setId);
 		ArrayList<Card> baseExtendedCards = CardListUtilities.filterOutParallelCards(extendedCards);
 		this.extendedCardCount = baseExtendedCards.size();
 		allCards.addAll(baseExtendedCards);

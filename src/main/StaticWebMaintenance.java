@@ -29,9 +29,7 @@ public class StaticWebMaintenance {
 
 		//dispatcher.prepareSetTranslationsPairForFixes();
 		//dispatcher.checkAllTranlationPairs();
-		//dispatcher.fixTranlationPairs();
-		
-		//dispatcher.searchCardsByPattern("[S] [Counter] BACKUP (d+?), Level (d+?) [(1) Discard a card from your hand to the Waiting Room]");
+		dispatcher.fixTranlationPairs();
 				
 		System.out.println("*** Finished ***");
 	}
