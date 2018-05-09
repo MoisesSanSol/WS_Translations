@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import parser.HotcCleanFileParser;
 import cards.Card;
 import translator.LineTranslation;
 import translator.TranslatorUtilities;
@@ -24,6 +25,7 @@ public class SearchHelper {
 		SearchHelper dispatcher = new SearchHelper();
 
 		dispatcher.search_TranslationPairs_ReplaceBased();
+		//dispatcher.search_Cards_PatternBased();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -75,6 +77,81 @@ public class SearchHelper {
 			}
 			
 			utility.createFileFromTranslationPairs(translationPairs, resultsFile);
+		}
+	}
+	
+	public HashMap<Card, String> search_Cards_PatternBased(LineTranslation helper) throws Exception{
+		
+		System.out.println("** Search Cards By Ability");
+		
+		ArrayList<Card> allCards = new ArrayList<Card>();  
+		
+		for(File hotcCleanFile : conf.hotcCleanFilesFolder.listFiles()){
+			allCards.addAll(HotcCleanFileParser.parseCards(hotcCleanFile));
+		}
+		
+		HashMap<Card, String> foundCards = new HashMap<Card, String>(); 
+		
+		for(Card card : allCards){
+			for(String ability :card.habs){
+				if(helper.matchesPattern(ability)){
+					foundCards.put(card, ability);
+					System.out.println("Found in Card: " + card.id);
+				}
+			}
+		}
+		
+		return foundCards;
+	}
+	
+	public HashMap<Card, String> search_Cards_PatternBased(String pattern) throws Exception{
+		
+		System.out.println("** Search Cards By Ability");
+		
+		LineTranslation helper = new LineTranslation(pattern,"Irrelevant");
+		
+		HashMap<Card, String> foundCards = this.search_Cards_PatternBased(helper); 
+		
+		return foundCards;
+	}
+	
+	public void search_Cards_PatternBased() throws Exception{
+		
+		System.out.println("** Search Cards Pattern Based");
+		
+		String searchFilePath = this.conf.getGeneralResultsFolderPath() + "CardSearch_Pattern" + ".txt";
+		File searchFile = new File(searchFilePath);
+		String resultsFilePath = this.conf.getGeneralResultsFolderPath() + "CardSearch_Pattern_Results" + ".txt";
+		File resultsFile = new File(resultsFilePath);
+		
+		if(Utilities.checkFileExistence(searchFile)){
+			
+			ArrayList<String> resultsFileContent = new ArrayList<String>();
+			
+			ArrayList<String> patterns = new ArrayList<String>(Files.readAllLines(searchFile.toPath(), StandardCharsets.UTF_8));
+			
+			while(patterns.size() > 0){
+				
+				String pattern = patterns.remove(0);
+				
+				if(!pattern.isEmpty()){
+					
+					resultsFileContent.add(pattern);
+					
+					HashMap<Card, String> cards = this.search_Cards_PatternBased(pattern);
+					if(cards.isEmpty()){
+						resultsFileContent.add("No cards found for pattern.");
+					}
+					else{
+						for(Card card : cards.keySet()){
+							resultsFileContent.add(card.id);
+						}
+					}
+					resultsFileContent.add("");
+				}
+			}
+			
+			Files.write(resultsFile.toPath(), resultsFileContent, StandardCharsets.UTF_8);
 		}
 	}
 }

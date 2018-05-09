@@ -20,10 +20,30 @@ import download.DownloadHelper;
 
 public class StaticWebCreation {
 
-	private LocalConf conf;
-
 	String setFileId = "MB_S10";
 	
+	public static void main(String[] args) throws Exception{
+		System.out.println("*** Starting ***");
+		
+		// For testing and individual execution purposes.
+		StaticWebCreation dispatcher = new StaticWebCreation();
+
+		/* Getting Started */
+		//dispatcher.checkWebFolders();
+		
+		/* Creating translations for set */
+		//dispatcher.createSetTranslationRelatedFiles();
+		dispatcher.createSetTranslationWorkingFile();
+		
+		/* Getting images for set web */
+		//dispatcher.createWebImages();
+		
+		/* Creating web pages */
+		//dispatcher.createWebPages();
+		
+		System.out.println("*** Finished ***");
+	}
+
 	String setName = "";
 	String setFileName = "";
 	String setTdFileName = "";
@@ -41,28 +61,8 @@ public class StaticWebCreation {
 	int extendedCardCount = 0;
 	int promoCardCount = 0;
 	int tdCardCount = 0;
-	
-	public static void main(String[] args) throws Exception{
-		System.out.println("*** Starting ***");
-		
-		// For testing and individual execution purposes.
-		StaticWebCreation dispatcher = new StaticWebCreation();
 
-		/* Getting Started */
-		//dispatcher.checkWebFolders();
-		
-		/* Creating translations for set */
-		//dispatcher.createSetTranslationRelatedFiles();
-		//dispatcher.createSetTranslationWorkingFile();
-		
-		/* Getting images for set web */
-		dispatcher.createWebImages();
-		
-		/* Creating web pages */
-		//dispatcher.createWebPages();
-		
-		System.out.println("*** Finished ***");
-	}
+	private LocalConf conf;
 	
 	public StaticWebCreation() throws Exception{
 		this.conf = LocalConf.getInstance();

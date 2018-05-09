@@ -37,6 +37,11 @@ public class CardListUtilities {
 		return pairs;
 	}
 	
+	public static HashMap<String,String> getIdNamePairs() throws Exception{
+		
+		return CardListUtilities.getIdNamePairs(HotcCleanFileParser.parseCards());
+	}
+	
 	public static HashMap<String,String> getNameIdPairs(ArrayList<Card> cards){
 		
 		HashMap<String,String> pairs = new HashMap<String,String>();

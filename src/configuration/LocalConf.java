@@ -45,6 +45,8 @@ public class LocalConf {
 	public String yuyuteiBaseUrl = "http://yuyu-tei.jp/";
 	public String yuyuteiSetBaseUrl = yuyuteiBaseUrl + "game_ws/sell/sell_price.php?ver=";
 	
+	public String wstcgResultsBaseUrl = "https://ws-tcg.com/deckrecipe/detail/";
+	
 	// Items
 	public int politeness = 5000;
 	

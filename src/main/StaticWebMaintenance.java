@@ -194,7 +194,7 @@ public class StaticWebMaintenance {
 		String fullFilePath = this.conf.getStaticWebFolderPath() + setFileId + "\\cards\\" + fileName + ".html";
 		File cardPage = new File(fullFilePath);
 		
-		if(cardPage.exists()){
+		/*if(cardPage.exists()){
 		
 			ArrayList<String> pageContent = new ArrayList<>(Files.readAllLines(cardPage.toPath(), StandardCharsets.UTF_8));
 			
@@ -214,6 +214,6 @@ public class StaticWebMaintenance {
 			}
 			
 			Files.write(cardPage.toPath(), pageContent, StandardCharsets.UTF_8);
-		}
+		}*/
 	}
 }

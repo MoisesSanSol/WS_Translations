@@ -11,19 +11,17 @@ import cards.Card;
 
 public class HotcCleanFileParser {
 
-	private LocalConf conf;
-	
-	public static void main(String[] args) throws Exception{
-		System.out.println("*** Starting ***");
+	public static ArrayList<Card> parseCards() throws Exception{
+
+		ArrayList<Card> allCards = new ArrayList<Card>();
 		
-		// For testing and individual execution purposes.
-		HotcCleanFileParser hotcCleanFileParser = new HotcCleanFileParser();
+		LocalConf conf = LocalConf.getInstance(); 
 		
-		System.out.println("*** Finished ***");
-	}
-	
-	public HotcCleanFileParser() throws Exception{
-		this.conf = LocalConf.getInstance();
+		for(File cleanFile : conf.hotcCleanFilesFolder.listFiles()){
+			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
+		}
+		
+		return allCards;
 	}
 	
 	public static ArrayList<Card> parseCards(File hotcCleanFile) throws Exception{

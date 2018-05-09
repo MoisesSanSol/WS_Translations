@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import output.Summaries;
 import parser.HotcCleanFileParser;
 import translator.TranslatorUtilities;
+import utilities.CardListUtilities;
 import cards.Card;
 import configuration.LocalConf;
 
@@ -21,10 +22,13 @@ public class GeneralSummaries {
 		
 		//dispatcher.createTranslationReferenceFile_AllSets()
 		//dispatcher.createTranslationReferenceFile_AllCards();
-		dispatcher.createPendingSetTranslationsFile_AllCards();
+		//dispatcher.createPendingSetTranslationsFile_AllCards();
+		//dispatcher.createPendingSetTranslationsFile_AllCards_Raw();
 		//dispatcher.createTranslationProgressFile_AllSets();
 		
-		//dispatcher.createTranslationReferencesFile_Raw();
+		dispatcher.createTranslationReferencesFile_Raw();
+		//dispatcher.createTranslationReferencesFile_Clean();
+		//dispatcher.createTranslationReferencesFile_Simplified();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -46,20 +50,6 @@ public class GeneralSummaries {
 		}
 	}
 	
-	public void createTranslationReferenceFile_AllCards() throws Exception{
-		
-		Summaries summaries = new Summaries();
-		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllAbilitiesReference.txt");
-		
-		ArrayList<Card> allCards = new ArrayList<Card>();
-		
-		for(File cleanFile : this.conf.hotcCleanFilesFolder.listFiles()){
-			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
-		}
-		
-		summaries.generateAbilityListFile_TranlationReferences_Applied(allCards, file);
-	}
-	
 	public void createPendingSetTranslationsFile_AllCards() throws Exception{
 		
 		Summaries summaries = new Summaries();
@@ -67,12 +57,7 @@ public class GeneralSummaries {
 		
 		File workingFile = new File(this.conf.getGeneralResultsFolderPath() + "AllAbilities_WorkingOn.txt");
 		
-		ArrayList<Card> allCards = new ArrayList<Card>();
-		
-		for(File cleanFile : this.conf.hotcCleanFilesFolder.listFiles()){
-			
-			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
-		}
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
 		
 		if(workingFile.exists()){
 			utility.updateTranslationsPairsFullListWithPairsFile(workingFile);
@@ -81,14 +66,27 @@ public class GeneralSummaries {
 		summaries.generateAbilityListFile_PendingReferencelessTranslations(allCards, workingFile);
 	}
 	
+	public void createPendingSetTranslationsFile_AllCards_Raw() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		TranslatorUtilities utility = new TranslatorUtilities();
+		
+		File workingFile = new File(this.conf.getGeneralResultsFolderPath() + "AllAbilities_WorkingOn.txt");
+		
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
+		
+		if(workingFile.exists()){
+			utility.updateTranslationsPairsFullListWithPairsFile(workingFile);
+		}
+		
+		summaries.generateAbilityListFile_PendingSetTranslations_Raw(allCards, workingFile);
+	}
+	
 	public void createTranslationProgressFile_AllSets() throws Exception{
 		
 		Summaries summaries = new Summaries();
-		ArrayList<Card> allCards = new ArrayList<Card>();
 		
-		for(File cleanFile : this.conf.hotcCleanFilesFolder.listFiles()){
-			allCards.addAll(HotcCleanFileParser.parseCards(cleanFile));
-		}
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
 		
 		File file = new File(this.conf.generalResultsFolder + "AllSetsProgress.txt");
 		summaries.generateTranslationProgress(allCards, file, false);
@@ -101,4 +99,23 @@ public class GeneralSummaries {
 		summaries.generateAbilityListFile_TranlationReferences_Raw(file);
 	}
 	
+	public void createTranslationReferencesFile_Clean() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
+		
+		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllTranslationReferences_Clean.txt");
+		summaries.generateAbilityListFile_TranlationReferences_Clean(allCards, file);
+	}
+	
+	public void createTranslationReferencesFile_Simplified() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
+		
+		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllTranslationReferences_Simplified.txt");
+		summaries.generateAbilityListFile_TranlationReferences_Simplified(allCards, file);
+	}
 }

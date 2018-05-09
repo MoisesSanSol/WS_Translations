@@ -19,70 +19,76 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import configuration.LocalConf;
+import utilities.CardListUtilities;
 import utilities.Utilities;
 
 public class WsTcgResults {
 
-	
-	private static String urlBase = "http://ws-tcg.com/deckrecipe/";
-	//static String urlPage = "detail/recipe_wgp2017_nagoya_01";
+	private LocalConf conf;
+
+	private HashMap<String,String> currentResultsPages;
 	
 	private HashMap<String,String> idNamePairs;
-	
-	public WsTcgResults() throws Exception{
-		
-		LocalConf conf = LocalConf.getInstance();
-		Utilities.checkFolderExistence(conf.wsTcgResultsFolder);
-		File pairsFile = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\IdNamePairs.txt"); 
-		//this.idNamePairs = TextFileParser.getHashMapFromFile(pairsFile);
-		
-	}
+	private HashMap<String,String> textTranslations;
 	
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println("*** Starting ***");
 
 		WsTcgResults wsTcgResults = new WsTcgResults();
-		
-		//wsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, true);
-		//wsTcgResults.generateUpdatedResultsPage(WsTcgResults.urlBase + WsTcgResults.urlPage, false);
-		
-		wsTcgResults.generateAllResultPagesFor("recipe_wgp2017");
+		//wsTcgResults.generateWstcgResulstPages();
+		wsTcgResults.updateWstcgResulstPages();
 		
 		System.out.println("*** Finished ***");
 	}
+
+	public WsTcgResults() throws Exception{
+		
+		this.conf = LocalConf.getInstance();
+		this.idNamePairs = CardListUtilities.getIdNamePairs();
+		this.currentResultsPages = WsTcgResultsHelper.getCurrentResultsPages();
+		this.textTranslations = WsTcgResultsHelper.getTextTranslationPairs();
+	}
 	
-	public void generateAllResultPagesFor(String what) throws Exception{
-		
-		System.out.println("** generateAllResultPagesFor");
-		
-		Document doc = Jsoup.connect(WsTcgResults.urlBase).maxBodySize(0).get();	
-		Elements links = doc.select("a[href*=" + what + "]");
-		
-		for(Element link : links){
-			String url = link.attr("abs:href");
-			System.out.println("* url: " + url);
-			this.generateUpdatedResultsPage(url, true);
-			this.generateUpdatedResultsPage(url, false);
+	public void generateWstcgResulstPages() throws Exception{
+	
+		for(String page : this.currentResultsPages.keySet()){
+			
+			String pageFilePath = this.conf.getStaticWebFolderPath() + "\\WsTcgResults\\" + page + ".html";
+			File pageFile = new File(pageFilePath);
+			
+			if(!pageFile.exists()){
+				this.generateWstcgResulstPage(page);
+			}
 		}
 	}
 	
-	public void generateUpdatedResultsPage(String url, boolean mobile) throws Exception{
+	public void updateWstcgResulstPages() throws Exception{
 		
-		LocalConf conf = LocalConf.getInstance();
+		for(String page : this.currentResultsPages.keySet()){
+			
+			String pageFilePath = this.conf.getStaticWebFolderPath() + "\\WsTcgResults\\" + page + ".html";
+			File pageFile = new File(pageFilePath);
+			Document doc = Jsoup.parse(pageFile, "UTF-8");
+			this.generateWstcgResulstPage(doc);
+		}
+	}
+	
+	public void generateWstcgResulstPage(String page) throws Exception{
+		String pageUrl = this.conf.wstcgResultsBaseUrl + page;
 		
 		Document doc;
-		if(mobile){
-			doc = Jsoup.connect(url).userAgent("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Mobile Safari/537.36").maxBodySize(0).get();
+		if(false){
+			doc = Jsoup.connect(pageUrl).userAgent("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Mobile Safari/537.36").maxBodySize(0).get();
 		}
 		else{
-			doc = Jsoup.connect(url).maxBodySize(0).get();	
+			doc = Jsoup.connect(pageUrl).maxBodySize(0).get();	
 		}
-		
-		/*File inputFile = new File(conf.generalResultsFolder.getAbsolutePath() + "\\recipe_wgp2017_tokyo_01_orig.html");
-		Document doc = Jsoup.parse(inputFile, "UTF-8");
-		//System.out.println(doc.html());*/
-		
+		this.generateWstcgResulstPage(doc);
+	}
+	
+	public void generateWstcgResulstPage(Document doc) throws Exception{
+			
 		Elements numeros = doc.select("td.cardnum");
 		
 		for(Element numero : numeros){
@@ -125,31 +131,28 @@ public class WsTcgResults {
 		
 		String everything = doc.outerHtml();
 
-		Properties prop = new Properties();
-		InputStream input = new FileInputStream(conf.wsTcgResultsFolder.getAbsolutePath() + "\\TranlationPairs.properties");
-		prop.load(new InputStreamReader(input, Charset.forName("UTF-8")));
-		input.close();
-
-		Set<?> keys = prop.keySet();
-		String[] keyArray = keys.toArray(new String[keys.size()]);
-		
-        for(String key : keyArray){
-			String value = prop.getProperty(key);
+        for(String pattern : this.textTranslations.keySet()){
+			String translation = this.textTranslations.get(pattern);
 			//System.out.println("Key : " + key + ", Value : " + value);
-			everything = everything.replaceAll(key, value);
+			everything = everything.replaceAll(pattern, translation);
 		}
 		
-		File output;
-		String fileName = url.replaceAll(".+/", "");
-		if(mobile){
+        String pageFilePath = "";
+        String fileName = doc.location().replaceAll(".+/", "");
+        if(!fileName.contains(".html")){
+        	pageFilePath = this.conf.getStaticWebFolderPath() + "\\WsTcgResults\\" + fileName + ".html";
+        }else{
+        	pageFilePath =  doc.location();
+        }
+		File pageFile = new File(pageFilePath);
+		/*if(false){
 			output = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\m." + fileName + ".html");
 		}
 		else{
 			output = new File(conf.wsTcgResultsFolder.getAbsolutePath() + "\\" + fileName + ".html");			
-		}
-		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output), "UTF-8"));
+		}*/
+		Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(pageFile), "UTF-8"));
 		writer.write(everything);
 		writer.close();
 	}
-	
 }

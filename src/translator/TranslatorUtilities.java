@@ -122,6 +122,7 @@ public class TranslatorUtilities {
 			if(!replacementLine.equals("")){
 				if(!replacementLine.equals("***")){
 					if(!translationsPairs.containsKey(patternLine)){
+						System.out.println("* Processing pattern: " + patternLine);
 						translationsPairs.put(patternLine, replacementLine);
 					}
 					else{
@@ -129,7 +130,7 @@ public class TranslatorUtilities {
 					}
 				}
 				else{
-					System.out.println("* Ignoring WIP patters: " + patternLine);
+					System.out.println("* Ignoring WIP pattern: " + patternLine);
 				}
 			}
 			else{
@@ -164,4 +165,17 @@ public class TranslatorUtilities {
 		return cleanAbility;
 	}
 	
+	public static String simplifyAbility(String ability){
+		
+		String cleanAbility = ability.replaceAll("@@(.+?)@@", "").replaceAll("##(.+?)##", "").replaceAll("%%(.+?)%%", "");
+		
+		cleanAbility = cleanAbility.replaceAll("Amarillo(s)?", "Rojo$1");
+		cleanAbility = cleanAbility.replaceAll("Verde(s)?", "Rojo$1");
+		cleanAbility = cleanAbility.replaceAll("Azule?(s)?", "Rojo$1");
+
+		cleanAbility = cleanAbility.replaceAll("<<>>(, <<>>)* o <<>>", "<<>>");
+		cleanAbility = cleanAbility.replaceAll("''(, '')* o ''", "''");
+		
+		return cleanAbility;
+	}
 }
