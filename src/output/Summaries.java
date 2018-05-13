@@ -179,7 +179,7 @@ public class Summaries {
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
-	public void generateAbilityListFile_PendingSetTranslations(ArrayList<Card> cards, File file) throws Exception{
+	public void generateAbilityListFile_PendingTranslations(ArrayList<Card> cards, File file) throws Exception{
 		
 		System.out.println("*** Generate Ability List (Set Pending Translations) Txt for " + file.getName() + " ***");
 		
@@ -194,7 +194,7 @@ public class Summaries {
 			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
 			if(lineTranslation == null){
 				abilities.add(ability);
-				abilities.add(ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\"").replaceAll("\\+\\d+? Power", "+(d+?) Power"));
+				abilities.add(Utilities.cleanAbility(ability));
 				abilities.add("***");
 				abilities.add("");
 			}
@@ -204,7 +204,7 @@ public class Summaries {
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
 	}
 	
-	public void generateAbilityListFile_PendingSetTranslations_Raw(ArrayList<Card> cards, File file) throws Exception{
+	public void generateAbilityListFile_PendingTranslations_Clean(ArrayList<Card> cards, File file) throws Exception{
 		
 		System.out.println("*** Generate Ability List (Set Pending Translations) Txt for " + file.getName() + " ***");
 		
@@ -218,31 +218,7 @@ public class Summaries {
 
 			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
 			if(lineTranslation == null){
-				abilities.add(ability);
-				abilities.add("***");
-				abilities.add("");
-			}
-		}
-		abilities.add("LóL: force notepad++ to recognice the file as UTF-8. No real need to remove before processing, but suit yourself.");
-		
-		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
-	}
-	
-	public void generateAbilityListFile_PendingReferencelessTranslations(ArrayList<Card> cards, File file) throws Exception{
-		
-		System.out.println("*** Generate Ability List (Set Pending Translations) Txt for " + file.getName() + " ***");
-		
-		ArrayList<String> abilitiesBase = CardListUtilities.getAbilities_Sorted(cards);
-
-		ArrayList<String> abilities = new ArrayList<String>();
-		
-		Translator translator = new Translator();
-		
-		for(String ability: abilitiesBase){
-
-			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
-			if(lineTranslation == null){
-				String referencelesAbility = ability.replaceAll("::(.+?)::", "::(.+?)::").replaceAll("\"(.+?)\"", "\"(.+?)\"").replaceAll("\\+\\d+? Power", "+(d+?) Power"); 
+				String referencelesAbility = Utilities.cleanAbility(ability); 
 				if(!abilities.contains(referencelesAbility)){
 					abilities.add(referencelesAbility);
 					abilities.add("***");

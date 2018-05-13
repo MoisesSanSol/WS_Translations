@@ -1,8 +1,14 @@
 package main;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
+import java.util.List;
 
 import translator.TranslatorUtilities;
 import configuration.LocalConf;
@@ -17,7 +23,8 @@ public class CustomOneShotsAndOthers {
 		// For testing and individual execution purposes.
 		CustomOneShotsAndOthers dispatcher = new CustomOneShotsAndOthers();
 		//dispatcher.replaceNumbersWithNumericalRegExp();
-		dispatcher.cleanPendingTranslationsThatSlippedBy();
+		//dispatcher.cleanPendingTranslationsThatSlippedBy();
+		dispatcher.filterSetWorkingFile();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -26,6 +33,32 @@ public class CustomOneShotsAndOthers {
 		this.conf = LocalConf.getInstance();
 	}
 
+	public void filterSetWorkingFile() throws Exception{
+		
+		File file = new File(conf.getGeneralResultsFolderPath() + "AllAbilities_WorkingOn.txt"); 
+				
+		ArrayList<String> oldContent = new ArrayList<String>(Files.readAllLines(file.toPath(), StandardCharsets.UTF_8));
+		ArrayList<String> newContent = new ArrayList<String>();
+		
+		while(oldContent.size() > 2){
+		
+			//String line1 = oldContent.remove(0);
+			String line2 = oldContent.remove(0);
+			String line3 = oldContent.remove(0);
+			String line4 = oldContent.remove(0);
+			
+			if(line2.contains("[C] EXPERIENCE")){
+				if(!newContent.contains(line2)){
+					//newContent.add(line1);
+					newContent.add(line2);
+					newContent.add(line3);
+					newContent.add(line4);
+				}
+			}
+		}
+		Files.write(file.toPath(), newContent, StandardCharsets.UTF_8);
+	}
+	
 	
 	public void replaceNumbersWithNumericalRegExp() throws Exception{
 		

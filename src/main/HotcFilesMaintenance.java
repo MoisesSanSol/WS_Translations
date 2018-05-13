@@ -26,7 +26,8 @@ public class HotcFilesMaintenance {
 		// For testing and individual execution purposes.
 		HotcFilesMaintenance dispatcher = new HotcFilesMaintenance();
 
-		dispatcher.updateHotcPromoFiles();
+		//dispatcher.updateHotcPromoFiles();
+		dispatcher.checkHotCFilesUpdates(null);
 				
 		System.out.println("*** Finished ***");
 	}
@@ -75,5 +76,14 @@ public class HotcFilesMaintenance {
 		}
 		
 		return promoCards;
+	}
+	
+	public void checkHotCFilesUpdates(String file) throws Exception{
+		
+		System.out.println("** Check HotC Files Updates - File : " + file);
+		
+		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
+		
+		hotcRawFilesHelper.checkIfHotcRawFileIsUpToDate("bang_dream!_booster_pack");
 	}
 }

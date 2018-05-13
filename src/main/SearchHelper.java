@@ -27,6 +27,7 @@ public class SearchHelper {
 		dispatcher.search_TranslationPairs_ReplaceBased();
 		//dispatcher.search_Cards_PatternBased();
 		
+		
 		System.out.println("*** Finished ***");
 	}
 	

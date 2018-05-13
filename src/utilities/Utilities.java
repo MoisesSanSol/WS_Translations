@@ -87,4 +87,14 @@ public class Utilities {
 		
 		return pairs;
 	}
+	
+	public static String cleanAbility(String ability){
+		String cleanAbility = ability;
+		cleanAbility = cleanAbility.replaceAll("::(.+?)::", "::(.+?)::");
+		cleanAbility = cleanAbility.replaceAll("\"(?!\\[)(.+?)\"", "\"(.+?)\"");
+		cleanAbility = cleanAbility.replaceAll("'\"\\(\\.\\+\\?\\)\"(.+?)'", "'(.+?)'");
+		cleanAbility = cleanAbility.replaceAll("\\+\\d+? Power", "+(d+?) Power");;
+		return cleanAbility;
+
+	}
 }

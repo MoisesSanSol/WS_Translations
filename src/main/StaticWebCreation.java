@@ -112,7 +112,7 @@ public class StaticWebCreation {
 		
 		ArrayList<Card> allCards = this.getAllSetCards();
 		
-		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
+		summaries.generateAbilityListFile_PendingTranslations(allCards, workingFile);
 		
 		Desktop.getDesktop().open(this.conf.generalResultsFolder);
 	}
@@ -133,7 +133,7 @@ public class StaticWebCreation {
 		ArrayList<Card> allCards = this.getAllSetCards();
 		
 		summaries.generateAbilityListFile_TranslatedSetReference(allCards, setTranslationsFile);
-		summaries.generateAbilityListFile_PendingSetTranslations(allCards, workingFile);
+		summaries.generateAbilityListFile_PendingTranslations(allCards, workingFile);
 		summaries.generateTranslationProgress(allCards, progressFile, progressFile.exists());
 		
 		Desktop.getDesktop().open(this.conf.generalResultsFolder);

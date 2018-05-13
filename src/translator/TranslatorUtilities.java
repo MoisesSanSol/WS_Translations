@@ -87,7 +87,7 @@ public class TranslatorUtilities {
 			String replacementLine = content.remove(0);
 			content.remove(0); // Ignore line
 			if(!replacementLine.equals("")){
-				if(!replacementLine.equals("***")){
+				if(!replacementLine.startsWith("***")){
 					if(!translationsPairs.containsKey(patternLine)){
 						translationsPairs.put(patternLine, replacementLine);
 					}
@@ -120,7 +120,7 @@ public class TranslatorUtilities {
 			String replacementLine = content.remove(0);
 			content.remove(0); // Ignore blank line
 			if(!replacementLine.equals("")){
-				if(!replacementLine.equals("***")){
+				if(!replacementLine.startsWith("***")){
 					if(!translationsPairs.containsKey(patternLine)){
 						System.out.println("* Processing pattern: " + patternLine);
 						translationsPairs.put(patternLine, replacementLine);

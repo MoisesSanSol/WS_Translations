@@ -22,11 +22,11 @@ public class GeneralSummaries {
 		
 		//dispatcher.createTranslationReferenceFile_AllSets()
 		//dispatcher.createTranslationReferenceFile_AllCards();
-		//dispatcher.createPendingSetTranslationsFile_AllCards();
+		dispatcher.createPendingSetTranslationsFile_AllCards_Clean();
 		//dispatcher.createPendingSetTranslationsFile_AllCards_Raw();
 		//dispatcher.createTranslationProgressFile_AllSets();
 		
-		dispatcher.createTranslationReferencesFile_Raw();
+		//dispatcher.createTranslationReferencesFile_Raw();
 		//dispatcher.createTranslationReferencesFile_Clean();
 		//dispatcher.createTranslationReferencesFile_Simplified();
 		
@@ -50,7 +50,7 @@ public class GeneralSummaries {
 		}
 	}
 	
-	public void createPendingSetTranslationsFile_AllCards() throws Exception{
+	public void createPendingSetTranslationsFile_AllCards_Clean() throws Exception{
 		
 		Summaries summaries = new Summaries();
 		TranslatorUtilities utility = new TranslatorUtilities();
@@ -63,7 +63,7 @@ public class GeneralSummaries {
 			utility.updateTranslationsPairsFullListWithPairsFile(workingFile);
 		}
 		
-		summaries.generateAbilityListFile_PendingReferencelessTranslations(allCards, workingFile);
+		summaries.generateAbilityListFile_PendingTranslations_Clean(allCards, workingFile);
 	}
 	
 	public void createPendingSetTranslationsFile_AllCards_Raw() throws Exception{
@@ -76,10 +76,10 @@ public class GeneralSummaries {
 		ArrayList<Card> allCards = CardListUtilities.getCards_All();
 		
 		if(workingFile.exists()){
-			utility.updateTranslationsPairsFullListWithPairsFile(workingFile);
+			utility.updateTranslationsPairsFullListWithSetFile(workingFile);
 		}
 		
-		summaries.generateAbilityListFile_PendingSetTranslations_Raw(allCards, workingFile);
+		summaries.generateAbilityListFile_PendingTranslations(allCards, workingFile);
 	}
 	
 	public void createTranslationProgressFile_AllSets() throws Exception{
