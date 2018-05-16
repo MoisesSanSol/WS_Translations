@@ -31,7 +31,7 @@ public class LineTranslation{
 		return ability;
 	}
 	
-	public boolean matchesPattern(String ability){
+	public boolean matchesAbility(String ability){
 		Matcher m = this.pattern.matcher(ability);
 		return m.matches();
 	}

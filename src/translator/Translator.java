@@ -84,7 +84,7 @@ public class Translator {
 		for(int i = 0; i < card.habs.size(); i++){
 			for(LineTranslation attempt : this.lineTranslations){
 				String ability = result.habs.get(i);
-				if(attempt.matchesPattern(ability)){
+				if(attempt.matchesAbility(ability)){
 					result.habs.set(i, attempt.translateAbility(ability));
 					break;
 				}

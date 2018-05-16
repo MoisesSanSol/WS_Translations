@@ -36,8 +36,9 @@ public class WsTcgResults {
 		System.out.println("*** Starting ***");
 
 		WsTcgResults wsTcgResults = new WsTcgResults();
-		//wsTcgResults.generateWstcgResulstPages();
-		wsTcgResults.updateWstcgResulstPages();
+		
+		wsTcgResults.generateWstcgResulstPages();
+		//wsTcgResults.updateWstcgResulstPages();
 		
 		System.out.println("*** Finished ***");
 	}

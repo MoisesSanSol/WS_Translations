@@ -1,6 +1,12 @@
 package main;
 
+import java.util.ArrayList;
+
+import cards.Card;
 import configuration.LocalConf;
+import translator.LineTranslation;
+import translator.Translator;
+import utilities.CardListUtilities;
 
 public class TranslationPairsMaintenance {
 	
@@ -12,7 +18,7 @@ private LocalConf conf;
 		// For testing and individual execution purposes.
 		TranslationPairsMaintenance dispatcher = new TranslationPairsMaintenance();
 
-		
+		dispatcher.checkUnusedTranslationPairs();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -22,5 +28,26 @@ private LocalConf conf;
 		
 	}
 	
-	
+	public void checkUnusedTranslationPairs() throws Exception{
+		
+		Translator translator = new Translator();
+		ArrayList<String> allAbilities = CardListUtilities.getAbilities_AllSorted();
+		
+		for(LineTranslation lineTranslation : translator.lineTranslations) {
+			
+			boolean used = false;
+			
+			for(String ability : allAbilities) {
+				
+				if(lineTranslation.matchesAbility(ability)) {
+					used = true;
+				}
+			}
+			
+			if(!used) {
+				System.out.println("* Unused Translation Pattern:\r\n" + lineTranslation.patternString);
+				System.out.println("* Unused Translation:\r\n" + lineTranslation.replace);
+			}
+		}
+	}
 }

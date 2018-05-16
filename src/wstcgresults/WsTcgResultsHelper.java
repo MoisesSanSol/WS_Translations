@@ -37,7 +37,7 @@ public class WsTcgResultsHelper {
 		LocalConf conf = LocalConf.getInstance();
 		
 		Properties properties = new Properties();
-		InputStream input = new FileInputStream("D:\\Workshop\\Translations\\TranslationPlainFiles\\Resources\\currentWstcgResultsPages.properties");
+		InputStream input = new FileInputStream("E:\\Workshop\\Translations\\TranslationPlainFiles\\Resources\\currentWstcgResultsPages.properties");
 		
 		properties.load(input);
 		input.close();

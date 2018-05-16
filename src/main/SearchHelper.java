@@ -95,7 +95,7 @@ public class SearchHelper {
 		
 		for(Card card : allCards){
 			for(String ability :card.habs){
-				if(helper.matchesPattern(ability)){
+				if(helper.matchesAbility(ability)){
 					foundCards.put(card, ability);
 					System.out.println("Found in Card: " + card.id);
 				}
