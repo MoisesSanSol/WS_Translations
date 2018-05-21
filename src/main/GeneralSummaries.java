@@ -22,13 +22,15 @@ public class GeneralSummaries {
 		
 		//dispatcher.createTranslationReferenceFile_AllSets()
 		//dispatcher.createTranslationReferenceFile_AllCards();
-		dispatcher.createPendingSetTranslationsFile_AllCards_Clean();
+		//dispatcher.createPendingSetTranslationsFile_AllCards_Clean();
 		//dispatcher.createPendingSetTranslationsFile_AllCards_Raw();
 		//dispatcher.createTranslationProgressFile_AllSets();
 		
 		//dispatcher.createTranslationReferencesFile_Raw();
 		//dispatcher.createTranslationReferencesFile_Clean();
 		//dispatcher.createTranslationReferencesFile_Simplified();
+		
+		dispatcher.createAbilityListFile_Ids();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -117,5 +119,15 @@ public class GeneralSummaries {
 		
 		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllTranslationReferences_Simplified.txt");
 		summaries.generateAbilityListFile_TranlationReferences_Simplified(allCards, file);
+	}
+	
+	public void createAbilityListFile_Ids() throws Exception{
+		
+		Summaries summaries = new Summaries();
+		
+		ArrayList<Card> allCards = CardListUtilities.getCards_All();
+		
+		File file = new File(this.conf.getGeneralResultsFolderPath() + "AllAbilities_WithIds.txt");
+		summaries.generateAbilityListFile_Ids(allCards, file);
 	}
 }

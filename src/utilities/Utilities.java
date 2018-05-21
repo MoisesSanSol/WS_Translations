@@ -10,6 +10,11 @@ import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 
 public class Utilities {
+
+	public static void checkFolderExistence(String folderPath) throws Exception{
+		File folderFile = new File(folderPath);
+		Utilities.checkFolderExistence(folderFile);
+	}
 	
 	public static void checkFolderExistence(File folder) throws Exception{
 		if(!folder.exists()){

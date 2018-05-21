@@ -18,6 +18,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import utilities.Utilities;
 import configuration.LocalConf;
 //import translations.Conf;
 import download.DownloadHelper;
@@ -31,7 +32,7 @@ public class HotcRawFilesHelper {
 		
 		// For testing and individual execution purposes.
 		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
-
+		
 		System.out.println("*** Finished ***");
 	}
 	
@@ -164,5 +165,62 @@ public class HotcRawFilesHelper {
         OutputStream output = new FileOutputStream(conf.hotcRawFilesReferenceFile);
         properties.store(output, "Updating with new series.");
 		output.close();
+	}
+	
+	public void downloadAgainHotcRawFiles() throws Exception{
+		
+		System.out.println("** Download All Hotc Raw Files Again");
+		
+		HashMap<String,String> setRefs = this.getDowloadedReferences();
+
+		String temporalFolderPath = conf.gethotcRawFilesFolderPath() + "JustDownloaded//";
+		
+		Utilities.checkFolderExistence(temporalFolderPath);
+		
+        for(String setRef : setRefs.keySet()){
+
+    		System.out.println("* Ref to download: " + setRef);
+        	
+    		String rawFileName = setRefs.get(setRef);
+        	
+        	System.out.println("* File to download: " + rawFileName);
+
+        	File rawFile = new File(temporalFolderPath + rawFileName + ".txt");
+        	
+        	if(!rawFile.exists()){
+        	
+	    		Thread.sleep(conf.politeness);
+	    		
+				String rawFileUrl = conf.hotcTranslationFileBaseUrl + rawFileName + ".txt";
+			
+				DownloadHelper.downloadFile(rawFileUrl, rawFile);
+        	}
+        	else{
+        		System.out.println("* File already downloaded: " + rawFileName);
+        	}
+		}
+	}
+	
+	public void compareHotcRawFiles() throws Exception{
+		
+		System.out.println("** Compare All Hotc Raw Files for Updates");
+		
+		String temporalFolderPath = conf.gethotcRawFilesFolderPath() + "JustDownloaded//";
+		File temporalFolder = new File(temporalFolderPath);
+		
+        for(File newHotcRawFile : temporalFolder.listFiles()){
+
+        	System.out.println("* Comparing file: " + newHotcRawFile.getName());
+
+        	File oldHotcRawFile = new File(conf.gethotcRawFilesFolderPath() + newHotcRawFile.getName());
+        	
+        	if(!FileUtils.contentEquals(oldHotcRawFile, newHotcRawFile)){
+        		System.out.println("* Outadeted file: " + newHotcRawFile.getName());
+        	}
+        	else{
+        		System.out.println("* File already up to date, deleting file: " + newHotcRawFile.getName());
+        		newHotcRawFile.delete();
+        	}
+		}
 	}
 }
