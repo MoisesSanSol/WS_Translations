@@ -58,7 +58,7 @@ public class HotcCleanFileParser {
 	
 			String habLine;
 			while (!((habLine = content.remove(0)).equals(""))){
-				habLines.add(habLine);
+				habLines.add(habLine.trim());
 			}
 			
 			Card card = new Card(nameLine, jpNameLine, idLine, colorLine, levelLine, traitLine, triggerLine, habLines);

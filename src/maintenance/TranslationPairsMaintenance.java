@@ -1,4 +1,4 @@
-package main;
+package maintenance;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,7 @@ import cards.Card;
 import configuration.LocalConf;
 import translator.LineTranslation;
 import translator.Translator;
+import translator.TranslatorUtilities;
 import utilities.CardListUtilities;
 
 public class TranslationPairsMaintenance {
@@ -18,7 +19,8 @@ private LocalConf conf;
 		// For testing and individual execution purposes.
 		TranslationPairsMaintenance dispatcher = new TranslationPairsMaintenance();
 
-		dispatcher.checkUnusedTranslationPairs();
+		//dispatcher.checkUnusedTranslationPairs();
+		//dispatcher.removeDuplicatedPatterns();
 		
 		System.out.println("*** Finished ***");
 	}
@@ -49,5 +51,14 @@ private LocalConf conf;
 				System.out.println("* Unused Translation:\r\n" + lineTranslation.replace);
 			}
 		}
+	}
+	
+	public void removeDuplicatedPatterns() throws Exception{
+		
+		System.out.println("** Remove Duplicated Patterns");
+		
+		TranslatorUtilities transUtility = new TranslatorUtilities();
+		transUtility.updateTranslationsPairsFullListWithPairsFile(this.conf.translationPairsFullListFile);
+		
 	}
 }

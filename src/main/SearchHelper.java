@@ -24,8 +24,8 @@ public class SearchHelper {
 		// For testing and individual execution purposes.
 		SearchHelper dispatcher = new SearchHelper();
 
-		dispatcher.search_TranslationPairs_ReplaceBased();
-		//dispatcher.search_Cards_PatternBased();
+		//dispatcher.search_TranslationPairs_ReplaceBased();
+		dispatcher.search_Cards_PatternBased();
 		
 		
 		System.out.println("*** Finished ***");

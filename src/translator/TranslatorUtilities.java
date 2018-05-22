@@ -70,6 +70,9 @@ public class TranslatorUtilities {
 			if(!fullTranslationsPairs.containsKey(pattern)){
 				fullTranslationsPairs.put(pattern, setTranslationsPairs.get(pattern));
 			}
+			else{
+				System.out.println("* Duplicated pattern: " + pattern);
+			}
 		}
 		
 		this.createFileFromTranslationPairs(fullTranslationsPairs, this.conf.translationPairsFullListFile);

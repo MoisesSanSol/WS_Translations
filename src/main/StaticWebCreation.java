@@ -20,7 +20,7 @@ import download.DownloadHelper;
 
 public class StaticWebCreation {
 
-	String setFileId = "MB_S10";
+	String setFileId = "GZL_S54";
 	
 	public static void main(String[] args) throws Exception{
 		System.out.println("*** Starting ***");
@@ -33,7 +33,7 @@ public class StaticWebCreation {
 		
 		/* Creating translations for set */
 		//dispatcher.createSetTranslationRelatedFiles();
-		dispatcher.createSetTranslationWorkingFile();
+		//dispatcher.createSetTranslationWorkingFile();
 		
 		/* Getting images for set web */
 		//dispatcher.createWebImages();
