@@ -53,6 +53,15 @@ public class LocalConf {
 	// Singleton instance
 	private static LocalConf instance;
 
+	// V2 Files
+	public String neoStandardJpGroupsPath;
+	public String neoStandardHotcGroupsPath;
+	public String productsPath;
+	
+	// V2 Folders
+	public String resourcesFolderPath;
+	public String seriesDataFolderPath;
+	
 	// Private (so only getInstance() can be used to instantiate the class) constructor
 	private LocalConf() throws Exception{
 		this.loadLocalConfiguration();
@@ -107,6 +116,15 @@ public class LocalConf {
 			this.staticWebPageTemplateFile = new File(staticWebPageTemplateFilePath);
 			String fullCardlistFilePath = folderConf.getProperty("fullCardlistFile");
 			this.fullCardlistFile = new File(fullCardlistFilePath);
+			
+			// V2 Folders
+			this.resourcesFolderPath = folderConf.getProperty("resourcesFolderPath");
+			this.seriesDataFolderPath = folderConf.getProperty("generalResultsFolder");
+						
+			// V2 Files
+			this.neoStandardJpGroupsPath = this.resourcesFolderPath + "neoStandardGroups.txt";
+			this.neoStandardHotcGroupsPath = this.resourcesFolderPath + "neoStandardHotcGroups.txt";
+			this.productsPath = this.resourcesFolderPath + "products.txt";
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();

@@ -36,7 +36,7 @@ public class StaticWebCreation {
 		//dispatcher.createSetTranslationWorkingFile();
 		
 		/* Getting images for set web */
-		//dispatcher.createWebImages();
+		dispatcher.createWebImages();
 		
 		/* Creating web pages */
 		//dispatcher.createWebPages();

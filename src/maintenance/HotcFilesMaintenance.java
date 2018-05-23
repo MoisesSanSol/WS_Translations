@@ -1,4 +1,4 @@
-package main;
+package maintenance;
 
 import hotcfiles.HotcCleanFilesHelper;
 import hotcfiles.HotcRawFilesHelper;
@@ -27,7 +27,8 @@ public class HotcFilesMaintenance {
 		// For testing and individual execution purposes.
 		HotcFilesMaintenance dispatcher = new HotcFilesMaintenance();
 		
-		dispatcher.checkHotcFilesUpdates();
+		//dispatcher.checkHotcFilesUpdates_All();
+		dispatcher.checkHotcFilesUpdates("godzilla_trial_deck");
 		
 		System.out.println("*** Finished ***");
 	}
@@ -78,7 +79,7 @@ public class HotcFilesMaintenance {
 		return promoCards;
 	}
 	
-	public void checkHotcFilesUpdates() throws Exception{
+	public void checkHotcFilesUpdates_All() throws Exception{
 		
 		System.out.println("** Check HotC Files Updates **");
 		
@@ -133,14 +134,68 @@ public class HotcFilesMaintenance {
         }*/
 	}
 	
-	
-	/*public void checkHotcFilesUpdates() throws Exception{
+	public void checkHotcFilesUpdates_FromFile() throws Exception{
+		
+		System.out.println("** Check HotC Files Updates **");
+		
+		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
+		HotcCleanFilesHelper hotcCleanFilesHelper = new HotcCleanFilesHelper();
+		
+		// Download all files
+		//hotcRawFilesHelper.downloadAgainHotcRawFiles();
+		
+		// Compare files
+		//hotcRawFilesHelper.compareHotcRawFiles();
+		
+		// Create clean files
+		//hotcCleanFilesHelper.generateCleanUpdatedHotcFiles();
+
+		// Get cards and search differences
+		
+		ArrayList<String> audit = new ArrayList<String>();
+		
+		String hotcCleanUpdatedFolderPath = conf.gethotcCleanFilesFolderPath() + "JustDownloaded//";
+		File hotcCleanUpdatedFolder = new File(hotcCleanUpdatedFolderPath);
+		
+		for(File updatedFile : hotcCleanUpdatedFolder.listFiles()){
+			audit.add("Checking file: " + updatedFile.getName());
+			
+			File oldCleanFile = new File(conf.gethotcCleanFilesFolderPath() + updatedFile.getName());
+			
+			ArrayList<Card> newCards = HotcCleanFileParser.parseCards(updatedFile);
+			ArrayList<Card> oldCards = HotcCleanFileParser.parseCards(oldCleanFile);
+			
+			for(Card newCard : newCards){
+				Card oldCard = oldCards.remove(0);
+				String differences = CardUtilities.compareCards(newCard, oldCard);
+				
+				if(differences != null){
+					audit.add(differences);
+				}
+			}
+		}
+		
+		for(String auditLine : audit){
+			System.out.println(auditLine);
+		}
+		
+		/*String temporalFolderPath = conf.gethotcRawFilesFolderPath() + "JustDownloaded//";
+		File temporalFolder = new File(temporalFolderPath);
+		
+        for(File newHotcRawFile : temporalFolder.listFiles()){
+        	String rawFileUrl = conf.hotcTranslationFileBaseUrl + newHotcRawFile.getName();
+        	Thread.sleep(conf.politeness);
+			DownloadHelper.downloadFile(rawFileUrl, newHotcRawFile);
+        }*/
+	}
+
+	public void checkHotcFilesUpdates(String file) throws Exception{
 		
 		System.out.println("** Check HotC Files Updates - File : " + file);
 		
 		HotcRawFilesHelper hotcRawFilesHelper = new HotcRawFilesHelper();
 		
 		hotcRawFilesHelper.checkIfHotcRawFileIsUpToDate("bang_dream!_booster_pack");
-	}*/
+	}
 	
 }

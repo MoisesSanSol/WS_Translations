@@ -189,6 +189,8 @@ public class Summaries {
 		
 		Translator translator = new Translator();
 		
+		int pendingAbilitiesCount = 0;
+		
 		for(String ability: abilitiesBase){
 
 			LineTranslation lineTranslation = translator.findAbilityTranslationPair(ability);
@@ -197,11 +199,20 @@ public class Summaries {
 				abilities.add(Utilities.cleanAbility(ability));
 				abilities.add("***");
 				abilities.add("");
+				pendingAbilitiesCount++;
 			}
 		}
 		abilities.add("LóL: force notepad++ to recognice the file as UTF-8. No real need to remove before processing, but suit yourself.");
 		
+		if(pendingAbilitiesCount > 0){
+			System.out.println("* Still " + pendingAbilitiesCount + " pending (of " + abilitiesBase.size() + ")");
+		}
+		else{
+			System.out.println("* All abilities already translated !!!");
+		}
+		
 		Files.write(file.toPath(), abilities, StandardCharsets.UTF_8);
+	
 	}
 	
 	public void generateAbilityListFile_PendingTranslations_Clean(ArrayList<Card> cards, File file) throws Exception{
