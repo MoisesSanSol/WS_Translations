@@ -10,6 +10,8 @@ import java.util.HashMap;
 
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
+
 import translator.TranslatorUtilities;
 import configuration.LocalConf;
 
@@ -24,7 +26,11 @@ public class CustomOneShotsAndOthers {
 		CustomOneShotsAndOthers dispatcher = new CustomOneShotsAndOthers();
 		//dispatcher.replaceNumbersWithNumericalRegExp();
 		//dispatcher.cleanPendingTranslationsThatSlippedBy();
-		dispatcher.filterSetWorkingFile();
+		//dispatcher.filterSetWorkingFile();
+		
+		for(File file : dispatcher.conf.hotcCleanFilesFolder.listFiles()){
+			System.out.println(FilenameUtils.getName(file.getName()));
+		}
 		
 		System.out.println("*** Finished ***");
 	}

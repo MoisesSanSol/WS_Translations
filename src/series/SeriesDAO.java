@@ -60,7 +60,7 @@ public class SeriesDAO {
 		
 		for(Series series : seriesList){
 			
-			String jpInfo = series.setType + "\t" + series.setJpName + "\t" + series.setImage + "\t" + series.setImageUrl + "\t" + series.setReleaseDate;
+			String jpInfo = series.setJpType + "\t" + series.setJpName + "\t" + series.setImage + "\t" + series.setImageUrl + "\t" + series.setReleaseDate;
 			
 			content.add(series.setFileName);
 			content.add(series.relevant);
@@ -95,7 +95,7 @@ public class SeriesDAO {
 			}
 			
 			if(!found){
-				currentSeriesList.add(0, series);
+				currentSeriesList.add(series);
 			}
 		}
 		
@@ -119,8 +119,8 @@ public class SeriesDAO {
 			series.relevant = content.remove(0);
 			
 			String[] jpInfo = content.remove(0).split("\t");
-			series.setType = jpInfo[0];
-			series.setJpType = jpInfo[1];
+			series.setJpType = jpInfo[0];
+			series.setJpName = jpInfo[1];
 			series.setImage = jpInfo[2];
 			series.setImageUrl = jpInfo[3];
 			series.setReleaseDate =  jpInfo[4];

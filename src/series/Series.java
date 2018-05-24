@@ -36,11 +36,11 @@ public class Series {
 		
 		String[] split = jpSetInfo.split("　");
 		if(split.length == 2){
-			this.setType = split[0];
+			this.setJpType = split[0];
 			this.setJpName = split[1];
 		}
 		else{
-			this.setType = "Error_Type";
+			this.setJpType = "Error_Type";
 			this.setJpName = jpSetInfo;
 		}
 	}
