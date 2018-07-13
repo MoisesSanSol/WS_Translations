@@ -1,13 +1,17 @@
 package maintenance;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import cards.Card;
 import configuration.LocalConf;
 import translator.LineTranslation;
 import translator.Translator;
 import translator.TranslatorUtilities;
 import utilities.CardListUtilities;
+import utilities.Utilities;
 
 public class TranslationPairsMaintenance {
 	
@@ -19,7 +23,7 @@ private LocalConf conf;
 		// For testing and individual execution purposes.
 		TranslationPairsMaintenance dispatcher = new TranslationPairsMaintenance();
 
-		//dispatcher.checkUnusedTranslationPairs();
+		dispatcher.removeUnusedTranslationPairs();
 		//dispatcher.removeDuplicatedPatterns();
 		
 		System.out.println("*** Finished ***");
@@ -30,10 +34,17 @@ private LocalConf conf;
 		
 	}
 	
-	public void checkUnusedTranslationPairs() throws Exception{
+	
+	public void removeUnusedTranslationPairs() throws Exception{
 		
 		Translator translator = new Translator();
 		ArrayList<String> allAbilities = CardListUtilities.getAbilities_AllSorted();
+		
+		File unusedTranslations = new File(this.conf.getTranslationPairsFolderPath() + "UnusedTranslationPairs.txt");
+		Utilities.checkFileExistence(unusedTranslations);
+		ArrayList<String> unusedContent = (ArrayList<String>)Files.readAllLines(unusedTranslations.toPath(), StandardCharsets.UTF_8);
+		
+		HashMap<String,String> keptTranslationsPairs = new HashMap<String,String>();
 		
 		for(LineTranslation lineTranslation : translator.lineTranslations) {
 			
@@ -47,10 +58,21 @@ private LocalConf conf;
 			}
 			
 			if(!used) {
-				System.out.println("* Unused Translation Pattern:\r\n" + lineTranslation.patternString);
-				System.out.println("* Unused Translation:\r\n" + lineTranslation.replace);
+				unusedContent.add("* Unused Translation Pair:");
+				unusedContent.add(lineTranslation.patternString);
+				unusedContent.add(lineTranslation.replace);
+				System.out.println("* Unused Translation Pair:");
+				System.out.println(lineTranslation.patternString);
+				System.out.println(lineTranslation.replace);
+			}
+			else{
+				keptTranslationsPairs.put(lineTranslation.patternString, lineTranslation.replace);
 			}
 		}
+		
+		Files.write(unusedTranslations.toPath(), unusedContent, StandardCharsets.UTF_8);
+		TranslatorUtilities transUtility = new TranslatorUtilities();
+		transUtility.updateTranslationsPairsFullListWithPairs(keptTranslationsPairs);
 	}
 	
 	public void removeDuplicatedPatterns() throws Exception{
